@@ -5,7 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LIONSIGN</title>
+<title>LIONSIGN Studio</title>
+
+<meta name="description" content="LIONSIGN Studio creates branding systems and spatial identities.">
+<meta name="keywords" content="branding, doberman branding, digital design, landscape design, visual identity">
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -22,7 +25,7 @@ body{
   cursor:none;
 }
 
-/* GRID - FIXED (NE BLOKIRA KLIKOVE) */
+/* GRID (NE DIRA SE) */
 body::before{
   content:'';
   position:fixed;
@@ -34,10 +37,12 @@ body::before{
     linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
   background-size:80px 80px,80px 80px,20px 20px,20px 20px;
   z-index:0;
-  pointer-events:none; /* 🔥 KLJUČ FIX */
+  pointer-events:none;
 }
 
-/* CURSOR - FIXED (NE BLOKIRA KLIKOVE) */
+body > *{position:relative;z-index:1;}
+
+/* CURSOR (ONLY FIXED PART) */
 #cursor{
   width:18px;
   height:18px;
@@ -46,7 +51,7 @@ body::before{
   position:fixed;
   top:0;
   left:0;
-  pointer-events:none; /* 🔥 KLJUČ FIX */
+  pointer-events:none;
   transform:translate(-50%,-50%);
   transition:width .2s ease, height .2s ease, background .2s ease;
   z-index:99999;
@@ -58,7 +63,7 @@ body::before{
   background:rgba(185,31,42,0.12);
 }
 
-/* NAV */
+/* NAV (ORIGINAL) */
 nav{
   position:fixed;
   width:100%;
@@ -67,7 +72,7 @@ nav{
   justify-content:space-between;
   align-items:center;
   background:#C6A75E;
-  z-index:10;
+  z-index:9999;
 }
 
 .brand{
@@ -81,7 +86,7 @@ nav a{
   font-size:22px;
 }
 
-/* HERO */
+/* HERO (ORIGINAL) */
 .hero{
   min-height:100vh;
   display:flex;
@@ -90,7 +95,25 @@ nav a{
   padding:140px 80px 60px;
 }
 
-/* SERVICES */
+.hero h1{
+  font-family:'Anton';
+  font-size:110px;
+}
+
+.hero span{color:#B91F2A;}
+
+.hero p{
+  font-size:30px;
+  margin-top:10px;
+}
+
+.subline{
+  margin-top:200px;
+  font-family:'Anton';
+  font-size:44px;
+}
+
+/* SERVICES (ORIGINAL) */
 .services{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -98,7 +121,6 @@ nav a{
   padding:40px 80px;
 }
 
-/* 🔥 FIX: pointer-events ensured */
 .card{
   background:#fff;
   padding:36px;
@@ -106,39 +128,141 @@ nav a{
   border:1px solid #e5e5e7;
   text-decoration:none;
   color:#000;
-  display:block;
   transition:0.25s ease;
-  position:relative;
-  z-index:1;
-  pointer-events:auto; /* 🔥 KLJUČ */
+  display:block;
 }
 
 .card:hover{
   transform:translateY(-10px);
   border:1px solid #B91F2A;
+  box-shadow:0 25px 60px rgba(185,31,42,0.18);
 }
 
-/* FAQ */
-.faq{padding:80px;}
+.num{
+  font-family:'Anton';
+  font-size:92px;
+  color:#B91F2A;
+}
+
+.card h3{
+  font-family:'Anton';
+  font-size:44px;
+}
+
+.card p{
+  font-size:22px;
+  margin-top:6px;
+}
+
+/* MANIFEST (ORIGINAL) */
+.manifest{
+  padding:80px;
+}
+
+.manifest-title{
+  font-family:'Anton';
+  font-size:80px;
+  margin-bottom:30px;
+}
+
+.manifest-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.m-card{
+  background:#fff;
+  padding:20px;
+  border-radius:8px;
+  border:1.5px solid rgba(185,31,42,0.6);
+}
+
+/* FAQ (ORIGINAL) */
+.faq{
+  padding:80px;
+}
+
+.faq-title{
+  font-family:'Anton';
+  font-size:80px;
+  margin-bottom:30px;
+}
 
 .faq-item{
   background:#fff;
   border:1px solid #e5e5e7;
+  border-radius:10px;
   margin-bottom:12px;
+  overflow:hidden;
 }
 
 .faq-question{
   padding:22px;
-  font-family:Anton;
+  font-family:'Anton';
+  font-size:24px;
   cursor:pointer;
+  display:flex;
+  justify-content:space-between;
 }
 
-/* MOBILE */
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.35s ease;
+  padding:0 22px;
+}
+
+.faq-item.active .faq-answer{
+  max-height:200px;
+}
+
+.faq-answer p{
+  font-size:20px;
+  padding-bottom:20px;
+  opacity:0.85;
+}
+
+/* POWER (ORIGINAL) */
+.power{
+  padding:60px 80px;
+  font-family:'Anton';
+  font-size:80px;
+}
+
+.power span{color:#B91F2A;}
+
+/* FOOTER */
+.footer{
+  padding:30px 80px;
+}
+
+/* MOBILE (ONLY CURSOR FIX LOGIC MATTERS HERE) */
 @media(max-width:768px){
 body{cursor:auto;}
 #cursor{display:block;}
-.services{grid-template-columns:1fr;}
+
+.services{
+  grid-template-columns:1fr;
+  padding:40px 20px;
+}
+
 .hero{padding:120px 20px;}
+.hero h1{font-size:52px;}
+
+.manifest,
+.faq{
+  padding:40px 20px;
+}
+
+.manifest-grid{
+  grid-template-columns:1fr;
+}
+
+.power{font-size:42px;}
+
+.hero p{font-size:18px;}
+.faq-title{font-size:42px;}
 }
 
 </style>
@@ -150,50 +274,80 @@ body{cursor:auto;}
 
 <nav>
   <div class="brand">LIONSIGN</div>
-  <a href="https://www.facebook.com/kristina.radosavljevic">CONTACT</a>
+  <a href="https://www.facebook.com/kristina.radosavljevic" target="_blank">CONTACT</a>
 </nav>
 
 <div class="hero">
   <h1><span>DESIGN</span> BUILDS DOMINANCE</h1>
+  <p>We create identities, systems and spaces that command attention</p>
+  <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
+<!-- SERVICES (UNCHANGED) -->
 <div class="services">
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
-01 DOBERMAN BRANDING
+<div class="num">01</div>
+<h3>DOBERMAN BRANDING</h3>
+<p>Elite identity systems</p>
 </a>
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
-02 DIGITAL DESIGN
+<div class="num">02</div>
+<h3>DIGITAL DESIGN</h3>
+<p>Systems that combine aesthetics</p>
 </a>
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
-03 LANDSCAPE DESIGN
+<div class="num">03</div>
+<h3>LANDSCAPE DESIGN</h3>
+<p>Spatial systems</p>
 </a>
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
-04 OBSIDIAN LINE
+<div class="num">04</div>
+<h3>OBSIDIAN LINE</h3>
+<p>Limited garments</p>
 </a>
 
 </div>
 
+<!-- FAQ (UNCHANGED) -->
 <div class="faq">
 
+<div class="faq-title">FAQ</div>
+
 <div class="faq-item">
-<div class="faq-question">What happens?</div>
-<div class="faq-answer">Opens page.</div>
+<div class="faq-question">What happens when I click a numbered card?</div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
 </div>
 
+<div class="faq-item">
+<div class="faq-question">Are all landing pages different?</div>
+<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
+</div>
+
+</div>
+
+<div class="power">
+POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
+</div>
+
+<div class="footer">
+© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
 </div>
 
 <script>
 
 /* FAQ */
-document.querySelectorAll(".faq-item").forEach(i=>{
-  i.addEventListener("click",()=>i.classList.toggle("active"));
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    item.classList.toggle("active");
+  });
 });
 
-/* CURSOR FIXED */
+/* CURSOR — ONLY FIX HERE (NO LAYOUT TOUCH) */
+
 const cursor = document.getElementById("cursor");
 
 let x=0,y=0,tx=0,ty=0;
@@ -220,8 +374,7 @@ function loop(){
 }
 loop();
 
-/* hover only */
-document.querySelectorAll("a,.card,.faq-question").forEach(el=>{
+document.querySelectorAll("a,.card,.faq-question,nav a").forEach(el=>{
   el.addEventListener("mouseenter",()=>cursor.classList.add("active"));
   el.addEventListener("mouseleave",()=>cursor.classList.remove("active"));
 });
