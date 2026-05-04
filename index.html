@@ -40,15 +40,12 @@ body::before{
   pointer-events:none;
 }
 
-body > *{
-  position:relative;
-  z-index:1;
-}
+body > *{position:relative;z-index:1;}
 
 /* CURSOR */
 #cursor{
-  width:18px;
-  height:18px;
+  width:16px;
+  height:16px;
   border:2px solid #B91F2A;
   border-radius:50%;
   position:fixed;
@@ -56,13 +53,14 @@ body > *{
   left:0;
   pointer-events:none;
   transform:translate(-50%,-50%);
-  transition:width .2s ease, height .2s ease, background .2s ease;
+  transition:width .18s ease, height .18s ease, background .18s ease;
   z-index:99999;
 }
 
+/* hover state (expand) */
 #cursor.active{
-  width:50px;
-  height:50px;
+  width:52px;
+  height:52px;
   background:rgba(185,31,42,0.12);
 }
 
@@ -122,11 +120,8 @@ nav a{
   grid-template-columns:repeat(2,1fr);
   gap:40px;
   padding:40px 80px;
-  position:relative;
-  z-index:5;
 }
 
-/* ✔ FIX: clickable layer */
 .card{
   background:#fff;
   padding:36px;
@@ -136,10 +131,7 @@ nav a{
   color:#000;
   transition:0.25s ease;
   display:block;
-
   position:relative;
-  z-index:10;
-  pointer-events:auto;
 }
 
 .card:hover{
@@ -352,34 +344,39 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* CURSOR */
+/* CURSOR WITH INERTIA */
 const cursor = document.getElementById("cursor");
 
-let x=0,y=0,tx=0,ty=0;
+let x = 0, y = 0;
+let targetX = 0, targetY = 0;
 
-document.addEventListener("mousemove",e=>{
-  tx=e.clientX;
-  ty=e.clientY;
+document.addEventListener("mousemove",(e)=>{
+  targetX = e.clientX;
+  targetY = e.clientY;
 });
 
-document.addEventListener("touchmove",e=>{
-  const t=e.touches[0];
-  tx=t.clientX;
-  ty=t.clientY;
+/* touch support */
+document.addEventListener("touchmove",(e)=>{
+  const t = e.touches[0];
+  targetX = t.clientX;
+  targetY = t.clientY;
 },{passive:true});
 
 function animate(){
-  x+=(tx-x)*0.12;
-  y+=(ty-y)*0.12;
+  x += (targetX - x) * 0.15;
+  y += (targetY - y) * 0.15;
 
-  cursor.style.left=x+"px";
-  cursor.style.top=y+"px";
+  cursor.style.left = x + "px";
+  cursor.style.top = y + "px";
 
   requestAnimationFrame(animate);
 }
 animate();
 
-document.querySelectorAll("a,.card,.faq-question,nav a").forEach(el=>{
+/* hover detection */
+const interactive = document.querySelectorAll("a, .card, .faq-question, nav a");
+
+interactive.forEach(el=>{
   el.addEventListener("mouseenter",()=>cursor.classList.add("active"));
   el.addEventListener("mouseleave",()=>cursor.classList.remove("active"));
 });
