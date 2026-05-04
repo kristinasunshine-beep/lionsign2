@@ -51,10 +51,10 @@ body > *{position:relative;z-index:1;}
   position:fixed;
   top:0;
   left:0;
-  transform:translate(-50%,-50%);
   pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:width .2s ease, height .2s ease, background .2s ease;
   z-index:99999;
-  transition:width .2s ease,height .2s ease,background .2s ease;
 }
 
 #cursor.active{
@@ -98,16 +98,9 @@ nav a{
 .hero h1{
   font-family:'Anton';
   font-size:110px;
-  opacity:0;
-  transform:scale(1.1);
-  animation:heroIn 1s ease forwards;
 }
 
 .hero span{color:#B91F2A;}
-
-@keyframes heroIn{
-  to{opacity:1; transform:scale(1);}
-}
 
 .hero p{
   font-size:30px;
@@ -128,7 +121,6 @@ nav a{
   padding:40px 80px;
 }
 
-/* CARDS — TVOJE ORIGINALNE */
 .card{
   background:#fff;
   padding:36px;
@@ -137,22 +129,7 @@ nav a{
   text-decoration:none;
   color:#000;
   transition:0.25s ease;
-
-  opacity:0;
-  transform:translateY(50px);
-  animation:cardIn 0.8s ease forwards;
-}
-
-.card:nth-child(1){animation-delay:0.05s;}
-.card:nth-child(2){animation-delay:0.15s;}
-.card:nth-child(3){animation-delay:0.25s;}
-.card:nth-child(4){animation-delay:0.35s;}
-
-@keyframes cardIn{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  display:block;
 }
 
 .card:hover{
@@ -175,30 +152,6 @@ nav a{
 .card p{
   font-size:22px;
   margin-top:6px;
-}
-
-/* MANIFEST */
-.manifest{
-  padding:80px;
-}
-
-.manifest-title{
-  font-family:'Anton';
-  font-size:80px;
-  margin-bottom:30px;
-}
-
-.manifest-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.m-card{
-  background:#fff;
-  padding:20px;
-  border-radius:8px;
-  border:1.5px solid rgba(185,31,42,0.6);
 }
 
 /* FAQ */
@@ -263,23 +216,19 @@ nav a{
 /* MOBILE */
 @media(max-width:768px){
 
-body{cursor:auto;}
-
-.hero{padding:120px 20px;}
-.hero h1{font-size:52px;}
+/* BITNO: cursor ostaje */
+body{cursor:none;}
 
 .services{
   grid-template-columns:1fr;
   padding:40px 20px;
 }
 
-.manifest,
+.hero{padding:120px 20px;}
+.hero h1{font-size:52px;}
+
 .faq{
   padding:40px 20px;
-}
-
-.manifest-grid{
-  grid-template-columns:1fr;
 }
 
 .power{font-size:42px;}
@@ -307,7 +256,6 @@ body{cursor:auto;}
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
-<!-- TVOJE ORIGINALNE KARTICE -->
 <div class="services">
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
@@ -336,17 +284,6 @@ body{cursor:auto;}
 
 </div>
 
-<!-- MANIFEST -->
-<div class="manifest">
-<div class="manifest-title">MANIFEST</div>
-<div class="manifest-grid">
-<div class="m-card"><p>DESIGN CLARITY</p></div>
-<div class="m-card"><p>BUILD STRUCTURE</p></div>
-<div class="m-card"><p>ACT DELIBERATELY</p></div>
-</div>
-</div>
-
-<!-- FAQ -->
 <div class="faq">
 
 <div class="faq-title">FAQ</div>
@@ -385,33 +322,49 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* JOYSTICK CURSOR */
+/* INERTIAL CURSOR */
 const cursor = document.getElementById("cursor");
 
-let x=0,y=0,tx=0,ty=0;
+let mouseX = 0, mouseY = 0;
+let posX = 0, posY = 0;
 
-document.addEventListener("pointermove",(e)=>{
-  tx=e.clientX;
-  ty=e.clientY;
-
-  const el=document.elementFromPoint(tx,ty);
-  if(el && el.closest("a,.card,.faq-question,nav a")){
-    cursor.classList.add("active");
-  } else {
-    cursor.classList.remove("active");
-  }
+document.addEventListener("mousemove", e=>{
+  mouseX = e.clientX;
+  mouseY = e.clientY;
 });
 
-function animate(){
-  x+=(tx-x)*0.15;
-  y+=(ty-y)*0.15;
+document.addEventListener("touchmove", e=>{
+  const t = e.touches[0];
+  mouseX = t.clientX;
+  mouseY = t.clientY;
 
-  cursor.style.left=x+"px";
-  cursor.style.top=y+"px";
+  // PROVERA DA LI JE IZNAD INTERAKTIVNOG
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+
+  if(el && el.closest("a, .card, .faq-question")){
+    cursor.classList.add("active");
+  }else{
+    cursor.classList.remove("active");
+  }
+
+},{passive:true});
+
+function animate(){
+  posX += (mouseX - posX) * 0.12;
+  posY += (mouseY - posY) * 0.12;
+
+  cursor.style.left = posX + "px";
+  cursor.style.top = posY + "px";
 
   requestAnimationFrame(animate);
 }
 animate();
+
+/* DESKTOP HOVER */
+document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
+  el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
+});
 
 </script>
 
