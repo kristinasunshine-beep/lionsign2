@@ -7,8 +7,6 @@
 
 <title>LIONSIGN</title>
 
-<meta name="description" content="LIONSIGN creates branding systems and spatial identities.">
-
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -128,83 +126,37 @@ nav a{
   text-decoration:none;
   color:#000;
   display:block;
+  transition:0.25s ease;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  border:1px solid #B91F2A;
+  box-shadow:0 25px 60px rgba(185,31,42,0.18);
 }
 
 /* MANIFEST */
-.manifest{
-  padding:80px;
-}
-
-.manifest-title{
-  font-family:'Anton';
-  font-size:80px;
-  margin-bottom:30px;
-}
-
-.manifest-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.m-card{
-  background:#fff;
-  padding:20px;
-  border-radius:8px;
-  border:1.5px solid rgba(185,31,42,0.6);
-}
+.manifest{padding:80px;}
+.manifest-title{font-family:'Anton';font-size:80px;margin-bottom:30px;}
+.manifest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.m-card{background:#fff;padding:20px;border-radius:8px;border:1.5px solid rgba(185,31,42,0.6);}
 
 /* FAQ */
-.faq{
-  padding:80px;
-}
-
-.faq-title{
-  font-family:'Anton';
-  font-size:80px;
-  margin-bottom:30px;
-}
-
-.faq-item{
-  background:#fff;
-  border:1px solid #e5e5e7;
-  border-radius:10px;
-  margin-bottom:12px;
-}
-
-.faq-question{
-  padding:22px;
-  font-family:'Anton';
-  font-size:24px;
-  cursor:pointer;
-}
-
-.faq-answer{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height 0.35s ease;
-  padding:0 22px;
-}
-
-.faq-item.active .faq-answer{
-  max-height:200px;
-}
+.faq{padding:80px;}
+.faq-title{font-family:'Anton';font-size:80px;margin-bottom:30px;}
+.faq-item{background:#fff;border:1px solid #e5e5e7;border-radius:10px;margin-bottom:12px;}
+.faq-question{padding:22px;font-family:'Anton';font-size:24px;cursor:pointer;}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease;padding:0 22px;}
+.faq-item.active .faq-answer{max-height:200px;}
 
 /* POWER */
-.power{
-  padding:60px 80px;
-  font-family:'Anton';
-  font-size:80px;
-}
-
+.power{padding:60px 80px;font-family:'Anton';font-size:80px;}
 .power span{color:#B91F2A;}
 
 /* FOOTER */
-.footer{
-  padding:30px 80px;
-}
+.footer{padding:30px 80px;}
 
-/* MOBILE + GRID FIX */
+/* MOBILE GRID FIX */
 @media(max-width:768px){
 
 body{cursor:auto;}
@@ -218,13 +170,10 @@ body{cursor:auto;}
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
 .hero p{font-size:18px;}
-
 .faq{padding:40px 20px;}
 .faq-title{font-size:42px;}
-
 .power{font-size:42px;}
 
-/* ✔ GRID BACKGROUND FIX MOBILE */
 body::before{
   background:
     linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
@@ -254,33 +203,33 @@ body::before{
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
+<!-- ✔ ORIGINALNE LINKOVANE KARTICE VRACENE 1:1 -->
 <div class="services">
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
-01 DOBERMAN BRANDING
+<div class="num">01</div>
+<h3>DOBERMAN BRANDING</h3>
+<p>Elite identity systems</p>
 </a>
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
-02 DIGITAL DESIGN
+<div class="num">02</div>
+<h3>DIGITAL DESIGN</h3>
+<p>Systems that combine aesthetics</p>
 </a>
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
-03 LANDSCAPE DESIGN
+<div class="num">03</div>
+<h3>LANDSCAPE DESIGN</h3>
+<p>Spatial systems</p>
 </a>
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
-04 OBSIDIAN LINE
+<div class="num">04</div>
+<h3>OBSIDIAN LINE</h3>
+<p>Limited garments</p>
 </a>
 
-</div>
-
-<div class="manifest">
-<div class="manifest-title">MANIFEST</div>
-<div class="manifest-grid">
-<div class="m-card">DESIGN CLARITY</div>
-<div class="m-card">BUILD STRUCTURE</div>
-<div class="m-card">ACT DELIBERATELY</div>
-</div>
 </div>
 
 <div class="faq">
@@ -289,7 +238,7 @@ body::before{
 
 <div class="faq-item">
 <div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page.</p></div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
 </div>
 
 <div class="faq-item">
@@ -321,8 +270,7 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* CURSOR (STABLE JOYSTICK SYSTEM) */
-
+/* CURSOR (STABLE) */
 const cursor = document.getElementById("cursor");
 
 let x=0,y=0,tx=0,ty=0;
