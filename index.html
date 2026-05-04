@@ -260,7 +260,7 @@ nav a{
   padding:30px 80px;
 }
 
-/* MOBILE FIX ONLY FOR CURSOR */
+/* MOBILE FIX - ONLY CURSOR BEHAVIOR */
 @media(max-width:768px){
 
 body{cursor:auto;}
@@ -308,49 +308,8 @@ body{cursor:auto;}
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
-<div class="services">
-
-<a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
-<div class="num">01</div>
-<h3>DOBERMAN BRANDING</h3>
-<p>Elite identity systems</p>
-</a>
-
-<a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
-<div class="num">02</div>
-<h3>DIGITAL DESIGN</h3>
-<p>Systems that combine aesthetics</p>
-</a>
-
-<a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
-<div class="num">03</div>
-<h3>LANDSCAPE DESIGN</h3>
-<p>Spatial systems</p>
-</a>
-
-<a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
-<div class="num">04</div>
-<h3>OBSIDIAN LINE</h3>
-<p>Limited garments</p>
-</a>
-
-</div>
-
 <script>
-
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach(item=>{
-  item.addEventListener("click",()=>{
-    item.classList.toggle("active");
-  });
-});
-
-/* CURSOR (desktop only, no mobile interference) */
 const cursor = document.getElementById("cursor");
-
-const isTouch = window.matchMedia("(pointer: coarse)").matches;
-
-if(!isTouch){
 
 document.addEventListener("mousemove", (e)=>{
   cursor.style.top = e.clientY + "px";
@@ -363,9 +322,6 @@ interactive.forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
 });
-
-}
-
 </script>
 
 </body>
