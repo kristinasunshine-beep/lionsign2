@@ -1,43 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>LIONSIGN</title>
-
-<meta name="description" content="LIONSIGN Studio creates branding systems and spatial identities.">
-<meta name="keywords" content="branding, doberman branding, digital design, landscape design, visual identity">
-
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;}
-
 body{
-  background:#f6f6f8;
-  color:#1d1d1f;
-  font-family:'Barlow Condensed', sans-serif;
-  overflow-x:hidden;
   cursor:none;
-}
-
-body > *{position:relative;z-index:1;}
-
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px),
-    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-  background-size:80px 80px,80px 80px,20px 20px,20px 20px;
-  z-index:0;
-  pointer-events:none;
 }
 
 /* CURSOR */
@@ -47,145 +18,19 @@ body::before{
   border:2px solid #B91F2A;
   border-radius:50%;
   position:fixed;
-  top:0;
   left:0;
-  pointer-events:none;
+  top:0;
   transform:translate(-50%,-50%);
-  transition:width .18s ease,height .18s ease,background .18s ease;
+  pointer-events:none;
   z-index:99999;
+  transition:width .15s ease,height .15s ease,background .15s ease;
 }
 
 #cursor.active{
-  width:46px;
-  height:46px;
+  width:48px;
+  height:48px;
   background:rgba(185,31,42,0.12);
 }
-
-/* NAV */
-nav{
-  position:fixed;
-  width:100%;
-  padding:20px 80px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#C6A75E;
-  z-index:10;
-}
-
-.brand{
-  font-family:'Anton';
-  font-size:26px;
-}
-
-nav a{
-  text-decoration:none;
-  color:#000;
-  font-size:22px;
-}
-
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:140px 80px 60px;
-}
-
-.hero h1{
-  font-family:'Anton';
-  font-size:110px;
-}
-
-.hero span{color:#B91F2A;}
-
-.hero p{font-size:30px;margin-top:10px;}
-
-.subline{
-  margin-top:200px;
-  font-family:'Anton';
-  font-size:44px;
-}
-
-/* SERVICES */
-.services{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:40px;
-  padding:40px 80px;
-}
-
-.card{
-  background:#fff;
-  padding:36px;
-  border-radius:10px;
-  border:1px solid #e5e5e7;
-  text-decoration:none;
-  color:#000;
-  display:block;
-}
-
-/* MANIFEST */
-.manifest{padding:80px;}
-
-.manifest-title{
-  font-family:'Anton';
-  font-size:80px;
-  margin-bottom:30px;
-}
-
-.manifest-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-/* FAQ (RESTORED 3 QUESTIONS) */
-.faq{padding:80px;}
-
-.faq-title{
-  font-family:'Anton';
-  font-size:80px;
-  margin-bottom:30px;
-}
-
-.faq-item{
-  background:#fff;
-  border:1px solid #e5e5e7;
-  border-radius:10px;
-  margin-bottom:12px;
-}
-
-.faq-question{
-  padding:22px;
-  font-family:'Anton';
-  font-size:24px;
-  cursor:pointer;
-}
-
-.faq-answer{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height 0.35s ease;
-  padding:0 22px;
-}
-
-.faq-item.active .faq-answer{
-  max-height:200px;
-}
-
-/* POWER */
-.power{
-  padding:60px 80px;
-  font-family:'Anton';
-  font-size:80px;
-}
-
-.power span{color:#B91F2A;}
-
-/* FOOTER */
-.footer{padding:30px 80px;}
 
 </style>
 </head>
@@ -194,104 +39,48 @@ nav a{
 
 <div id="cursor"></div>
 
-<nav>
-  <div class="brand">LIONSIGN</div>
-  <a href="https://www.facebook.com/kristina.radosavljevic" target="_blank">CONTACT</a>
-</nav>
-
-<div class="hero">
-  <h1><span>DESIGN</span> BUILDS DOMINANCE</h1>
-  <p>We create identities, systems and spaces that command attention</p>
-  <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
-</div>
-
-<div class="services">
-
-<a href="#" class="card">01 DOBERMAN BRANDING</a>
-<a href="#" class="card">02 DIGITAL DESIGN</a>
-<a href="#" class="card">03 LANDSCAPE DESIGN</a>
-<a href="#" class="card">04 OBSIDIAN LINE</a>
-
-</div>
-
-<div class="faq">
-
-<div class="faq-title">FAQ</div>
-
-<div class="faq-item">
-<div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Are all landing pages different?</div>
-<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Do pages include forms?</div>
-<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
-</div>
-
-</div>
-
-<div class="power">
-POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
-</div>
-
-<div class="footer">
-© 2019–2026 LIONSIGN — RESEARCH & DESIGN.
-</div>
+<a href="#" class="card">CARD</a>
+<nav><a href="#">LINK</a></nav>
 
 <script>
 
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach(item=>{
-  item.addEventListener("click",()=>{
-    item.classList.toggle("active");
-  });
-});
-
-/* JOYSTICK CURSOR (FIXED PROPERLY) */
-
 const cursor = document.getElementById("cursor");
 
-let x=0,y=0,tx=0,ty=0;
+let x = 0, y = 0;
+let tx = 0, ty = 0;
 
-function setTarget(e){
+const interactive = "a, .card, nav a, .faq-question";
+
+/* ✔ SINGLE SOURCE OF TRUTH */
+document.addEventListener("pointermove", (e) => {
   tx = e.clientX;
   ty = e.clientY;
-}
+});
 
-document.addEventListener("mousemove",setTarget);
-document.addEventListener("touchmove",(e)=>{
-  setTarget(e.touches[0]);
-},{passive:true});
-
-/* smooth inertia */
-function animate(){
-  x += (tx-x)*0.14;
-  y += (ty-y)*0.14;
-
-  cursor.style.left = x+"px";
-  cursor.style.top = y+"px";
-
-  requestAnimationFrame(animate);
-}
-animate();
-
-/* hover detection FIXED */
-const interactive = "a, .card, .faq-question, nav a";
-
-document.addEventListener("pointermove",(e)=>{
-  const el = document.elementFromPoint(e.clientX,e.clientY);
-
-  if(el && el.closest(interactive)){
+/* ✔ PROPER HOVER STATE (no flicker, no glitch) */
+document.addEventListener("pointerover", (e) => {
+  if (e.target.closest(interactive)) {
     cursor.classList.add("active");
-  } else {
+  }
+});
+
+document.addEventListener("pointerout", (e) => {
+  if (e.target.closest(interactive)) {
     cursor.classList.remove("active");
   }
 });
+
+/* ✔ JOYSTICK / INERTIA ENGINE */
+function loop(){
+  x += (tx - x) * 0.14;
+  y += (ty - y) * 0.14;
+
+  cursor.style.left = x + "px";
+  cursor.style.top = y + "px";
+
+  requestAnimationFrame(loop);
+}
+loop();
 
 </script>
 
