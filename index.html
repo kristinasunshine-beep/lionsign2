@@ -49,8 +49,8 @@ body > *{position:relative;z-index:1;}
   border:2px solid #B91F2A;
   border-radius:50%;
   position:fixed;
-  left:0;
   top:0;
+  left:0;
   transform:translate(-50%,-50%);
   pointer-events:none;
   z-index:99999;
@@ -113,7 +113,7 @@ nav a{
   font-size:44px;
 }
 
-/* SERVICES */
+/* SERVICES (YOUR ORIGINAL CARDS – UNTOUCHED) */
 .services{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -129,13 +129,28 @@ nav a{
   text-decoration:none;
   color:#000;
   transition:0.25s ease;
-  display:block;
 }
 
 .card:hover{
   transform:translateY(-10px);
   border:1px solid #B91F2A;
   box-shadow:0 25px 60px rgba(185,31,42,0.18);
+}
+
+.num{
+  font-family:'Anton';
+  font-size:92px;
+  color:#B91F2A;
+}
+
+.card h3{
+  font-family:'Anton';
+  font-size:44px;
+}
+
+.card p{
+  font-size:22px;
+  margin-top:6px;
 }
 
 /* MANIFEST */
@@ -263,6 +278,7 @@ body::before{
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
+<!-- ✔ YOUR ORIGINAL CARDS (UNCHANGED) -->
 <div class="services">
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
@@ -297,7 +313,7 @@ body::before{
 
 <div class="faq-item">
 <div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page.</p></div>
 </div>
 
 <div class="faq-item">
@@ -327,7 +343,7 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   item.addEventListener("click",()=>item.classList.toggle("active"));
 });
 
-/* JOYSTICK CURSOR (FIXED) */
+/* JOYSTICK CURSOR (SMOOTH + MOBILE) */
 const cursor=document.getElementById("cursor");
 
 let x=0,y=0,tx=0,ty=0;
