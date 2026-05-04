@@ -44,8 +44,8 @@ body > *{position:relative;z-index:1;}
 
 /* CURSOR */
 #cursor{
-  width:14px;
-  height:14px;
+  width:18px;
+  height:18px;
   border:2px solid #B91F2A;
   border-radius:50%;
   position:fixed;
@@ -54,12 +54,12 @@ body > *{position:relative;z-index:1;}
   transform:translate(-50%,-50%);
   pointer-events:none;
   z-index:99999;
-  transition:width .15s ease,height .15s ease,background .15s ease;
+  transition:width .2s ease,height .2s ease,background .2s ease;
 }
 
 #cursor.active{
-  width:52px;
-  height:52px;
+  width:50px;
+  height:50px;
   background:rgba(185,31,42,0.12);
 }
 
@@ -98,6 +98,9 @@ nav a{
 .hero h1{
   font-family:'Anton';
   font-size:110px;
+  opacity:0;
+  transform:scale(1.1);
+  animation:heroIn 1s ease forwards;
 }
 
 .hero span{color:#B91F2A;}
@@ -113,7 +116,11 @@ nav a{
   font-size:44px;
 }
 
-/* SERVICES (YOUR ORIGINAL CARDS – UNTOUCHED) */
+@keyframes heroIn{
+  to{opacity:1; transform:scale(1);}
+}
+
+/* SERVICES */
 .services{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -121,6 +128,7 @@ nav a{
   padding:40px 80px;
 }
 
+/* CARDS (UNCHANGED CONTENT) */
 .card{
   background:#fff;
   padding:36px;
@@ -193,6 +201,7 @@ nav a{
   border:1px solid #e5e5e7;
   border-radius:10px;
   margin-bottom:12px;
+  overflow:hidden;
 }
 
 .faq-question{
@@ -200,6 +209,8 @@ nav a{
   font-family:'Anton';
   font-size:24px;
   cursor:pointer;
+  display:flex;
+  justify-content:space-between;
 }
 
 .faq-answer{
@@ -213,7 +224,6 @@ nav a{
   max-height:200px;
 }
 
-/* POWER */
 .power{
   padding:60px 80px;
   font-family:'Anton';
@@ -222,7 +232,6 @@ nav a{
 
 .power span{color:#B91F2A;}
 
-/* FOOTER */
 .footer{
   padding:30px 80px;
 }
@@ -231,7 +240,7 @@ nav a{
 @media(max-width:768px){
 
 body{cursor:auto;}
-#cursor{display:block;}
+#cursor{display:none;}
 
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
@@ -278,7 +287,7 @@ body::before{
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
-<!-- ✔ YOUR ORIGINAL CARDS (UNCHANGED) -->
+<!-- YOUR ORIGINAL CARDS (UNCHANGED) -->
 <div class="services">
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
@@ -313,7 +322,7 @@ body::before{
 
 <div class="faq-item">
 <div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page.</p></div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
 </div>
 
 <div class="faq-item">
@@ -343,7 +352,7 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   item.addEventListener("click",()=>item.classList.toggle("active"));
 });
 
-/* JOYSTICK CURSOR (SMOOTH + MOBILE) */
+/* JOYSTICK CURSOR */
 const cursor=document.getElementById("cursor");
 
 let x=0,y=0,tx=0,ty=0;
