@@ -260,7 +260,7 @@ nav a{
   padding:30px 80px;
 }
 
-/* MOBILE */
+/* MOBILE FIX ONLY FOR CURSOR */
 @media(max-width:768px){
 
 body{cursor:auto;}
@@ -336,44 +336,6 @@ body{cursor:auto;}
 
 </div>
 
-<div class="manifest">
-<div class="manifest-title">MANIFEST</div>
-<div class="manifest-grid">
-<div class="m-card"><p>DESIGN CLARITY</p></div>
-<div class="m-card"><p>BUILD STRUCTURE</p></div>
-<div class="m-card"><p>ACT DELIBERATELY</p></div>
-</div>
-</div>
-
-<div class="faq">
-
-<div class="faq-title">FAQ</div>
-
-<div class="faq-item">
-<div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Are all landing pages different?</div>
-<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Do pages include forms?</div>
-<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
-</div>
-
-</div>
-
-<div class="power">
-POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
-</div>
-
-<div class="footer">
-© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
-</div>
-
 <script>
 
 /* FAQ */
@@ -383,10 +345,10 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* CURSOR - ONLY DESKTOP */
-const isTouch = window.matchMedia("(pointer: coarse)").matches;
-
+/* CURSOR (desktop only, no mobile interference) */
 const cursor = document.getElementById("cursor");
+
+const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
 if(!isTouch){
 
