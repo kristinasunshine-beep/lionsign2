@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LIONSIGN Studio</title>
+<title>LIONSIGN</title>
 
 <meta name="description" content="LIONSIGN Studio creates branding systems and spatial identities.">
 <meta name="keywords" content="branding, doberman branding, digital design, landscape design, visual identity">
@@ -14,7 +14,6 @@
 
 <style>
 
-/* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
@@ -25,7 +24,8 @@ body{
   cursor:none;
 }
 
-/* GRID */
+body > *{position:relative;z-index:1;}
+
 body::before{
   content:'';
   position:fixed;
@@ -40,12 +40,10 @@ body::before{
   pointer-events:none;
 }
 
-body > *{position:relative;z-index:1;}
-
 /* CURSOR */
 #cursor{
-  width:14px;
-  height:14px;
+  width:12px;
+  height:12px;
   border:2px solid #B91F2A;
   border-radius:50%;
   position:fixed;
@@ -53,13 +51,13 @@ body > *{position:relative;z-index:1;}
   left:0;
   pointer-events:none;
   transform:translate(-50%,-50%);
-  transition:width .2s ease, height .2s ease, background .2s ease;
+  transition:width .18s ease,height .18s ease,background .18s ease;
   z-index:99999;
 }
 
 #cursor.active{
-  width:48px;
-  height:48px;
+  width:46px;
+  height:46px;
   background:rgba(185,31,42,0.12);
 }
 
@@ -102,10 +100,7 @@ nav a{
 
 .hero span{color:#B91F2A;}
 
-.hero p{
-  font-size:30px;
-  margin-top:10px;
-}
+.hero p{font-size:30px;margin-top:10px;}
 
 .subline{
   margin-top:200px;
@@ -131,32 +126,23 @@ nav a{
   display:block;
 }
 
-.card:hover{
-  transform:translateY(-10px);
-  border:1px solid #B91F2A;
-  box-shadow:0 25px 60px rgba(185,31,42,0.18);
-}
+/* MANIFEST */
+.manifest{padding:80px;}
 
-.num{
+.manifest-title{
   font-family:'Anton';
-  font-size:92px;
-  color:#B91F2A;
+  font-size:80px;
+  margin-bottom:30px;
 }
 
-.card h3{
-  font-family:'Anton';
-  font-size:44px;
+.manifest-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
-.card p{
-  font-size:22px;
-  margin-top:6px;
-}
-
-/* FAQ */
-.faq{
-  padding:80px;
-}
+/* FAQ (RESTORED 3 QUESTIONS) */
+.faq{padding:80px;}
 
 .faq-title{
   font-family:'Anton';
@@ -199,28 +185,7 @@ nav a{
 .power span{color:#B91F2A;}
 
 /* FOOTER */
-.footer{
-  padding:30px 80px;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-body{cursor:auto;}
-#cursor{display:block;}
-
-.services{
-  grid-template-columns:1fr;
-  padding:40px 20px;
-}
-
-.hero{padding:120px 20px;}
-.hero h1{font-size:52px;}
-
-.faq{padding:40px 20px;}
-.power{font-size:42px;}
-.hero p{font-size:18px;}
-.faq-title{font-size:42px;}
-}
+.footer{padding:30px 80px;}
 
 </style>
 </head>
@@ -230,7 +195,7 @@ body{cursor:auto;}
 <div id="cursor"></div>
 
 <nav>
-  <div class="brand">LIONSIGN STUDIO</div>
+  <div class="brand">LIONSIGN</div>
   <a href="https://www.facebook.com/kristina.radosavljevic" target="_blank">CONTACT</a>
 </nav>
 
@@ -242,29 +207,10 @@ body{cursor:auto;}
 
 <div class="services">
 
-<a href="#" class="card">
-<div class="num">01</div>
-<h3>DOBERMAN BRANDING</h3>
-<p>Elite identity systems</p>
-</a>
-
-<a href="#" class="card">
-<div class="num">02</div>
-<h3>DIGITAL DESIGN</h3>
-<p>Systems that combine aesthetics</p>
-</a>
-
-<a href="#" class="card">
-<div class="num">03</div>
-<h3>LANDSCAPE DESIGN</h3>
-<p>Spatial systems</p>
-</a>
-
-<a href="#" class="card">
-<div class="num">04</div>
-<h3>OBSIDIAN LINE</h3>
-<p>Limited garments</p>
-</a>
+<a href="#" class="card">01 DOBERMAN BRANDING</a>
+<a href="#" class="card">02 DIGITAL DESIGN</a>
+<a href="#" class="card">03 LANDSCAPE DESIGN</a>
+<a href="#" class="card">04 OBSIDIAN LINE</a>
 
 </div>
 
@@ -275,6 +221,16 @@ body{cursor:auto;}
 <div class="faq-item">
 <div class="faq-question">What happens when I click a numbered card?</div>
 <div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Are all landing pages different?</div>
+<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do pages include forms?</div>
+<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
 </div>
 
 </div>
@@ -296,47 +252,41 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* ✔ JOYSTICK CURSOR ENGINE (APPLE STYLE) */
+/* JOYSTICK CURSOR (FIXED PROPERLY) */
 
 const cursor = document.getElementById("cursor");
 
-let mouseX = 0, mouseY = 0;
-let posX = 0, posY = 0;
+let x=0,y=0,tx=0,ty=0;
 
-/* unified pointer (mouse + touch) */
-function setTarget(x,y){
-  mouseX = x;
-  mouseY = y;
+function setTarget(e){
+  tx = e.clientX;
+  ty = e.clientY;
 }
 
-document.addEventListener("mousemove",e=>{
-  setTarget(e.clientX,e.clientY);
-});
-
-document.addEventListener("touchmove",e=>{
-  const t = e.touches[0];
-  setTarget(t.clientX,t.clientY);
+document.addEventListener("mousemove",setTarget);
+document.addEventListener("touchmove",(e)=>{
+  setTarget(e.touches[0]);
 },{passive:true});
 
-/* spring physics (joystick feel) */
-function loop(){
-  posX += (mouseX - posX) * 0.12;
-  posY += (mouseY - posY) * 0.12;
+/* smooth inertia */
+function animate(){
+  x += (tx-x)*0.14;
+  y += (ty-y)*0.14;
 
-  cursor.style.left = posX + "px";
-  cursor.style.top = posY + "px";
+  cursor.style.left = x+"px";
+  cursor.style.top = y+"px";
 
-  requestAnimationFrame(loop);
+  requestAnimationFrame(animate);
 }
-loop();
+animate();
 
-/* hover detection (ONLY real interactive targets) */
-const targets = "a, .card, .faq-question, nav a";
+/* hover detection FIXED */
+const interactive = "a, .card, .faq-question, nav a";
 
-document.addEventListener("mousemove",(e)=>{
+document.addEventListener("pointermove",(e)=>{
   const el = document.elementFromPoint(e.clientX,e.clientY);
 
-  if(el && el.closest(targets)){
+  if(el && el.closest(interactive)){
     cursor.classList.add("active");
   } else {
     cursor.classList.remove("active");
