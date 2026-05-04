@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LIONSIGN</title>
+<title>LIONSIGN Studio</title>
 
 <meta name="description" content="LIONSIGN Studio creates branding systems and spatial identities.">
 
@@ -14,11 +14,7 @@
 <style>
 
 /* RESET */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   background:#f6f6f8;
@@ -28,7 +24,7 @@ body{
   cursor:none;
 }
 
-/* GRID BACKGROUND */
+/* GRID */
 body::before{
   content:'';
   position:fixed;
@@ -64,7 +60,7 @@ body > *{position:relative;z-index:1;}
   background:rgba(185,31,42,0.12);
 }
 
-/* MOBILE CURSOR (OUTLINE FIXED) */
+/* MOBILE CURSOR (OUTLINE VERSION) */
 #touch-cursor{
   width:18px;
   height:18px;
@@ -130,7 +126,7 @@ nav{
   font-size:44px;
 }
 
-/* CARDS */
+/* SERVICES */
 .services{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -236,6 +232,7 @@ nav{
 /* FOOTER */
 .footer{
   padding:30px 80px;
+  font-size:16px;
 }
 
 /* MOBILE */
@@ -245,10 +242,7 @@ body{cursor:auto;}
 #cursor{display:none;}
 #touch-cursor{opacity:1;}
 
-.hero{
-  padding:120px 20px;
-}
-
+.hero{padding:120px 20px;}
 .hero h1{font-size:48px;}
 
 .services{
@@ -288,22 +282,22 @@ body{cursor:auto;}
 
 <div class="services">
 
-<a class="card" href="#">
+<a class="card">
 <div class="num">01</div>
 <h3>DOBERMAN BRANDING</h3>
 </a>
 
-<a class="card" href="#">
+<a class="card">
 <div class="num">02</div>
 <h3>DIGITAL DESIGN</h3>
 </a>
 
-<a class="card" href="#">
+<a class="card">
 <div class="num">03</div>
 <h3>LANDSCAPE DESIGN</h3>
 </a>
 
-<a class="card" href="#">
+<a class="card">
 <div class="num">04</div>
 <h3>OBSIDIAN LINE</h3>
 </a>
@@ -334,15 +328,10 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 </div>
 
 <div class="footer">
-© LIONSIGN
+© 2019–2026 LIONSIGN. All rights reserved.
 </div>
 
 <script>
-
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach(el=>{
-  el.addEventListener("click",()=>el.classList.toggle("active"));
-});
 
 /* CURSOR DESKTOP */
 const cursor=document.getElementById("cursor");
