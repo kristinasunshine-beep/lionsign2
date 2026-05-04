@@ -40,12 +40,15 @@ body::before{
   pointer-events:none;
 }
 
-body > *{position:relative;z-index:1;}
+body > *{
+  position:relative;
+  z-index:1;
+}
 
 /* CURSOR */
 #cursor{
-  width:16px;
-  height:16px;
+  width:12px;
+  height:12px;
   border:2px solid #B91F2A;
   border-radius:50%;
   position:fixed;
@@ -57,10 +60,10 @@ body > *{position:relative;z-index:1;}
   z-index:99999;
 }
 
-/* hover state (expand) */
+/* ONLY ON INTERACTIVE HOVER */
 #cursor.active{
-  width:52px;
-  height:52px;
+  width:44px;
+  height:44px;
   background:rgba(185,31,42,0.12);
 }
 
@@ -129,9 +132,8 @@ nav a{
   border:1px solid #e5e5e7;
   text-decoration:none;
   color:#000;
-  transition:0.25s ease;
   display:block;
-  position:relative;
+  transition:0.25s ease;
 }
 
 .card:hover{
@@ -196,7 +198,6 @@ nav a{
   border:1px solid #e5e5e7;
   border-radius:10px;
   margin-bottom:12px;
-  overflow:hidden;
 }
 
 .faq-question{
@@ -215,12 +216,6 @@ nav a{
 
 .faq-item.active .faq-answer{
   max-height:200px;
-}
-
-.faq-answer p{
-  font-size:20px;
-  padding-bottom:20px;
-  opacity:0.85;
 }
 
 /* POWER */
@@ -260,7 +255,6 @@ body{cursor:auto;}
 }
 
 .power{font-size:42px;}
-
 .hero p{font-size:18px;}
 .faq-title{font-size:42px;}
 }
@@ -312,7 +306,6 @@ body{cursor:auto;}
 </div>
 
 <div class="faq">
-
 <div class="faq-title">FAQ</div>
 
 <div class="faq-item">
@@ -344,41 +337,44 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* CURSOR WITH INERTIA */
+/* CURSOR LOGIC (FIXED + CLEAN) */
+
 const cursor = document.getElementById("cursor");
 
-let x = 0, y = 0;
-let targetX = 0, targetY = 0;
+let x=0,y=0,tx=0,ty=0;
 
 document.addEventListener("mousemove",(e)=>{
-  targetX = e.clientX;
-  targetY = e.clientY;
+  tx=e.clientX;
+  ty=e.clientY;
 });
 
-/* touch support */
 document.addEventListener("touchmove",(e)=>{
-  const t = e.touches[0];
-  targetX = t.clientX;
-  targetY = t.clientY;
+  const t=e.touches[0];
+  tx=t.clientX;
+  ty=t.clientY;
 },{passive:true});
 
 function animate(){
-  x += (targetX - x) * 0.15;
-  y += (targetY - y) * 0.15;
+  x += (tx-x)*0.14;
+  y += (ty-y)*0.14;
 
-  cursor.style.left = x + "px";
-  cursor.style.top = y + "px";
+  cursor.style.left=x+"px";
+  cursor.style.top=y+"px";
 
   requestAnimationFrame(animate);
 }
 animate();
 
-/* hover detection */
+/* ONLY TRUE INTERACTIVE DETECTION */
 const interactive = document.querySelectorAll("a, .card, .faq-question, nav a");
 
-interactive.forEach(el=>{
-  el.addEventListener("mouseenter",()=>cursor.classList.add("active"));
-  el.addEventListener("mouseleave",()=>cursor.classList.remove("active"));
+document.addEventListener("mousemove", (e)=>{
+  const el = document.elementFromPoint(e.clientX, e.clientY);
+  if(el && el.closest("a, .card, .faq-question, nav a")){
+    cursor.classList.add("active");
+  } else {
+    cursor.classList.remove("active");
+  }
 });
 
 </script>
