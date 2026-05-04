@@ -285,25 +285,25 @@ body{cursor:auto;}
 
 <div class="services">
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
+<a href="#" class="card">
 <div class="num">01</div>
 <h3>DOBERMAN BRANDING</h3>
 <p>Elite identity systems</p>
 </a>
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
+<a href="#" class="card">
 <div class="num">02</div>
 <h3>DIGITAL DESIGN</h3>
 <p>Systems that combine aesthetics</p>
 </a>
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
+<a href="#" class="card">
 <div class="num">03</div>
 <h3>LANDSCAPE DESIGN</h3>
 <p>Spatial systems</p>
 </a>
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
+<a href="#" class="card">
 <div class="num">04</div>
 <h3>OBSIDIAN LINE</h3>
 <p>Limited garments</p>
@@ -317,17 +317,12 @@ body{cursor:auto;}
 
 <div class="faq-item">
 <div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page.</p></div>
 </div>
 
 <div class="faq-item">
-<div class="faq-question">Are all landing pages different?</div>
-<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Do pages include forms?</div>
-<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
+<div class="faq-question">Are pages different?</div>
+<div class="faq-answer"><p>Yes.</p></div>
 </div>
 
 </div>
@@ -337,7 +332,7 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 </div>
 
 <div class="footer">
-© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
+© 2019–2026 LIONSIGN
 </div>
 
 <script>
@@ -349,55 +344,44 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* INERTIAL CURSOR + MOBILE FIX */
+/* =========================
+   LOCKED CURSOR SYSTEM
+   ========================= */
 
 const cursor = document.getElementById("cursor");
 
-let mouseX = 0, mouseY = 0;
-let posX = 0, posY = 0;
+let targetX = 0, targetY = 0;
+let currentX = 0, currentY = 0;
 
-/* desktop */
+/* desktop mouse */
 document.addEventListener("mousemove", e=>{
-  mouseX = e.clientX;
-  mouseY = e.clientY;
+  targetX = e.clientX;
+  targetY = e.clientY;
 });
 
-/* mobile touch tracking */
-document.addEventListener("touchstart", e=>{
-  const t = e.touches[0];
-  mouseX = t.clientX;
-  mouseY = t.clientY;
-  cursor.classList.add("active");
-},{passive:true});
-
+/* mobile touch (FOLLOW ONLY — NO AUTO ENLARGE) */
 document.addEventListener("touchmove", e=>{
   const t = e.touches[0];
-  mouseX = t.clientX;
-  mouseY = t.clientY;
+  targetX = t.clientX;
+  targetY = t.clientY;
 },{passive:true});
 
-document.addEventListener("touchend", ()=>{
-  cursor.classList.remove("active");
-});
-
-/* smooth motion */
+/* smooth inertia */
 function animate(){
-  posX += (mouseX - posX) * 0.12;
-  posY += (mouseY - posY) * 0.12;
+  currentX += (targetX - currentX) * 0.12;
+  currentY += (targetY - currentY) * 0.12;
 
-  cursor.style.left = posX + "px";
-  cursor.style.top = posY + "px";
+  cursor.style.left = currentX + "px";
+  cursor.style.top = currentY + "px";
 
   requestAnimationFrame(animate);
 }
 animate();
 
-/* hover states */
+/* hover only on real interactive elements */
 document.querySelectorAll("a, .card, .faq-question, nav a").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
-  el.addEventListener("touchstart", ()=> cursor.classList.add("active"));
-  el.addEventListener("touchend", ()=> cursor.classList.remove("active"));
 });
 
 </script>
