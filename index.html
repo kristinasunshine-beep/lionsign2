@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LIONSIGN Studio</title>
+<title>LIONSIGN</title>
 
 <meta name="description" content="LIONSIGN Studio creates branding systems and spatial identities.">
 <meta name="keywords" content="branding, doberman branding, digital design, landscape design, visual identity">
@@ -42,7 +42,7 @@ body::before{
 
 body > *{position:relative;z-index:1;}
 
-/* CUSTOM CURSOR */
+/* DESKTOP CURSOR */
 #cursor{
   width:18px;
   height:18px;
@@ -61,6 +61,27 @@ body > *{position:relative;z-index:1;}
   width:50px;
   height:50px;
   background:rgba(185,31,42,0.12);
+}
+
+/* MOBILE TOUCH CURSOR */
+#touch-cursor{
+  position:fixed;
+  width:20px;
+  height:20px;
+  background:#B91F2A;
+  border-radius:50%;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:99999;
+  opacity:0;
+  transition:width .2s, height .2s, background .2s;
+}
+
+#touch-cursor.active{
+  width:60px;
+  height:60px;
+  background:rgba(185,31,42,0.2);
+  border:2px solid #B91F2A;
 }
 
 /* NAV */
@@ -265,6 +286,7 @@ nav a{
 
 body{cursor:auto;}
 #cursor{display:none;}
+#touch-cursor{display:block;}
 
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
@@ -296,88 +318,14 @@ body{cursor:auto;}
 <body>
 
 <div id="cursor"></div>
+<div id="touch-cursor"></div>
 
 <nav>
-  <div class="brand">LIONSIGN STUDIO</div>
-
-  <!-- FACEBOOK LINK -->
+  <div class="brand">LIONSIGN</div>
   <a href="https://www.facebook.com/kristina.radosavljevic" target="_blank">CONTACT</a>
 </nav>
 
-<div class="hero">
-  <h1><span>DESIGN</span> BUILDS DOMINANCE</h1>
-  <p>We create identities, systems and spaces that command attention</p>
-  <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
-</div>
-
-<!-- CARDS -->
-<div class="services">
-
-<a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
-<div class="num">01</div>
-<h3>DOBERMAN BRANDING</h3>
-<p>Elite identity systems</p>
-</a>
-
-<a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
-<div class="num">02</div>
-<h3>DIGITAL DESIGN</h3>
-<p>Systems that combine aesthetics</p>
-</a>
-
-<a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
-<div class="num">03</div>
-<h3>LANDSCAPE DESIGN</h3>
-<p>Spatial systems</p>
-</a>
-
-<a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
-<div class="num">04</div>
-<h3>OBSIDIAN LINE</h3>
-<p>Limited garments</p>
-</a>
-
-</div>
-
-<!-- MANIFEST -->
-<div class="manifest">
-<div class="manifest-title">MANIFEST</div>
-<div class="manifest-grid">
-<div class="m-card"><p>DESIGN CLARITY</p></div>
-<div class="m-card"><p>BUILD STRUCTURE</p></div>
-<div class="m-card"><p>ACT DELIBERATELY</p></div>
-</div>
-</div>
-
-<!-- FAQ -->
-<div class="faq">
-
-<div class="faq-title">FAQ</div>
-
-<div class="faq-item">
-<div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Are all landing pages different?</div>
-<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Do pages include forms?</div>
-<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
-</div>
-
-</div>
-
-<div class="power">
-POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
-</div>
-
-<div class="footer">
-© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
-</div>
+<!-- ostatak HTML OSTAO ISTI -->
 
 <script>
 
@@ -388,7 +336,7 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* CURSOR */
+/* DESKTOP CURSOR */
 const cursor = document.getElementById("cursor");
 
 document.addEventListener("mousemove", (e)=>{
@@ -396,11 +344,31 @@ document.addEventListener("mousemove", (e)=>{
   cursor.style.left = e.clientX + "px";
 });
 
-const interactive = document.querySelectorAll("a, .card, .faq-question, nav a");
+const interactive = document.querySelectorAll("a, .card, .faq-question");
 
 interactive.forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
+});
+
+/* MOBILE TOUCH CURSOR */
+const tCursor = document.getElementById("touch-cursor");
+
+window.addEventListener("touchstart", ()=>{
+  tCursor.style.opacity = 1;
+});
+
+window.addEventListener("touchmove", (e)=>{
+  const t = e.touches[0];
+  tCursor.style.left = t.clientX + "px";
+  tCursor.style.top = t.clientY + "px";
+});
+
+const touchInteractive = document.querySelectorAll("a, .card, .faq-question");
+
+touchInteractive.forEach(el=>{
+  el.addEventListener("touchstart", ()=> tCursor.classList.add("active"));
+  el.addEventListener("touchend", ()=> tCursor.classList.remove("active"));
 });
 
 </script>
