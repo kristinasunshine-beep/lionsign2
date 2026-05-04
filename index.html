@@ -25,7 +25,7 @@ body{
   cursor:none;
 }
 
-/* GRID (NE BLOKIRA KLIKOVE) */
+/* GRID */
 body::before{
   content:'';
   position:fixed;
@@ -45,7 +45,7 @@ body > *{
   z-index:1;
 }
 
-/* CURSOR (NE BLOKIRA KLIKOVE) */
+/* CURSOR */
 #cursor{
   width:18px;
   height:18px;
@@ -122,8 +122,11 @@ nav a{
   grid-template-columns:repeat(2,1fr);
   gap:40px;
   padding:40px 80px;
+  position:relative;
+  z-index:5;
 }
 
+/* ✔ FIX: clickable layer */
 .card{
   background:#fff;
   padding:36px;
@@ -133,8 +136,10 @@ nav a{
   color:#000;
   transition:0.25s ease;
   display:block;
+
   position:relative;
-  z-index:2;
+  z-index:10;
+  pointer-events:auto;
 }
 
 .card:hover{
@@ -245,13 +250,13 @@ nav a{
 body{cursor:auto;}
 #cursor{display:block;}
 
-.hero{padding:120px 20px;}
-.hero h1{font-size:52px;}
-
 .services{
   grid-template-columns:1fr;
   padding:40px 20px;
 }
+
+.hero{padding:120px 20px;}
+.hero h1{font-size:52px;}
 
 .manifest,
 .faq{
@@ -347,8 +352,7 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* CURSOR (FIXED, NON-BLOCKING) */
-
+/* CURSOR */
 const cursor = document.getElementById("cursor");
 
 let x=0,y=0,tx=0,ty=0;
@@ -375,7 +379,6 @@ function animate(){
 }
 animate();
 
-/* hover */
 document.querySelectorAll("a,.card,.faq-question,nav a").forEach(el=>{
   el.addEventListener("mouseenter",()=>cursor.classList.add("active"));
   el.addEventListener("mouseleave",()=>cursor.classList.remove("active"));
