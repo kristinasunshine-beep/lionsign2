@@ -7,7 +7,7 @@
 
 <title>LIONSIGN</title>
 
-<meta name="description" content="LIONSIGN creates branding systems and spatial identities.">
+<meta name="description" content="LIONSIGN Studio creates branding systems and spatial identities.">
 <meta name="keywords" content="branding, doberman branding, digital design, landscape design, visual identity">
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -105,6 +105,10 @@ nav a{
 
 .hero span{color:#B91F2A;}
 
+@keyframes heroIn{
+  to{opacity:1; transform:scale(1);}
+}
+
 .hero p{
   font-size:30px;
   margin-top:10px;
@@ -116,10 +120,6 @@ nav a{
   font-size:44px;
 }
 
-@keyframes heroIn{
-  to{opacity:1; transform:scale(1);}
-}
-
 /* SERVICES */
 .services{
   display:grid;
@@ -128,7 +128,7 @@ nav a{
   padding:40px 80px;
 }
 
-/* CARDS (UNCHANGED CONTENT) */
+/* CARDS — TVOJE ORIGINALNE */
 .card{
   background:#fff;
   padding:36px;
@@ -137,6 +137,22 @@ nav a{
   text-decoration:none;
   color:#000;
   transition:0.25s ease;
+
+  opacity:0;
+  transform:translateY(50px);
+  animation:cardIn 0.8s ease forwards;
+}
+
+.card:nth-child(1){animation-delay:0.05s;}
+.card:nth-child(2){animation-delay:0.15s;}
+.card:nth-child(3){animation-delay:0.25s;}
+.card:nth-child(4){animation-delay:0.35s;}
+
+@keyframes cardIn{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .card:hover{
@@ -224,6 +240,13 @@ nav a{
   max-height:200px;
 }
 
+.faq-answer p{
+  font-size:20px;
+  padding-bottom:20px;
+  opacity:0.85;
+}
+
+/* POWER */
 .power{
   padding:60px 80px;
   font-family:'Anton';
@@ -232,19 +255,18 @@ nav a{
 
 .power span{color:#B91F2A;}
 
+/* FOOTER */
 .footer{
   padding:30px 80px;
 }
 
-/* MOBILE GRID FIX */
+/* MOBILE */
 @media(max-width:768px){
 
 body{cursor:auto;}
-#cursor{display:none;}
 
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
-.hero p{font-size:18px;}
 
 .services{
   grid-template-columns:1fr;
@@ -256,17 +278,15 @@ body{cursor:auto;}
   padding:40px 20px;
 }
 
-.power{font-size:42px;}
-
-body::before{
-  background:
-    linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px),
-    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-  background-size:60px 60px,60px 60px,15px 15px,15px 15px;
+.manifest-grid{
+  grid-template-columns:1fr;
 }
 
+.power{font-size:42px;}
+
+.hero p{font-size:18px;}
+
+.faq-title{font-size:42px;}
 }
 
 </style>
@@ -278,7 +298,7 @@ body::before{
 
 <nav>
   <div class="brand">LIONSIGN</div>
-  <a href="https://www.facebook.com/kristina.radosavljevic">CONTACT</a>
+  <a href="https://www.facebook.com/kristina.radosavljevic" target="_blank">CONTACT</a>
 </nav>
 
 <div class="hero">
@@ -287,7 +307,7 @@ body::before{
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
-<!-- YOUR ORIGINAL CARDS (UNCHANGED) -->
+<!-- TVOJE ORIGINALNE KARTICE -->
 <div class="services">
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
@@ -316,6 +336,17 @@ body::before{
 
 </div>
 
+<!-- MANIFEST -->
+<div class="manifest">
+<div class="manifest-title">MANIFEST</div>
+<div class="manifest-grid">
+<div class="m-card"><p>DESIGN CLARITY</p></div>
+<div class="m-card"><p>BUILD STRUCTURE</p></div>
+<div class="m-card"><p>ACT DELIBERATELY</p></div>
+</div>
+</div>
+
+<!-- FAQ -->
 <div class="faq">
 
 <div class="faq-title">FAQ</div>
@@ -342,18 +373,20 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 </div>
 
 <div class="footer">
-© 2019–2026 LIONSIGN — RESEARCH & DESIGN.
+© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
 </div>
 
 <script>
 
 /* FAQ */
 document.querySelectorAll(".faq-item").forEach(item=>{
-  item.addEventListener("click",()=>item.classList.toggle("active"));
+  item.addEventListener("click",()=>{
+    item.classList.toggle("active");
+  });
 });
 
 /* JOYSTICK CURSOR */
-const cursor=document.getElementById("cursor");
+const cursor = document.getElementById("cursor");
 
 let x=0,y=0,tx=0,ty=0;
 
@@ -370,8 +403,8 @@ document.addEventListener("pointermove",(e)=>{
 });
 
 function animate(){
-  x+=(tx-x)*0.14;
-  y+=(ty-y)*0.14;
+  x+=(tx-x)*0.15;
+  y+=(ty-y)*0.15;
 
   cursor.style.left=x+"px";
   cursor.style.top=y+"px";
