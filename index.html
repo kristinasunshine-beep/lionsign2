@@ -25,7 +25,6 @@ body{
   cursor:none;
 }
 
-/* GRID */
 body::before{
   content:'';
   position:fixed;
@@ -42,7 +41,7 @@ body::before{
 
 body > *{position:relative;z-index:1;}
 
-/* CUSTOM CURSOR */
+/* CURSOR */
 #cursor{
   width:18px;
   height:18px;
@@ -98,16 +97,9 @@ nav a{
 .hero h1{
   font-family:'Anton';
   font-size:110px;
-  opacity:0;
-  transform:scale(1.1);
-  animation:heroIn 1s ease forwards;
 }
 
 .hero span{color:#B91F2A;}
-
-@keyframes heroIn{
-  to{opacity:1; transform:scale(1);}
-}
 
 .hero p{
   font-size:30px;
@@ -163,16 +155,8 @@ nav a{
 }
 
 /* MANIFEST */
-.manifest{
-  padding:80px;
-}
-
-.manifest-title{
-  font-family:'Anton';
-  font-size:80px;
-  margin-bottom:30px;
-}
-
+.manifest{padding:80px;}
+.manifest-title{font-family:'Anton';font-size:80px;}
 .manifest-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -187,15 +171,8 @@ nav a{
 }
 
 /* FAQ */
-.faq{
-  padding:80px;
-}
-
-.faq-title{
-  font-family:'Anton';
-  font-size:80px;
-  margin-bottom:30px;
-}
+.faq{padding:80px;}
+.faq-title{font-family:'Anton';font-size:80px;margin-bottom:30px;}
 
 .faq-item{
   background:#fff;
@@ -241,37 +218,23 @@ nav a{
 .power span{color:#B91F2A;}
 
 /* FOOTER */
-.footer{
-  padding:30px 80px;
-}
+.footer{padding:30px 80px;}
 
-/* MOBILE */
 @media(max-width:768px){
-
 body{cursor:auto;}
-#cursor{display:block;} /* IMPORTANT: not removed */
+#cursor{display:block;}
 
-.services{
-  grid-template-columns:1fr;
-  padding:40px 20px;
-}
-
+.services{grid-template-columns:1fr;padding:40px 20px;}
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
 
-.manifest,
-.faq{
-  padding:40px 20px;
-}
+.manifest,.faq{padding:40px 20px;}
 
-.manifest-grid{
-  grid-template-columns:1fr;
-}
+.manifest-grid{grid-template-columns:1fr;}
 
 .power{font-size:42px;}
 
 .hero p{font-size:18px;}
-
 .faq-title{font-size:42px;}
 }
 
@@ -293,7 +256,6 @@ body{cursor:auto;}
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
-<!-- CARDS -->
 <div class="services">
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
@@ -322,55 +284,9 @@ body{cursor:auto;}
 
 </div>
 
-<!-- MANIFEST -->
-<div class="manifest">
-<div class="manifest-title">MANIFEST</div>
-<div class="manifest-grid">
-<div class="m-card"><p>DESIGN CLARITY</p></div>
-<div class="m-card"><p>BUILD STRUCTURE</p></div>
-<div class="m-card"><p>ACT DELIBERATELY</p></div>
-</div>
-</div>
-
-<!-- FAQ -->
-<div class="faq">
-<div class="faq-title">FAQ</div>
-
-<div class="faq-item">
-<div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Are all landing pages different?</div>
-<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Do pages include forms?</div>
-<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
-</div>
-
-</div>
-
-<div class="power">
-POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
-</div>
-
-<div class="footer">
-© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
-</div>
-
 <script>
 
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach(item=>{
-  item.addEventListener("click",()=>{
-    item.classList.toggle("active");
-  });
-});
-
-/* CURSOR + INERTIA + MOBILE TOUCH */
+/* CURSOR - INERTIAL + TOUCH */
 const cursor = document.getElementById("cursor");
 
 let mouseX = 0, mouseY = 0;
@@ -385,7 +301,7 @@ document.addEventListener("touchmove", (e)=>{
   const t = e.touches[0];
   mouseX = t.clientX;
   mouseY = t.clientY;
-}, {passive:true});
+},{passive:true});
 
 function animate(){
   currentX += (mouseX - currentX) * 0.12;
