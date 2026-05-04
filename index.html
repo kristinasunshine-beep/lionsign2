@@ -25,7 +25,7 @@ body{
   cursor:none;
 }
 
-/* GRID (NE DIRA SE) */
+/* GRID (NE BLOKIRA KLIKOVE) */
 body::before{
   content:'';
   position:fixed;
@@ -40,9 +40,12 @@ body::before{
   pointer-events:none;
 }
 
-body > *{position:relative;z-index:1;}
+body > *{
+  position:relative;
+  z-index:1;
+}
 
-/* CURSOR (ONLY FIXED PART) */
+/* CURSOR (NE BLOKIRA KLIKOVE) */
 #cursor{
   width:18px;
   height:18px;
@@ -63,7 +66,7 @@ body > *{position:relative;z-index:1;}
   background:rgba(185,31,42,0.12);
 }
 
-/* NAV (ORIGINAL) */
+/* NAV */
 nav{
   position:fixed;
   width:100%;
@@ -72,7 +75,7 @@ nav{
   justify-content:space-between;
   align-items:center;
   background:#C6A75E;
-  z-index:9999;
+  z-index:10;
 }
 
 .brand{
@@ -86,7 +89,7 @@ nav a{
   font-size:22px;
 }
 
-/* HERO (ORIGINAL) */
+/* HERO */
 .hero{
   min-height:100vh;
   display:flex;
@@ -113,7 +116,7 @@ nav a{
   font-size:44px;
 }
 
-/* SERVICES (ORIGINAL) */
+/* SERVICES */
 .services{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -130,6 +133,8 @@ nav a{
   color:#000;
   transition:0.25s ease;
   display:block;
+  position:relative;
+  z-index:2;
 }
 
 .card:hover{
@@ -154,7 +159,7 @@ nav a{
   margin-top:6px;
 }
 
-/* MANIFEST (ORIGINAL) */
+/* MANIFEST */
 .manifest{
   padding:80px;
 }
@@ -178,7 +183,7 @@ nav a{
   border:1.5px solid rgba(185,31,42,0.6);
 }
 
-/* FAQ (ORIGINAL) */
+/* FAQ */
 .faq{
   padding:80px;
 }
@@ -202,8 +207,6 @@ nav a{
   font-family:'Anton';
   font-size:24px;
   cursor:pointer;
-  display:flex;
-  justify-content:space-between;
 }
 
 .faq-answer{
@@ -223,7 +226,7 @@ nav a{
   opacity:0.85;
 }
 
-/* POWER (ORIGINAL) */
+/* POWER */
 .power{
   padding:60px 80px;
   font-family:'Anton';
@@ -237,18 +240,18 @@ nav a{
   padding:30px 80px;
 }
 
-/* MOBILE (ONLY CURSOR FIX LOGIC MATTERS HERE) */
+/* MOBILE */
 @media(max-width:768px){
 body{cursor:auto;}
 #cursor{display:block;}
+
+.hero{padding:120px 20px;}
+.hero h1{font-size:52px;}
 
 .services{
   grid-template-columns:1fr;
   padding:40px 20px;
 }
-
-.hero{padding:120px 20px;}
-.hero h1{font-size:52px;}
 
 .manifest,
 .faq{
@@ -273,7 +276,7 @@ body{cursor:auto;}
 <div id="cursor"></div>
 
 <nav>
-  <div class="brand">LIONSIGN</div>
+  <div class="brand">LIONSIGN STUDIO</div>
   <a href="https://www.facebook.com/kristina.radosavljevic" target="_blank">CONTACT</a>
 </nav>
 
@@ -283,7 +286,6 @@ body{cursor:auto;}
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
-<!-- SERVICES (UNCHANGED) -->
 <div class="services">
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
@@ -312,7 +314,6 @@ body{cursor:auto;}
 
 </div>
 
-<!-- FAQ (UNCHANGED) -->
 <div class="faq">
 
 <div class="faq-title">FAQ</div>
@@ -346,7 +347,7 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* CURSOR — ONLY FIX HERE (NO LAYOUT TOUCH) */
+/* CURSOR (FIXED, NON-BLOCKING) */
 
 const cursor = document.getElementById("cursor");
 
@@ -363,17 +364,18 @@ document.addEventListener("touchmove",e=>{
   ty=t.clientY;
 },{passive:true});
 
-function loop(){
+function animate(){
   x+=(tx-x)*0.12;
   y+=(ty-y)*0.12;
 
   cursor.style.left=x+"px";
   cursor.style.top=y+"px";
 
-  requestAnimationFrame(loop);
+  requestAnimationFrame(animate);
 }
-loop();
+animate();
 
+/* hover */
 document.querySelectorAll("a,.card,.faq-question,nav a").forEach(el=>{
   el.addEventListener("mouseenter",()=>cursor.classList.add("active"));
   el.addEventListener("mouseleave",()=>cursor.classList.remove("active"));
