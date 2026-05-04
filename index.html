@@ -98,9 +98,16 @@ nav a{
 .hero h1{
   font-family:'Anton';
   font-size:110px;
+  opacity:0;
+  transform:scale(1.1);
+  animation:heroIn 1s ease forwards;
 }
 
 .hero span{color:#B91F2A;}
+
+@keyframes heroIn{
+  to{opacity:1; transform:scale(1);}
+}
 
 .hero p{
   font-size:30px;
@@ -139,9 +146,33 @@ nav a{
   box-shadow:0 25px 60px rgba(185,31,42,0.18);
 }
 
+.num{
+  font-family:'Anton';
+  font-size:92px;
+  color:#B91F2A;
+}
+
+.card h3{
+  font-family:'Anton';
+  font-size:44px;
+}
+
+.card p{
+  font-size:22px;
+  margin-top:6px;
+}
+
 /* MANIFEST */
-.manifest{padding:80px;}
-.manifest-title{font-family:'Anton';font-size:80px;}
+.manifest{
+  padding:80px;
+}
+
+.manifest-title{
+  font-family:'Anton';
+  font-size:80px;
+  margin-bottom:30px;
+}
+
 .manifest-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -156,8 +187,15 @@ nav a{
 }
 
 /* FAQ */
-.faq{padding:80px;}
-.faq-title{font-family:'Anton';font-size:80px;margin-bottom:30px;}
+.faq{
+  padding:80px;
+}
+
+.faq-title{
+  font-family:'Anton';
+  font-size:80px;
+  margin-bottom:30px;
+}
 
 .faq-item{
   background:#fff;
@@ -187,6 +225,13 @@ nav a{
   max-height:200px;
 }
 
+.faq-answer p{
+  font-size:20px;
+  padding-bottom:20px;
+  opacity:0.85;
+}
+
+/* POWER */
 .power{
   padding:60px 80px;
   font-family:'Anton';
@@ -195,21 +240,37 @@ nav a{
 
 .power span{color:#B91F2A;}
 
-.footer{padding:30px 80px;}
+/* FOOTER */
+.footer{
+  padding:30px 80px;
+}
 
+/* MOBILE */
 @media(max-width:768px){
+
 body{cursor:auto;}
 #cursor{display:block;}
 
-.services{grid-template-columns:1fr;padding:40px 20px;}
+.services{
+  grid-template-columns:1fr;
+  padding:40px 20px;
+}
+
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
 
-.manifest,.faq{padding:40px 20px;}
-.manifest-grid{grid-template-columns:1fr;}
+.manifest,.faq{
+  padding:40px 20px;
+}
+
+.manifest-grid{
+  grid-template-columns:1fr;
+}
 
 .power{font-size:42px;}
+
 .hero p{font-size:18px;}
+
 .faq-title{font-size:42px;}
 }
 
@@ -273,6 +334,11 @@ body{cursor:auto;}
 <div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
 </div>
 
+<div class="faq-item">
+<div class="faq-question">Do pages include forms?</div>
+<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
+</div>
+
 </div>
 
 <div class="power">
@@ -285,7 +351,7 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 
 <script>
 
-/* CURSOR - ONLY FIX (NO STRUCTURE TOUCH) */
+/* CURSOR - INERTIAL + MOBILE TOUCH */
 
 const cursor = document.getElementById("cursor");
 
@@ -314,6 +380,7 @@ function animate(){
 }
 animate();
 
+/* INTERACTIONS */
 document.querySelectorAll("a, .card, .faq-question, nav a").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
