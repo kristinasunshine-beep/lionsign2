@@ -8,6 +8,7 @@
 <title>LIONSIGN</title>
 
 <meta name="description" content="LIONSIGN creates branding systems and spatial identities.">
+<meta name="keywords" content="branding, doberman branding, digital design, landscape design, visual identity">
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -43,13 +44,13 @@ body > *{position:relative;z-index:1;}
 
 /* CURSOR */
 #cursor{
-  width:12px;
-  height:12px;
+  width:14px;
+  height:14px;
   border:2px solid #B91F2A;
   border-radius:50%;
   position:fixed;
-  left:0;
   top:0;
+  left:0;
   transform:translate(-50%,-50%);
   pointer-events:none;
   z-index:99999;
@@ -57,8 +58,8 @@ body > *{position:relative;z-index:1;}
 }
 
 #cursor.active{
-  width:48px;
-  height:48px;
+  width:52px;
+  height:52px;
   background:rgba(185,31,42,0.12);
 }
 
@@ -71,7 +72,7 @@ nav{
   justify-content:space-between;
   align-items:center;
   background:#C6A75E;
-  z-index:10;
+  z-index:9999;
 }
 
 .brand{
@@ -137,7 +138,7 @@ nav a{
   box-shadow:0 25px 60px rgba(185,31,42,0.18);
 }
 
-/* ✔ RESTORED CARD TYPOGRAPHY */
+/* ORIGINAL TYPOGRAPHY */
 .num{
   font-family:'Anton';
   font-size:92px;
@@ -155,7 +156,9 @@ nav a{
 }
 
 /* MANIFEST */
-.manifest{padding:80px;}
+.manifest{
+  padding:80px;
+}
 
 .manifest-title{
   font-family:'Anton';
@@ -177,7 +180,9 @@ nav a{
 }
 
 /* FAQ */
-.faq{padding:80px;}
+.faq{
+  padding:80px;
+}
 
 .faq-title{
   font-family:'Anton';
@@ -224,23 +229,25 @@ nav a{
   padding:30px 80px;
 }
 
-/* MOBILE + GRID FIX */
+/* MOBILE GRID FIX */
 @media(max-width:768px){
 
 body{cursor:auto;}
-#cursor{display:block;}
+
+.hero{padding:120px 20px;}
+.hero h1{font-size:52px;}
+.hero p{font-size:18px;}
 
 .services{
   grid-template-columns:1fr;
   padding:40px 20px;
 }
 
-.hero{padding:120px 20px;}
-.hero h1{font-size:52px;}
-.hero p{font-size:18px;}
+.manifest,
+.faq{
+  padding:40px 20px;
+}
 
-.faq{padding:40px 20px;}
-.faq-title{font-size:42px;}
 .power{font-size:42px;}
 
 body::before{
@@ -272,6 +279,7 @@ body::before{
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
+<!-- ORIGINAL KARTICE (NEPROMENJENO) -->
 <div class="services">
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
@@ -306,7 +314,7 @@ body::before{
 
 <div class="faq-item">
 <div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page.</p></div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
 </div>
 
 <div class="faq-item">
@@ -333,15 +341,16 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 
 /* FAQ */
 document.querySelectorAll(".faq-item").forEach(item=>{
-  item.addEventListener("click",()=>{
-    item.classList.toggle("active");
-  });
+  item.addEventListener("click",()=>item.classList.toggle("active"));
 });
 
-/* CURSOR STABLE */
+/* JOYSTICK CURSOR (FINAL FIX) */
 const cursor=document.getElementById("cursor");
 
-let x=0,y=0,tx=0,ty=0;
+let x=window.innerWidth/2;
+let y=window.innerHeight/2;
+let tx=x;
+let ty=y;
 
 document.addEventListener("pointermove",(e)=>{
   tx=e.clientX;
@@ -356,8 +365,8 @@ document.addEventListener("pointermove",(e)=>{
 });
 
 function animate(){
-  x+=(tx-x)*0.14;
-  y+=(ty-y)*0.14;
+  x+=(tx-x)*0.12;
+  y+=(ty-y)*0.12;
 
   cursor.style.left=x+"px";
   cursor.style.top=y+"px";
