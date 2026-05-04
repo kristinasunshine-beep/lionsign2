@@ -63,25 +63,26 @@ body > *{position:relative;z-index:1;}
   background:rgba(185,31,42,0.12);
 }
 
-/* MOBILE TOUCH CURSOR */
+/* MOBILE CURSOR (ISTI STIL KAO DESKTOP) */
 #touch-cursor{
-  position:fixed;
-  width:20px;
-  height:20px;
-  background:#B91F2A;
+  width:18px;
+  height:18px;
+  border:2px solid #B91F2A;
   border-radius:50%;
+  position:fixed;
+  top:0;
+  left:0;
   pointer-events:none;
   transform:translate(-50%,-50%);
   z-index:99999;
   opacity:0;
-  transition:width .2s, height .2s, background .2s;
+  transition:width .2s ease, height .2s ease, background .2s ease;
 }
 
 #touch-cursor.active{
-  width:60px;
-  height:60px;
-  background:rgba(185,31,42,0.2);
-  border:2px solid #B91F2A;
+  width:50px;
+  height:50px;
+  background:rgba(185,31,42,0.12);
 }
 
 /* NAV */
@@ -325,7 +326,7 @@ body{cursor:auto;}
   <a href="https://www.facebook.com/kristina.radosavljevic" target="_blank">CONTACT</a>
 </nav>
 
-<!-- ostatak HTML OSTAO ISTI -->
+<!-- SVE OSTALO OSTAVLJENO KAKO JE BILO -->
 
 <script>
 
@@ -351,7 +352,7 @@ interactive.forEach(el=>{
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
 });
 
-/* MOBILE TOUCH CURSOR */
+/* MOBILE CURSOR */
 const tCursor = document.getElementById("touch-cursor");
 
 window.addEventListener("touchstart", ()=>{
