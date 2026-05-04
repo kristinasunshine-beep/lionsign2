@@ -5,9 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LIONSIGN Studio</title>
+<title>LIONSIGN</title>
 
 <meta name="description" content="LIONSIGN Studio creates branding systems and spatial identities.">
+<meta name="keywords" content="branding, doberman branding, digital design, landscape design, visual identity">
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -31,15 +32,17 @@ body::before{
   inset:0;
   background:
     linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
-  background-size:80px 80px;
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size:80px 80px,80px 80px,20px 20px,20px 20px;
   z-index:0;
   pointer-events:none;
 }
 
 body > *{position:relative;z-index:1;}
 
-/* DESKTOP CURSOR */
+/* CUSTOM CURSOR */
 #cursor{
   width:18px;
   height:18px;
@@ -50,33 +53,11 @@ body > *{position:relative;z-index:1;}
   left:0;
   pointer-events:none;
   transform:translate(-50%,-50%);
-  transition:0.15s ease;
+  transition:width .2s ease, height .2s ease, background .2s ease;
   z-index:99999;
 }
 
 #cursor.active{
-  width:50px;
-  height:50px;
-  background:rgba(185,31,42,0.12);
-}
-
-/* MOBILE CURSOR (OUTLINE VERSION) */
-#touch-cursor{
-  width:18px;
-  height:18px;
-  border:2px solid #B91F2A;
-  border-radius:50%;
-  position:fixed;
-  top:0;
-  left:0;
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  z-index:99999;
-  opacity:0;
-  transition:0.15s ease;
-}
-
-#touch-cursor.active{
   width:50px;
   height:50px;
   background:rgba(185,31,42,0.12);
@@ -99,6 +80,12 @@ nav{
   font-size:26px;
 }
 
+nav a{
+  text-decoration:none;
+  color:#000;
+  font-size:22px;
+}
+
 /* HERO */
 .hero{
   min-height:100vh;
@@ -111,9 +98,16 @@ nav{
 .hero h1{
   font-family:'Anton';
   font-size:110px;
+  opacity:0;
+  transform:scale(1.1);
+  animation:heroIn 1s ease forwards;
 }
 
 .hero span{color:#B91F2A;}
+
+@keyframes heroIn{
+  to{opacity:1; transform:scale(1);}
+}
 
 .hero p{
   font-size:30px;
@@ -134,6 +128,7 @@ nav{
   padding:40px 80px;
 }
 
+/* CARDS */
 .card{
   background:#fff;
   padding:36px;
@@ -142,22 +137,44 @@ nav{
   text-decoration:none;
   color:#000;
   transition:0.25s ease;
+
+  opacity:0;
+  transform:translateY(50px);
+  animation:cardIn 0.8s ease forwards;
+}
+
+.card:nth-child(1){animation-delay:0.05s;}
+.card:nth-child(2){animation-delay:0.15s;}
+.card:nth-child(3){animation-delay:0.25s;}
+.card:nth-child(4){animation-delay:0.35s;}
+
+@keyframes cardIn{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .card:hover{
-  transform:translateY(-8px);
-  border-color:#B91F2A;
+  transform:translateY(-10px);
+  border:1px solid #B91F2A;
+  box-shadow:0 25px 60px rgba(185,31,42,0.18);
 }
 
 .num{
   font-family:'Anton';
-  font-size:80px;
+  font-size:92px;
   color:#B91F2A;
 }
 
 .card h3{
   font-family:'Anton';
-  font-size:40px;
+  font-size:44px;
+}
+
+.card p{
+  font-size:22px;
+  margin-top:6px;
 }
 
 /* MANIFEST */
@@ -167,7 +184,7 @@ nav{
 
 .manifest-title{
   font-family:'Anton';
-  font-size:70px;
+  font-size:80px;
   margin-bottom:30px;
 }
 
@@ -181,7 +198,7 @@ nav{
   background:#fff;
   padding:20px;
   border-radius:8px;
-  border:1px solid #B91F2A;
+  border:1.5px solid rgba(185,31,42,0.6);
 }
 
 /* FAQ */
@@ -191,40 +208,49 @@ nav{
 
 .faq-title{
   font-family:'Anton';
-  font-size:70px;
+  font-size:80px;
+  margin-bottom:30px;
 }
 
 .faq-item{
   background:#fff;
-  margin-top:12px;
+  border:1px solid #e5e5e7;
   border-radius:10px;
-  border:1px solid #ddd;
+  margin-bottom:12px;
   overflow:hidden;
 }
 
 .faq-question{
-  padding:20px;
+  padding:22px;
   font-family:'Anton';
+  font-size:24px;
   cursor:pointer;
+  display:flex;
+  justify-content:space-between;
 }
 
 .faq-answer{
   max-height:0;
   overflow:hidden;
-  transition:0.3s ease;
-  padding:0 20px;
+  transition:max-height 0.35s ease;
+  padding:0 22px;
 }
 
 .faq-item.active .faq-answer{
   max-height:200px;
+}
+
+.faq-answer p{
+  font-size:20px;
   padding-bottom:20px;
+  opacity:0.85;
 }
 
 /* POWER */
 .power{
   padding:60px 80px;
   font-family:'Anton';
-  font-size:70px;
+  font-size:80px;
 }
 
 .power span{color:#B91F2A;}
@@ -232,7 +258,6 @@ nav{
 /* FOOTER */
 .footer{
   padding:30px 80px;
-  font-size:16px;
 }
 
 /* MOBILE */
@@ -240,66 +265,73 @@ nav{
 
 body{cursor:auto;}
 #cursor{display:none;}
-#touch-cursor{opacity:1;}
 
 .hero{padding:120px 20px;}
-.hero h1{font-size:48px;}
+.hero h1{font-size:52px;}
 
 .services{
   grid-template-columns:1fr;
-  padding:20px;
+  padding:40px 20px;
 }
 
 .manifest,
-.faq,
-.power,
-.footer{
-  padding:20px;
+.faq{
+  padding:40px 20px;
 }
 
 .manifest-grid{
   grid-template-columns:1fr;
 }
 
+.power{font-size:42px;}
+
+.hero p{font-size:18px;}
+
+.faq-title{font-size:42px;}
 }
+
 </style>
 </head>
 
 <body>
 
 <div id="cursor"></div>
-<div id="touch-cursor"></div>
 
 <nav>
   <div class="brand">LIONSIGN</div>
+  <a href="https://www.facebook.com/kristina.radosavljevic" target="_blank">CONTACT</a>
 </nav>
 
 <div class="hero">
   <h1><span>DESIGN</span> BUILDS DOMINANCE</h1>
-  <p>We create identities, systems and spaces</p>
+  <p>We create identities, systems and spaces that command attention</p>
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
 <div class="services">
 
-<a class="card">
+<a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
 <div class="num">01</div>
 <h3>DOBERMAN BRANDING</h3>
+<p>Elite identity systems</p>
 </a>
 
-<a class="card">
+<a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
 <div class="num">02</div>
 <h3>DIGITAL DESIGN</h3>
+<p>Systems that combine aesthetics</p>
 </a>
 
-<a class="card">
+<a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
 <div class="num">03</div>
 <h3>LANDSCAPE DESIGN</h3>
+<p>Spatial systems</p>
 </a>
 
-<a class="card">
+<a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
 <div class="num">04</div>
 <h3>OBSIDIAN LINE</h3>
+<p>Limited garments</p>
 </a>
 
 </div>
@@ -307,18 +339,29 @@ body{cursor:auto;}
 <div class="manifest">
 <div class="manifest-title">MANIFEST</div>
 <div class="manifest-grid">
-<div class="m-card">DESIGN CLARITY</div>
-<div class="m-card">BUILD STRUCTURE</div>
-<div class="m-card">ACT DELIBERATELY</div>
+<div class="m-card"><p>DESIGN CLARITY</p></div>
+<div class="m-card"><p>BUILD STRUCTURE</p></div>
+<div class="m-card"><p>ACT DELIBERATELY</p></div>
 </div>
 </div>
 
 <div class="faq">
+
 <div class="faq-title">FAQ</div>
 
 <div class="faq-item">
-<div class="faq-question">What is this?</div>
-<div class="faq-answer">Brand system studio.</div>
+<div class="faq-question">What happens when I click a numbered card?</div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Are all landing pages different?</div>
+<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do pages include forms?</div>
+<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
 </div>
 
 </div>
@@ -328,39 +371,38 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 </div>
 
 <div class="footer">
-© 2019–2026 LIONSIGN. All rights reserved.
+© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
 </div>
 
 <script>
 
-/* CURSOR DESKTOP */
-const cursor=document.getElementById("cursor");
-
-document.addEventListener("mousemove",(e)=>{
-  cursor.style.left=e.clientX+"px";
-  cursor.style.top=e.clientY+"px";
+/* FAQ */
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    item.classList.toggle("active");
+  });
 });
 
-document.querySelectorAll("a,.card,.faq-question").forEach(el=>{
-  el.addEventListener("mouseenter",()=>cursor.classList.add("active"));
-  el.addEventListener("mouseleave",()=>cursor.classList.remove("active"));
+/* CURSOR - ONLY DESKTOP */
+const isTouch = window.matchMedia("(pointer: coarse)").matches;
+
+const cursor = document.getElementById("cursor");
+
+if(!isTouch){
+
+document.addEventListener("mousemove", (e)=>{
+  cursor.style.top = e.clientY + "px";
+  cursor.style.left = e.clientX + "px";
 });
 
-/* MOBILE CURSOR */
-const touch=document.getElementById("touch-cursor");
+const interactive = document.querySelectorAll("a, .card, .faq-question, nav a");
 
-window.addEventListener("touchstart",()=>touch.style.opacity=1);
-
-window.addEventListener("touchmove",(e)=>{
-  const t=e.touches[0];
-  touch.style.left=t.clientX+"px";
-  touch.style.top=t.clientY+"px";
+interactive.forEach(el=>{
+  el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
 });
 
-document.querySelectorAll("a,.card,.faq-question").forEach(el=>{
-  el.addEventListener("touchstart",()=>touch.classList.add("active"));
-  el.addEventListener("touchend",()=>touch.classList.remove("active"));
-});
+}
 
 </script>
 
