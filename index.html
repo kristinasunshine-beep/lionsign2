@@ -260,7 +260,7 @@ nav a{
   padding:30px 80px;
 }
 
-/* MOBILE FIX - ONLY CURSOR BEHAVIOR */
+/* MOBILE */
 @media(max-width:768px){
 
 body{cursor:auto;}
@@ -308,7 +308,82 @@ body{cursor:auto;}
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
+<div class="services">
+
+<a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
+<div class="num">01</div>
+<h3>DOBERMAN BRANDING</h3>
+<p>Elite identity systems</p>
+</a>
+
+<a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
+<div class="num">02</div>
+<h3>DIGITAL DESIGN</h3>
+<p>Systems that combine aesthetics</p>
+</a>
+
+<a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
+<div class="num">03</div>
+<h3>LANDSCAPE DESIGN</h3>
+<p>Spatial systems</p>
+</a>
+
+<a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
+<div class="num">04</div>
+<h3>OBSIDIAN LINE</h3>
+<p>Limited garments</p>
+</a>
+
+</div>
+
+<div class="manifest">
+<div class="manifest-title">MANIFEST</div>
+<div class="manifest-grid">
+<div class="m-card"><p>DESIGN CLARITY</p></div>
+<div class="m-card"><p>BUILD STRUCTURE</p></div>
+<div class="m-card"><p>ACT DELIBERATELY</p></div>
+</div>
+</div>
+
+<div class="faq">
+
+<div class="faq-title">FAQ</div>
+
+<div class="faq-item">
+<div class="faq-question">What happens when I click a numbered card?</div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Are all landing pages different?</div>
+<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do pages include forms?</div>
+<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
+</div>
+
+</div>
+
+<div class="power">
+POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
+</div>
+
+<div class="footer">
+© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
+</div>
+
 <script>
+
+/* FAQ */
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    item.classList.toggle("active");
+  });
+});
+
+/* CURSOR */
 const cursor = document.getElementById("cursor");
 
 document.addEventListener("mousemove", (e)=>{
@@ -322,6 +397,12 @@ interactive.forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
 });
+
+if (window.matchMedia("(pointer: coarse)").matches) {
+  cursor.style.display = "none";
+  document.body.style.cursor = "auto";
+}
+
 </script>
 
 </body>
