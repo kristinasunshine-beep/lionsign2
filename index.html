@@ -98,16 +98,9 @@ nav a{
 .hero h1{
   font-family:'Anton';
   font-size:110px;
-  opacity:0;
-  transform:scale(1.1);
-  animation:heroIn 1s ease forwards;
 }
 
 .hero span{color:#B91F2A;}
-
-@keyframes heroIn{
-  to{opacity:1; transform:scale(1);}
-}
 
 .hero p{
   font-size:30px;
@@ -128,7 +121,6 @@ nav a{
   padding:40px 80px;
 }
 
-/* CARDS */
 .card{
   background:#fff;
   padding:36px;
@@ -249,7 +241,7 @@ nav a{
 @media(max-width:768px){
 
 body{cursor:auto;}
-#cursor{display:block;}
+#cursor{display:none;}
 
 .services{
   grid-template-columns:1fr;
@@ -259,7 +251,8 @@ body{cursor:auto;}
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
 
-.manifest,.faq{
+.manifest,
+.faq{
   padding:40px 20px;
 }
 
@@ -351,12 +344,18 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 
 <script>
 
-/* CURSOR - INERTIAL + MOBILE TOUCH */
+/* FAQ */
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    item.classList.toggle("active");
+  });
+});
 
+/* INERTIAL CURSOR */
 const cursor = document.getElementById("cursor");
 
 let mouseX = 0, mouseY = 0;
-let currentX = 0, currentY = 0;
+let posX = 0, posY = 0;
 
 document.addEventListener("mousemove", e=>{
   mouseX = e.clientX;
@@ -370,17 +369,17 @@ document.addEventListener("touchmove", e=>{
 },{passive:true});
 
 function animate(){
-  currentX += (mouseX - currentX) * 0.12;
-  currentY += (mouseY - currentY) * 0.12;
+  posX += (mouseX - posX) * 0.12;
+  posY += (mouseY - posY) * 0.12;
 
-  cursor.style.left = currentX + "px";
-  cursor.style.top = currentY + "px";
+  cursor.style.left = posX + "px";
+  cursor.style.top = posY + "px";
 
   requestAnimationFrame(animate);
 }
 animate();
 
-/* INTERACTIONS */
+/* HOVER STATES */
 document.querySelectorAll("a, .card, .faq-question, nav a").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
