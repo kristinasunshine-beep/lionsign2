@@ -40,15 +40,12 @@ body::before{
   pointer-events:none;
 }
 
-body > *{
-  position:relative;
-  z-index:1;
-}
+body > *{position:relative;z-index:1;}
 
 /* CURSOR */
 #cursor{
-  width:12px;
-  height:12px;
+  width:14px;
+  height:14px;
   border:2px solid #B91F2A;
   border-radius:50%;
   position:fixed;
@@ -56,14 +53,13 @@ body > *{
   left:0;
   pointer-events:none;
   transform:translate(-50%,-50%);
-  transition:width .18s ease, height .18s ease, background .18s ease;
+  transition:width .2s ease, height .2s ease, background .2s ease;
   z-index:99999;
 }
 
-/* ONLY ON INTERACTIVE HOVER */
 #cursor.active{
-  width:44px;
-  height:44px;
+  width:48px;
+  height:48px;
   background:rgba(185,31,42,0.12);
 }
 
@@ -133,7 +129,6 @@ nav a{
   text-decoration:none;
   color:#000;
   display:block;
-  transition:0.25s ease;
 }
 
 .card:hover{
@@ -156,30 +151,6 @@ nav a{
 .card p{
   font-size:22px;
   margin-top:6px;
-}
-
-/* MANIFEST */
-.manifest{
-  padding:80px;
-}
-
-.manifest-title{
-  font-family:'Anton';
-  font-size:80px;
-  margin-bottom:30px;
-}
-
-.manifest-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.m-card{
-  background:#fff;
-  padding:20px;
-  border-radius:8px;
-  border:1.5px solid rgba(185,31,42,0.6);
 }
 
 /* FAQ */
@@ -245,15 +216,7 @@ body{cursor:auto;}
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
 
-.manifest,
-.faq{
-  padding:40px 20px;
-}
-
-.manifest-grid{
-  grid-template-columns:1fr;
-}
-
+.faq{padding:40px 20px;}
 .power{font-size:42px;}
 .hero p{font-size:18px;}
 .faq-title{font-size:42px;}
@@ -279,25 +242,25 @@ body{cursor:auto;}
 
 <div class="services">
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
+<a href="#" class="card">
 <div class="num">01</div>
 <h3>DOBERMAN BRANDING</h3>
 <p>Elite identity systems</p>
 </a>
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
+<a href="#" class="card">
 <div class="num">02</div>
 <h3>DIGITAL DESIGN</h3>
 <p>Systems that combine aesthetics</p>
 </a>
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
+<a href="#" class="card">
 <div class="num">03</div>
 <h3>LANDSCAPE DESIGN</h3>
 <p>Spatial systems</p>
 </a>
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
+<a href="#" class="card">
 <div class="num">04</div>
 <h3>OBSIDIAN LINE</h3>
 <p>Limited garments</p>
@@ -306,16 +269,12 @@ body{cursor:auto;}
 </div>
 
 <div class="faq">
+
 <div class="faq-title">FAQ</div>
 
 <div class="faq-item">
 <div class="faq-question">What happens when I click a numbered card?</div>
 <div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Are all landing pages different?</div>
-<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
 </div>
 
 </div>
@@ -325,7 +284,7 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 </div>
 
 <div class="footer">
-© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
+© 2019–2026 LIONSIGN — RESEARCH & DESIGN.
 </div>
 
 <script>
@@ -337,40 +296,47 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* CURSOR LOGIC (FIXED + CLEAN) */
+/* ✔ JOYSTICK CURSOR ENGINE (APPLE STYLE) */
 
 const cursor = document.getElementById("cursor");
 
-let x=0,y=0,tx=0,ty=0;
+let mouseX = 0, mouseY = 0;
+let posX = 0, posY = 0;
 
-document.addEventListener("mousemove",(e)=>{
-  tx=e.clientX;
-  ty=e.clientY;
+/* unified pointer (mouse + touch) */
+function setTarget(x,y){
+  mouseX = x;
+  mouseY = y;
+}
+
+document.addEventListener("mousemove",e=>{
+  setTarget(e.clientX,e.clientY);
 });
 
-document.addEventListener("touchmove",(e)=>{
-  const t=e.touches[0];
-  tx=t.clientX;
-  ty=t.clientY;
+document.addEventListener("touchmove",e=>{
+  const t = e.touches[0];
+  setTarget(t.clientX,t.clientY);
 },{passive:true});
 
-function animate(){
-  x += (tx-x)*0.14;
-  y += (ty-y)*0.14;
+/* spring physics (joystick feel) */
+function loop(){
+  posX += (mouseX - posX) * 0.12;
+  posY += (mouseY - posY) * 0.12;
 
-  cursor.style.left=x+"px";
-  cursor.style.top=y+"px";
+  cursor.style.left = posX + "px";
+  cursor.style.top = posY + "px";
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(loop);
 }
-animate();
+loop();
 
-/* ONLY TRUE INTERACTIVE DETECTION */
-const interactive = document.querySelectorAll("a, .card, .faq-question, nav a");
+/* hover detection (ONLY real interactive targets) */
+const targets = "a, .card, .faq-question, nav a";
 
-document.addEventListener("mousemove", (e)=>{
-  const el = document.elementFromPoint(e.clientX, e.clientY);
-  if(el && el.closest("a, .card, .faq-question, nav a")){
+document.addEventListener("mousemove",(e)=>{
+  const el = document.elementFromPoint(e.clientX,e.clientY);
+
+  if(el && el.closest(targets)){
     cursor.classList.add("active");
   } else {
     cursor.classList.remove("active");
