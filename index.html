@@ -10,7 +10,7 @@
 <meta name="description" content="LIONSIGN Studio creates branding systems and spatial identities.">
 <meta name="keywords" content="branding, doberman branding, digital design, landscape design, visual identity">
 
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -102,15 +102,20 @@ nav a{
 
 .hero span{color:#B91F2A;}
 
-/* SUBLINE — IZMENJENO */
+.hero p{
+  font-size:42px;
+  margin-top:14px;
+  font-family:'Anton';
+  letter-spacing:1px;
+}
+
 .subline{
   margin-top:200px;
   font-family:'Barlow Condensed';
   font-weight:300;
-  font-size:28px;
+  font-size:30px;
   letter-spacing:2px;
-  opacity:0.75;
-  text-transform:uppercase;
+  opacity:0.85;
 }
 
 /* SERVICES */
@@ -176,19 +181,28 @@ nav a{
   padding:20px;
   border-radius:8px;
   border:1.5px solid rgba(185,31,42,0.6);
-  transition:transform 0.25s ease;
+
+  /* BREATH EFFECT */
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+  animation: breathe 6s ease-in-out infinite;
 }
 
-/* VEĆI TEKST U KARTICAMA */
 .m-card p{
-  font-size:28px;
+  font-size:24px;
   font-weight:600;
   letter-spacing:1px;
 }
 
-/* MICRO HOVER */
+@keyframes breathe{
+  0%,100%{ transform: translateY(0px); }
+  50%{ transform: translateY(-3px); }
+}
+
 .m-card:hover{
-  transform:translateY(-8px) scale(1.02);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(185,31,42,0.12);
+  border-color: rgba(185,31,42,0.9);
 }
 
 /* FAQ */
@@ -263,6 +277,11 @@ body{cursor:none;}
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
 
+.subline{
+  font-size:20px;
+  margin-top:120px;
+}
+
 .manifest,
 .faq{
   padding:40px 20px;
@@ -274,14 +293,7 @@ body{cursor:none;}
 
 .power{font-size:42px;}
 
-.hero p{font-size:18px;}
-
 .faq-title{font-size:42px;}
-}
-
-/* PARALLAX SMOOTHING */
-.m-card{
-  will-change: transform;
 }
 
 </style>
@@ -304,25 +316,25 @@ body{cursor:none;}
 
 <div class="services">
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
+<a href="#" class="card">
 <div class="num">01</div>
 <h3>DOBERMAN BRANDING</h3>
 <p>Elite identity systems</p>
 </a>
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
+<a href="#" class="card">
 <div class="num">02</div>
 <h3>DIGITAL DESIGN</h3>
-<p>Systems that combine aesthetics and obsession with detail</p>
+<p>Systems that combine aesthetics and obssesion with detail</p>
 </a>
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
+<a href="#" class="card">
 <div class="num">03</div>
 <h3>LANDSCAPE DESIGN</h3>
 <p>Spatial systems</p>
 </a>
 
-<a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
+<a href="#" class="card">
 <div class="num">04</div>
 <h3>OBSIDIAN LINE</h3>
 <p>Limited garments</p>
@@ -330,16 +342,12 @@ body{cursor:none;}
 
 </div>
 
-<!-- MANIFEST -->
 <div class="manifest">
 <div class="manifest-title">MANIFEST</div>
-
-<div class="manifest-grid" id="manifestGrid">
-
+<div class="manifest-grid">
 <div class="m-card"><p>DESIGN CLARITY</p></div>
 <div class="m-card"><p>BUILD STRUCTURE</p></div>
 <div class="m-card"><p>ACT DELIBERATELY</p></div>
-
 </div>
 </div>
 
@@ -374,7 +382,6 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 
 <script>
 
-/* FAQ */
 document.querySelectorAll(".faq-item").forEach(item=>{
   item.addEventListener("click",()=>{
     item.classList.toggle("active");
@@ -403,22 +410,9 @@ function animate(){
 }
 animate();
 
-/* HOVER */
 document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
-});
-
-/* MANIFEST PARALLAX */
-const grid = document.getElementById("manifestGrid");
-
-document.addEventListener("mousemove", (e)=>{
-  const x = (e.clientX / window.innerWidth - 0.5) * 10;
-  const y = (e.clientY / window.innerHeight - 0.5) * 10;
-
-  document.querySelectorAll(".m-card").forEach((card, i)=>{
-    card.style.transform = `translate(${x * (i+1)*0.3}px, ${y * (i+1)*0.3}px)`;
-  });
 });
 
 </script>
