@@ -95,28 +95,32 @@ nav a{
   padding:140px 80px 60px;
 }
 
-/* EXPLODE */
-.explode span{
+/* EXPLODE TEXT */
+.hero h1{
+  font-family:'Anton';
+  font-size:110px;
+  display:flex;
+  gap:20px;
+}
+
+.word{
   display:inline-block;
   opacity:0;
-  transform:translateY(40px) scale(0.8);
-  animation:explodeIn 0.6s ease forwards;
+  transform:translateY(80px) scale(0.8);
+  animation:explode 0.8s ease forwards;
 }
 
-.explode .red{
-  color:#B91F2A;
-}
+.word:nth-child(1){animation-delay:0.1s;}
+.word:nth-child(2){animation-delay:0.3s;}
+.word:nth-child(3){animation-delay:0.5s;}
 
-@keyframes explodeIn{
+.word.red{color:#B91F2A;}
+
+@keyframes explode{
   to{
     opacity:1;
     transform:translateY(0) scale(1);
   }
-}
-
-.hero h1{
-  font-family:'Anton';
-  font-size:110px;
 }
 
 .hero p{
@@ -257,27 +261,13 @@ nav a{
 /* MOBILE */
 @media(max-width:768px){
 
-.services{
-  grid-template-columns:1fr;
-  padding:40px 20px;
-}
-
+.services{grid-template-columns:1fr;padding:40px 20px;}
 .hero{padding:120px 20px;}
-.hero h1{font-size:52px;}
-
-.manifest,
-.faq{
-  padding:40px 20px;
-}
-
-.manifest-grid{
-  grid-template-columns:1fr;
-}
-
+.hero h1{font-size:52px;flex-direction:column;}
+.manifest,.faq{padding:40px 20px;}
+.manifest-grid{grid-template-columns:1fr;}
 .power{font-size:42px;}
-
 .hero p{font-size:18px;}
-
 .faq-title{font-size:42px;}
 }
 
@@ -294,25 +284,82 @@ nav a{
 </nav>
 
 <div class="hero">
-<h1 class="explode">
-<span class="red">D</span><span class="red">E</span><span class="red">S</span><span class="red">I</span><span class="red">G</span><span class="red">N</span>
-<span> </span>
-<span>B</span><span>U</span><span>I</span><span>L</span><span>D</span><span>S</span>
-<span> </span>
-<span>D</span><span>O</span><span>M</span><span>I</span><span>N</span><span>A</span><span>N</span><span>C</span><span>E</span>
-</h1>
-<p>We create identities, systems and spaces that command attention</p>
-<div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
+  <h1>
+    <span class="word red">DESIGN</span>
+    <span class="word">BUILDS</span>
+    <span class="word">DOMINANCE</span>
+  </h1>
+  <p>We create identities, systems and spaces that command attention</p>
+  <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
 
-<!-- ostatak koda OSTAO ISTI (services, manifest, faq, power, footer, cursor JS) -->
+<div class="services">
+
+<a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
+<div class="num">01</div>
+<h3>DOBERMAN BRANDING</h3>
+<p>Elite identity systems</p>
+</a>
+
+<a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
+<div class="num">02</div>
+<h3>DIGITAL DESIGN</h3>
+<p>Systems that combine aesthetics</p>
+</a>
+
+<a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
+<div class="num">03</div>
+<h3>LANDSCAPE DESIGN</h3>
+<p>Spatial systems</p>
+</a>
+
+<a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
+<div class="num">04</div>
+<h3>OBSIDIAN LINE</h3>
+<p>Limited garments</p>
+</a>
+
+</div>
+
+<div class="manifest">
+<div class="manifest-title">MANIFEST</div>
+<div class="manifest-grid">
+<div class="m-card"><p>DESIGN CLARITY</p></div>
+<div class="m-card"><p>BUILD STRUCTURE</p></div>
+<div class="m-card"><p>ACT DELIBERATELY</p></div>
+</div>
+</div>
+
+<div class="faq">
+
+<div class="faq-title">FAQ</div>
+
+<div class="faq-item">
+<div class="faq-question">What happens when I click a numbered card?</div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Are all landing pages different?</div>
+<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do pages include forms?</div>
+<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
+</div>
+
+</div>
+
+<div class="power">
+POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
+</div>
+
+<div class="footer">
+© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
+</div>
 
 <script>
-
-/* explode delay */
-document.querySelectorAll('.explode span').forEach((el, i)=>{
-  el.style.animationDelay = (i * 0.04) + "s";
-});
 
 /* FAQ */
 document.querySelectorAll(".faq-item").forEach(item=>{
@@ -349,7 +396,7 @@ function animate(){
 }
 animate();
 
-/* INTERACTION */
+/* HOVER */
 document.querySelectorAll("a, .card, .faq-question, nav a").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
