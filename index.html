@@ -10,7 +10,7 @@
 <meta name="description" content="LIONSIGN Studio creates branding systems and spatial identities.">
 <meta name="keywords" content="branding, doberman branding, digital design, landscape design, visual identity">
 
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@200;300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -102,17 +102,15 @@ nav a{
 
 .hero span{color:#B91F2A;}
 
-.hero p{
-  font-size:42px; /* POVECANO */
-  margin-top:14px;
-  font-family:'Anton'; /* NOVA TIPOGRAFIJA */
-  letter-spacing:1px;
-}
-
+/* SUBLINE — IZMENJENO */
 .subline{
   margin-top:200px;
-  font-family:'Anton';
-  font-size:44px;
+  font-family:'Barlow Condensed';
+  font-weight:300;
+  font-size:28px;
+  letter-spacing:2px;
+  opacity:0.75;
+  text-transform:uppercase;
 }
 
 /* SERVICES */
@@ -178,6 +176,19 @@ nav a{
   padding:20px;
   border-radius:8px;
   border:1.5px solid rgba(185,31,42,0.6);
+  transition:transform 0.25s ease;
+}
+
+/* VEĆI TEKST U KARTICAMA */
+.m-card p{
+  font-size:28px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+/* MICRO HOVER */
+.m-card:hover{
+  transform:translateY(-8px) scale(1.02);
 }
 
 /* FAQ */
@@ -252,10 +263,6 @@ body{cursor:none;}
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
 
-.hero p{
-  font-size:26px; /* POVECANO I NA MOBILNOM */
-}
-
 .manifest,
 .faq{
   padding:40px 20px;
@@ -267,7 +274,14 @@ body{cursor:none;}
 
 .power{font-size:42px;}
 
+.hero p{font-size:18px;}
+
 .faq-title{font-size:42px;}
+}
+
+/* PARALLAX SMOOTHING */
+.m-card{
+  will-change: transform;
 }
 
 </style>
@@ -299,7 +313,7 @@ body{cursor:none;}
 <a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
 <div class="num">02</div>
 <h3>DIGITAL DESIGN</h3>
-<p>Systems that combine aesthetics and obssesion with detail</p>
+<p>Systems that combine aesthetics and obsession with detail</p>
 </a>
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
@@ -319,10 +333,13 @@ body{cursor:none;}
 <!-- MANIFEST -->
 <div class="manifest">
 <div class="manifest-title">MANIFEST</div>
-<div class="manifest-grid">
+
+<div class="manifest-grid" id="manifestGrid">
+
 <div class="m-card"><p>DESIGN CLARITY</p></div>
 <div class="m-card"><p>BUILD STRUCTURE</p></div>
 <div class="m-card"><p>ACT DELIBERATELY</p></div>
+
 </div>
 </div>
 
@@ -364,7 +381,7 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* INERTIAL CURSOR */
+/* CURSOR */
 const cursor = document.getElementById("cursor");
 
 let mouseX = 0, mouseY = 0;
@@ -374,21 +391,6 @@ document.addEventListener("mousemove", e=>{
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
-
-document.addEventListener("touchmove", e=>{
-  const t = e.touches[0];
-  mouseX = t.clientX;
-  mouseY = t.clientY;
-
-  const el = document.elementFromPoint(t.clientX, t.clientY);
-
-  if(el && el.closest("a, .card, .faq-question")){
-    cursor.classList.add("active");
-  }else{
-    cursor.classList.remove("active");
-  }
-
-},{passive:true});
 
 function animate(){
   posX += (mouseX - posX) * 0.12;
@@ -401,10 +403,22 @@ function animate(){
 }
 animate();
 
-/* DESKTOP */
+/* HOVER */
 document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
+});
+
+/* MANIFEST PARALLAX */
+const grid = document.getElementById("manifestGrid");
+
+document.addEventListener("mousemove", (e)=>{
+  const x = (e.clientX / window.innerWidth - 0.5) * 10;
+  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+
+  document.querySelectorAll(".m-card").forEach((card, i)=>{
+    card.style.transform = `translate(${x * (i+1)*0.3}px, ${y * (i+1)*0.3}px)`;
+  });
 });
 
 </script>
