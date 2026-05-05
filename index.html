@@ -102,14 +102,16 @@ nav a{
 
 .hero span{color:#B91F2A;}
 
-/* SUBLINE — IZMENJENO */
+/* 🔴 IZMENJENO: VEĆI SUBTITLE */
+.hero p{
+  font-size:36px;
+  margin-top:10px;
+}
+
 .subline{
   margin-top:200px;
-  font-family:'Barlow Condensed';
-  font-weight:300;
-  font-size:32px; /* ↑ povećano */
-  letter-spacing:1.5px;
-  opacity:0.78;
+  font-family:'Anton';
+  font-size:44px;
 }
 
 /* SERVICES */
@@ -170,7 +172,6 @@ nav a{
   gap:20px;
 }
 
-/* kartice */
 .m-card{
   background:#fff;
   padding:20px;
@@ -178,11 +179,10 @@ nav a{
   border:1.5px solid rgba(185,31,42,0.6);
 }
 
-/* TEKST ↑ povećan ali grid ostaje isti */
+/* 🔴 IZMENJENO: VEĆI TEKST U KARTICAMA, GRID OSTaje ISTI */
 .m-card p{
   font-size:26px;
   font-weight:300;
-  letter-spacing:0.5px;
 }
 
 /* FAQ */
@@ -268,7 +268,7 @@ body{cursor:none;}
 
 .power{font-size:42px;}
 
-.hero p{font-size:18px;}
+.hero p{font-size:22px;} /* proporcionalno za mobile */
 
 .faq-title{font-size:42px;}
 }
@@ -293,25 +293,25 @@ body{cursor:none;}
 
 <div class="services">
 
-<a href="#" class="card">
+<a href="https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog" class="card">
 <div class="num">01</div>
 <h3>DOBERMAN BRANDING</h3>
 <p>Elite identity systems</p>
 </a>
 
-<a href="#" class="card">
+<a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
 <div class="num">02</div>
 <h3>DIGITAL DESIGN</h3>
-<p>Systems that combine aesthetics and obsession with detail</p>
+<p>Systems that combine aesthetics and obssesion with detail</p>
 </a>
 
-<a href="#" class="card">
+<a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
 <div class="num">03</div>
 <h3>LANDSCAPE DESIGN</h3>
 <p>Spatial systems</p>
 </a>
 
-<a href="#" class="card">
+<a href="https://preview.mailerlite.io/preview/2126552/sites/180559352095048839/3N6yet" class="card">
 <div class="num">04</div>
 <h3>OBSIDIAN LINE</h3>
 <p>Limited garments</p>
@@ -322,16 +322,31 @@ body{cursor:none;}
 <div class="manifest">
 <div class="manifest-title">MANIFEST</div>
 <div class="manifest-grid">
-
 <div class="m-card"><p>DESIGN CLARITY</p></div>
 <div class="m-card"><p>BUILD STRUCTURE</p></div>
 <div class="m-card"><p>ACT DELIBERATELY</p></div>
-
 </div>
 </div>
 
 <div class="faq">
+
 <div class="faq-title">FAQ</div>
+
+<div class="faq-item">
+<div class="faq-question">What happens when I click a numbered card?</div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Are all landing pages different?</div>
+<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do pages include forms?</div>
+<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
+</div>
+
 </div>
 
 <div class="power">
@@ -341,6 +356,30 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 <div class="footer">
 © 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
 </div>
+
+<script>
+
+/* FAQ */
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    item.classList.toggle("active");
+  });
+});
+
+/* CURSOR */
+const cursor = document.getElementById("cursor");
+
+document.addEventListener("mousemove", (e)=>{
+  cursor.style.top = e.clientY + "px";
+  cursor.style.left = e.clientX + "px";
+});
+
+document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
+  el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
+});
+
+</script>
 
 </body>
 </html>
