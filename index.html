@@ -154,7 +154,7 @@ nav a{
   margin-top:6px;
 }
 
-/* MANIFEST */
+/* MANIFEST (VRACEN) */
 .manifest{
   padding:80px;
 }
@@ -240,6 +240,8 @@ nav a{
 /* MOBILE */
 @media(max-width:768px){
 
+body{cursor:none;}
+
 .services{
   grid-template-columns:1fr;
   padding:40px 20px;
@@ -310,7 +312,7 @@ nav a{
 
 </div>
 
-<!-- MANIFEST (DODATO) -->
+<!-- MANIFEST DODAT -->
 <div class="manifest">
 <div class="manifest-title">MANIFEST</div>
 <div class="manifest-grid">
@@ -373,6 +375,15 @@ document.addEventListener("touchmove", e=>{
   const t = e.touches[0];
   mouseX = t.clientX;
   mouseY = t.clientY;
+
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+
+  if(el && el.closest("a, .card, .faq-question")){
+    cursor.classList.add("active");
+  }else{
+    cursor.classList.remove("active");
+  }
+
 },{passive:true});
 
 function animate(){
@@ -386,12 +397,10 @@ function animate(){
 }
 animate();
 
-/* INTERACTION */
-document.querySelectorAll("a, .card, .faq-question, nav a").forEach(el=>{
+/* DESKTOP */
+document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
-  el.addEventListener("touchstart", ()=> cursor.classList.add("active"));
-  el.addEventListener("touchend", ()=> cursor.classList.remove("active"));
 });
 
 </script>
