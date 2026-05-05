@@ -154,6 +154,30 @@ nav a{
   margin-top:6px;
 }
 
+/* MANIFEST (VRACEN) */
+.manifest{
+  padding:80px;
+}
+
+.manifest-title{
+  font-family:'Anton';
+  font-size:80px;
+  margin-bottom:30px;
+}
+
+.manifest-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.m-card{
+  background:#fff;
+  padding:20px;
+  border-radius:8px;
+  border:1.5px solid rgba(185,31,42,0.6);
+}
+
 /* FAQ */
 .faq{
   padding:80px;
@@ -216,7 +240,6 @@ nav a{
 /* MOBILE */
 @media(max-width:768px){
 
-/* BITNO: cursor ostaje */
 body{cursor:none;}
 
 .services{
@@ -227,8 +250,13 @@ body{cursor:none;}
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
 
+.manifest,
 .faq{
   padding:40px 20px;
+}
+
+.manifest-grid{
+  grid-template-columns:1fr;
 }
 
 .power{font-size:42px;}
@@ -282,6 +310,16 @@ body{cursor:none;}
 <p>Limited garments</p>
 </a>
 
+</div>
+
+<!-- MANIFEST DODAT -->
+<div class="manifest">
+<div class="manifest-title">MANIFEST</div>
+<div class="manifest-grid">
+<div class="m-card"><p>DESIGN CLARITY</p></div>
+<div class="m-card"><p>BUILD STRUCTURE</p></div>
+<div class="m-card"><p>ACT DELIBERATELY</p></div>
+</div>
 </div>
 
 <div class="faq">
@@ -338,7 +376,6 @@ document.addEventListener("touchmove", e=>{
   mouseX = t.clientX;
   mouseY = t.clientY;
 
-  // PROVERA DA LI JE IZNAD INTERAKTIVNOG
   const el = document.elementFromPoint(t.clientX, t.clientY);
 
   if(el && el.closest("a, .card, .faq-question")){
@@ -360,7 +397,7 @@ function animate(){
 }
 animate();
 
-/* DESKTOP HOVER */
+/* DESKTOP */
 document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
