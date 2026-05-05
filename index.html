@@ -95,33 +95,12 @@ nav a{
   padding:140px 80px 60px;
 }
 
-/* EXPLODE TEXT */
 .hero h1{
   font-family:'Anton';
   font-size:110px;
-  display:flex;
-  gap:20px;
 }
 
-.word{
-  display:inline-block;
-  opacity:0;
-  transform:translateY(80px) scale(0.8);
-  animation:explode 0.8s ease forwards;
-}
-
-.word:nth-child(1){animation-delay:0.1s;}
-.word:nth-child(2){animation-delay:0.3s;}
-.word:nth-child(3){animation-delay:0.5s;}
-
-.word.red{color:#B91F2A;}
-
-@keyframes explode{
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-}
+.hero span{color:#B91F2A;}
 
 .hero p{
   font-size:30px;
@@ -261,13 +240,27 @@ nav a{
 /* MOBILE */
 @media(max-width:768px){
 
-.services{grid-template-columns:1fr;padding:40px 20px;}
+.services{
+  grid-template-columns:1fr;
+  padding:40px 20px;
+}
+
 .hero{padding:120px 20px;}
-.hero h1{font-size:52px;flex-direction:column;}
-.manifest,.faq{padding:40px 20px;}
-.manifest-grid{grid-template-columns:1fr;}
+.hero h1{font-size:52px;}
+
+.manifest,
+.faq{
+  padding:40px 20px;
+}
+
+.manifest-grid{
+  grid-template-columns:1fr;
+}
+
 .power{font-size:42px;}
+
 .hero p{font-size:18px;}
+
 .faq-title{font-size:42px;}
 }
 
@@ -284,11 +277,7 @@ nav a{
 </nav>
 
 <div class="hero">
-  <h1>
-    <span class="word red">DESIGN</span>
-    <span class="word">BUILDS</span>
-    <span class="word">DOMINANCE</span>
-  </h1>
+  <h1><span>DESIGN</span> BUILDS DOMINANCE</h1>
   <p>We create identities, systems and spaces that command attention</p>
   <div class="subline">FOUR DISCIPLINES. ONE PHILOSOPHY.</div>
 </div>
@@ -321,6 +310,7 @@ nav a{
 
 </div>
 
+<!-- MANIFEST (DODATO) -->
 <div class="manifest">
 <div class="manifest-title">MANIFEST</div>
 <div class="manifest-grid">
@@ -396,7 +386,7 @@ function animate(){
 }
 animate();
 
-/* HOVER */
+/* INTERACTION */
 document.querySelectorAll("a, .card, .faq-question, nav a").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
