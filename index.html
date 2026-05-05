@@ -102,20 +102,14 @@ nav a{
 
 .hero span{color:#B91F2A;}
 
-.hero p{
-  font-size:42px;
-  margin-top:14px;
-  font-family:'Anton';
-  letter-spacing:1px;
-}
-
+/* SUBLINE — IZMENJENO */
 .subline{
   margin-top:200px;
   font-family:'Barlow Condensed';
   font-weight:300;
-  font-size:30px;
-  letter-spacing:2px;
-  opacity:0.85;
+  font-size:32px; /* ↑ povećano */
+  letter-spacing:1.5px;
+  opacity:0.78;
 }
 
 /* SERVICES */
@@ -176,33 +170,19 @@ nav a{
   gap:20px;
 }
 
+/* kartice */
 .m-card{
   background:#fff;
   padding:20px;
   border-radius:8px;
   border:1.5px solid rgba(185,31,42,0.6);
-
-  /* BREATH EFFECT */
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  will-change: transform;
-  animation: breathe 6s ease-in-out infinite;
 }
 
+/* TEKST ↑ povećan ali grid ostaje isti */
 .m-card p{
-  font-size:24px;
-  font-weight:600;
-  letter-spacing:1px;
-}
-
-@keyframes breathe{
-  0%,100%{ transform: translateY(0px); }
-  50%{ transform: translateY(-3px); }
-}
-
-.m-card:hover{
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(185,31,42,0.12);
-  border-color: rgba(185,31,42,0.9);
+  font-size:26px;
+  font-weight:300;
+  letter-spacing:0.5px;
 }
 
 /* FAQ */
@@ -277,11 +257,6 @@ body{cursor:none;}
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
 
-.subline{
-  font-size:20px;
-  margin-top:120px;
-}
-
 .manifest,
 .faq{
   padding:40px 20px;
@@ -292,6 +267,8 @@ body{cursor:none;}
 }
 
 .power{font-size:42px;}
+
+.hero p{font-size:18px;}
 
 .faq-title{font-size:42px;}
 }
@@ -325,7 +302,7 @@ body{cursor:none;}
 <a href="#" class="card">
 <div class="num">02</div>
 <h3>DIGITAL DESIGN</h3>
-<p>Systems that combine aesthetics and obssesion with detail</p>
+<p>Systems that combine aesthetics and obsession with detail</p>
 </a>
 
 <a href="#" class="card">
@@ -345,31 +322,16 @@ body{cursor:none;}
 <div class="manifest">
 <div class="manifest-title">MANIFEST</div>
 <div class="manifest-grid">
+
 <div class="m-card"><p>DESIGN CLARITY</p></div>
 <div class="m-card"><p>BUILD STRUCTURE</p></div>
 <div class="m-card"><p>ACT DELIBERATELY</p></div>
+
 </div>
 </div>
 
 <div class="faq">
-
 <div class="faq-title">FAQ</div>
-
-<div class="faq-item">
-<div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Are all landing pages different?</div>
-<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Do pages include forms?</div>
-<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
-</div>
-
 </div>
 
 <div class="power">
@@ -379,43 +341,6 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 <div class="footer">
 © 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
 </div>
-
-<script>
-
-document.querySelectorAll(".faq-item").forEach(item=>{
-  item.addEventListener("click",()=>{
-    item.classList.toggle("active");
-  });
-});
-
-/* CURSOR */
-const cursor = document.getElementById("cursor");
-
-let mouseX = 0, mouseY = 0;
-let posX = 0, posY = 0;
-
-document.addEventListener("mousemove", e=>{
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function animate(){
-  posX += (mouseX - posX) * 0.12;
-  posY += (mouseY - posY) * 0.12;
-
-  cursor.style.left = posX + "px";
-  cursor.style.top = posY + "px";
-
-  requestAnimationFrame(animate);
-}
-animate();
-
-document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
-  el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
-  el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
-});
-
-</script>
 
 </body>
 </html>
