@@ -3,8 +3,8 @@
   "short_name": "LIONSIGN",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f6f3ee",
-  "theme_color": "#1a1a1a",
+  "background_color": "#f7f4ef",
+  "theme_color": "#111111",
   "orientation": "portrait",
   "icons": [
     {
