@@ -247,7 +247,7 @@ nav a{
   padding:30px 80px;
 }
 
-/* ICON FIX */
+/* 🔥 ONLY SAFE FIX (IKONICE) */
 .card img,
 button img,
 .m-card img {
@@ -369,14 +369,14 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 
 <script>
 
-/* FAQ */
+/* FAQ (UNCHANGED) */
 document.querySelectorAll(".faq-item").forEach(item=>{
   item.addEventListener("click",()=>{
     item.classList.toggle("active");
   });
 });
 
-/* CURSOR (RESTORED) */
+/* CURSOR (UNCHANGED - FULL RESTORE) */
 const cursor = document.getElementById("cursor");
 
 let mouseX = 0, mouseY = 0;
@@ -398,7 +398,6 @@ function animate(){
 }
 animate();
 
-/* HOVER EFFECT */
 document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
