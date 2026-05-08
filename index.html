@@ -12,10 +12,13 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<!-- PWA META -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b0b0b">
 
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -61,6 +64,7 @@ body > *{position:relative;z-index:1;}
   left:0;
   pointer-events:none;
   transform:translate(-50%,-50%);
+  transition:width .2s ease, height .2s ease, background .2s ease;
   z-index:99999;
 }
 
@@ -244,7 +248,7 @@ nav a{
   padding:30px 80px;
 }
 
-/* ICON FIX (JEDINA IZMJENA) */
+/* 🔧 ONLY CHANGE — ICON SIZE */
 .card img,
 .m-card img,
 button img{
@@ -255,6 +259,8 @@ button img{
 
 /* MOBILE */
 @media(max-width:768px){
+
+body{cursor:none;}
 
 .services{
   grid-template-columns:1fr;
@@ -309,7 +315,7 @@ button img{
 <a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
 <div class="num">02</div>
 <h3>DIGITAL DESIGN</h3>
-<p>Systems that combine aesthetics and detail</p>
+<p>Systems that combine aesthetics and obssesion with detail</p>
 </a>
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
@@ -341,12 +347,12 @@ button img{
 
 <div class="faq-item">
 <div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page.</p></div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
 </div>
 
 <div class="faq-item">
 <div class="faq-question">Are all landing pages different?</div>
-<div class="faq-answer"><p>Yes. Each service has its own structure.</p></div>
+<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
 </div>
 
 <div class="faq-item">
@@ -361,50 +367,8 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 </div>
 
 <div class="footer">
-© 2019–2026 LIONSIGN — RESEARCH & DESIGN.
+© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
 </div>
-
-<script>
-
-/* CURSOR FIX */
-const cursor = document.getElementById("cursor");
-
-let mouseX = 0;
-let mouseY = 0;
-let posX = 0;
-let posY = 0;
-
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function animate(){
-  posX += (mouseX - posX) * 0.15;
-  posY += (mouseY - posY) * 0.15;
-
-  cursor.style.left = posX + "px";
-  cursor.style.top = posY + "px";
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-
-/* HOVER */
-document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
-  el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
-  el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
-});
-
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach(item=>{
-  item.addEventListener("click",()=>{
-    item.classList.toggle("active");
-  });
-});
-
-</script>
 
 </body>
 </html>
