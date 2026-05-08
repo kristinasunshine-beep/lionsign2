@@ -248,7 +248,7 @@ nav a{
   padding:30px 80px;
 }
 
-/* 🔧 ONLY CHANGE — ICON SIZE */
+/* 🔧 ONLY CHANGE — ICON SIZE FIX */
 .card img,
 .m-card img,
 button img{
@@ -369,6 +369,44 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 <div class="footer">
 © 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
 </div>
+
+<script>
+
+/* FAQ */
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    item.classList.toggle("active");
+  });
+});
+
+/* CURSOR */
+const cursor = document.getElementById("cursor");
+
+let mouseX = 0, mouseY = 0;
+let posX = 0, posY = 0;
+
+document.addEventListener("mousemove", e=>{
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animate(){
+  posX += (mouseX - posX) * 0.12;
+  posY += (mouseY - posY) * 0.12;
+
+  cursor.style.left = posX + "px";
+  cursor.style.top = posY + "px";
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
+  el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
+});
+
+</script>
 
 </body>
 </html>
