@@ -16,8 +16,6 @@
 <meta name="theme-color" content="#0b0b0b">
 
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -247,7 +245,7 @@ nav a{
   padding:30px 80px;
 }
 
-/* 🔥 ONLY SAFE FIX (IKONICE) */
+/* ICON FIX */
 .card img,
 button img,
 .m-card img {
@@ -344,12 +342,12 @@ button img,
 
 <div class="faq-item">
 <div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page.</p></div>
 </div>
 
 <div class="faq-item">
 <div class="faq-question">Are all landing pages different?</div>
-<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
+<div class="faq-answer"><p>Yes. Each service is unique.</p></div>
 </div>
 
 <div class="faq-item">
@@ -369,15 +367,10 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 
 <script>
 
-/* FAQ (UNCHANGED) */
-document.querySelectorAll(".faq-item").forEach(item=>{
-  item.addEventListener("click",()=>{
-    item.classList.toggle("active");
-  });
-});
-
-/* CURSOR (UNCHANGED - FULL RESTORE) */
+/* CURSOR FIX (ROBUST VERSION) */
 const cursor = document.getElementById("cursor");
+
+if (cursor) {
 
 let mouseX = 0, mouseY = 0;
 let posX = 0, posY = 0;
@@ -401,6 +394,15 @@ animate();
 document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
+});
+
+}
+
+/* FAQ */
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    item.classList.toggle("active");
+  });
 });
 
 </script>
