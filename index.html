@@ -16,6 +16,8 @@
 <meta name="theme-color" content="#0b0b0b">
 
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -245,14 +247,13 @@ nav a{
   padding:30px 80px;
 }
 
-/* 🔴 ONLY CHANGE — ICON SIZE FIX */
+/* ✅ JEDINA IZMJENA — IKONICE */
 .card img,
 .m-card img,
 button img{
   width:16px;
   height:16px;
   object-fit:contain;
-  vertical-align:middle;
 }
 
 /* MOBILE */
@@ -365,48 +366,6 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 <div class="footer">
 © 2019–2026 LIONSIGN — RESEARCH & DESIGN.
 </div>
-
-<script>
-
-/* CURSOR (UNCHANGED) */
-const cursor = document.getElementById("cursor");
-
-let mouseX = 0;
-let mouseY = 0;
-let posX = 0;
-let posY = 0;
-
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function animate(){
-  posX += (mouseX - posX) * 0.15;
-  posY += (mouseY - posY) * 0.15;
-
-  cursor.style.left = posX + "px";
-  cursor.style.top = posY + "px";
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-
-/* HOVER */
-document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
-  el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
-  el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
-});
-
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach(item=>{
-  item.addEventListener("click",()=>{
-    item.classList.toggle("active");
-  });
-});
-
-</script>
 
 </body>
 </html>
