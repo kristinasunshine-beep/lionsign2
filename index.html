@@ -342,12 +342,12 @@ button img,
 
 <div class="faq-item">
 <div class="faq-question">What happens when I click a numbered card?</div>
-<div class="faq-answer"><p>Each card opens a dedicated landing page.</p></div>
+<div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
 </div>
 
 <div class="faq-item">
 <div class="faq-question">Are all landing pages different?</div>
-<div class="faq-answer"><p>Yes. Each service is unique.</p></div>
+<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
 </div>
 
 <div class="faq-item">
@@ -367,36 +367,36 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 
 <script>
 
-/* CURSOR FIX (ROBUST VERSION) */
+/* CURSOR FIX */
 const cursor = document.getElementById("cursor");
 
-if (cursor) {
+let mouseX = 0;
+let mouseY = 0;
+let posX = 0;
+let posY = 0;
 
-let mouseX = 0, mouseY = 0;
-let posX = 0, posY = 0;
-
-document.addEventListener("mousemove", e=>{
+document.addEventListener("mousemove", (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
 
-function animate(){
-  posX += (mouseX - posX) * 0.12;
-  posY += (mouseY - posY) * 0.12;
+function animate() {
+  posX += (mouseX - posX) * 0.15;
+  posY += (mouseY - posY) * 0.15;
 
   cursor.style.left = posX + "px";
   cursor.style.top = posY + "px";
 
   requestAnimationFrame(animate);
 }
+
 animate();
 
+/* HOVER */
 document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
 });
-
-}
 
 /* FAQ */
 document.querySelectorAll(".faq-item").forEach(item=>{
