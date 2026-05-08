@@ -245,13 +245,14 @@ nav a{
   padding:30px 80px;
 }
 
-/* ICON FIX */
+/* 🔴 ONLY CHANGE — ICON SIZE FIX */
 .card img,
-button img,
-.m-card img {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
+.m-card img,
+button img{
+  width:16px;
+  height:16px;
+  object-fit:contain;
+  vertical-align:middle;
 }
 
 /* MOBILE */
@@ -367,7 +368,7 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 
 <script>
 
-/* CURSOR FIX */
+/* CURSOR (UNCHANGED) */
 const cursor = document.getElementById("cursor");
 
 let mouseX = 0;
@@ -380,7 +381,7 @@ document.addEventListener("mousemove", (e) => {
   mouseY = e.clientY;
 });
 
-function animate() {
+function animate(){
   posX += (mouseX - posX) * 0.15;
   posY += (mouseY - posY) * 0.15;
 
