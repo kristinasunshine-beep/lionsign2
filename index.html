@@ -248,15 +248,6 @@ nav a{
   padding:30px 80px;
 }
 
-/* 🔧 ONLY CHANGE — ICON SIZE FIX */
-.card img,
-.m-card img,
-button img{
-  width:14px;
-  height:14px;
-  object-fit:contain;
-}
-
 /* MOBILE */
 @media(max-width:768px){
 
@@ -379,7 +370,7 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* CURSOR */
+/* INERTIAL CURSOR */
 const cursor = document.getElementById("cursor");
 
 let mouseX = 0, mouseY = 0;
@@ -389,6 +380,21 @@ document.addEventListener("mousemove", e=>{
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
+
+document.addEventListener("touchmove", e=>{
+  const t = e.touches[0];
+  mouseX = t.clientX;
+  mouseY = t.clientY;
+
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+
+  if(el && el.closest("a, .card, .faq-question")){
+    cursor.classList.add("active");
+  }else{
+    cursor.classList.remove("active");
+  }
+
+},{passive:true});
 
 function animate(){
   posX += (mouseX - posX) * 0.12;
@@ -401,11 +407,19 @@ function animate(){
 }
 animate();
 
+/* DESKTOP */
 document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
 });
 
+</script>
+
+<!-- SERVICE WORKER -->
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
 </script>
 
 </body>
