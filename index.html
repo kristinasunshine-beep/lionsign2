@@ -12,7 +12,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<!-- PWA META -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b0b0b">
 
@@ -248,32 +247,17 @@ nav a{
   padding:30px 80px;
 }
 
-/* ========================= */
-/* ICON FIX (JEDINA IZMENA) */
-/* ========================= */
-
+/* ICON FIX */
 .card img,
 button img,
 .m-card img {
   width: 22px;
   height: 22px;
-  max-width: 22px;
-  max-height: 22px;
   object-fit: contain;
-  display: inline-block;
-}
-
-@media(max-width:768px){
-  .card img {
-    width: 20px;
-    height: 20px;
-  }
 }
 
 /* MOBILE */
 @media(max-width:768px){
-
-body{cursor:none;}
 
 .services{
   grid-template-columns:1fr;
@@ -363,6 +347,16 @@ body{cursor:none;}
 <div class="faq-answer"><p>Each card opens a dedicated landing page with a full system.</p></div>
 </div>
 
+<div class="faq-item">
+<div class="faq-question">Are all landing pages different?</div>
+<div class="faq-answer"><p>Yes. Each service has its own structured page.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do pages include forms?</div>
+<div class="faq-answer"><p>Yes. Every landing page includes conversion flow.</p></div>
+</div>
+
 </div>
 
 <div class="power">
@@ -370,16 +364,19 @@ POWER IS NOT GIVEN. IT IS <span>DESIGNED</span>.
 </div>
 
 <div class="footer">
-© 2019–2026 LIONSIGN — RESEARCH & DESIGN. All rights reserved.
+© 2019–2026 LIONSIGN — RESEARCH & DESIGN.
 </div>
 
 <script>
+
+/* FAQ */
 document.querySelectorAll(".faq-item").forEach(item=>{
   item.addEventListener("click",()=>{
     item.classList.toggle("active");
   });
 });
 
+/* CURSOR (RESTORED) */
 const cursor = document.getElementById("cursor");
 
 let mouseX = 0, mouseY = 0;
@@ -400,6 +397,13 @@ function animate(){
   requestAnimationFrame(animate);
 }
 animate();
+
+/* HOVER EFFECT */
+document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
+  el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
+});
+
 </script>
 
 </body>
