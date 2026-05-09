@@ -23,7 +23,7 @@ body{
   background:#f6f6f8;
 }
 
-/* GRID CLEAN */
+/* GRID */
 body::before{
   content:'';
   position:absolute;
@@ -44,7 +44,7 @@ body::before{
   pointer-events:none;
 }
 
-/* BACK BUTTON */
+/* BACK */
 .back{
   position:fixed;
   top:18px;
@@ -55,14 +55,10 @@ body::before{
   z-index:10;
 }
 
-.back:hover{
-  opacity:1;
-}
-
 /* LOGO */
 .logo{
-  width:360px;
-  height:360px;
+  width:320px;
+  height:320px;
   background:url('icon-512.png') no-repeat center/contain;
   z-index:2;
 }
@@ -92,10 +88,22 @@ button{
   cursor:pointer;
 }
 
-/* CARDS */
-.cards{
+/* SECTIONS */
+.view{
   display:none;
-  gap:10px;
+  z-index:2;
+  flex-direction:column;
+  align-items:center;
+}
+
+.active{
+  display:flex;
+}
+
+/* CARDS FIX (OVO JE BIO GLITCH) */
+.cards{
+  display:flex;
+  gap:12px;
   margin-top:20px;
 }
 
@@ -107,29 +115,17 @@ button{
   justify-content:center;
   align-items:center;
   cursor:pointer;
-  font-size:14px;
 }
 
-/* VIEWS */
-.view{
-  display:none;
-  z-index:2;
+/* HOME CONTENT FIX */
+#home h1{
+  font-size:52px;
+  margin-bottom:10px;
 }
 
-.active{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-/* FADE */
-.fade{
-  animation:fade 0.3s ease;
-}
-
-@keyframes fade{
-  from{opacity:0;}
-  to{opacity:1;}
+/* CARD VIEW */
+#cardView h1{
+  font-size:60px;
 }
 
 </style>
@@ -150,6 +146,7 @@ button{
 <!-- HOME -->
 <div id="home" class="view">
   <h1>HOME</h1>
+
   <div class="cards">
     <div class="card" onclick="openCard(1)">1</div>
     <div class="card" onclick="openCard(2)">2</div>
@@ -157,58 +154,56 @@ button{
   </div>
 </div>
 
-<!-- CARD VIEW -->
+<!-- CARD -->
 <div id="cardView" class="view">
   <h1 id="cardTitle"></h1>
-  <p>Card content here</p>
+  <p>Content goes here</p>
 </div>
 
 <script>
 
-let historyStack = [];
+let stack = [];
 
-/* VIEW SWITCH */
-function show(view){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById(view).classList.add('active');
+/* SWITCH VIEW */
+function show(id){
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
 /* ENTER */
 function enterApp(){
-  historyStack.push("onboarding");
-  historyStack.push("home");
+  stack = ["onboarding", "home"];
   show("home");
 }
 
-/* OPEN CARD */
+/* CARD */
 function openCard(id){
-  historyStack.push("home");
-  historyStack.push("card"+id);
-
+  stack.push("home");
+  stack.push("card"+id);
   document.getElementById("cardTitle").innerText = "CARD " + id;
   show("cardView");
 }
 
-/* BACK SYSTEM (KLJUČ) */
+/* BACK */
 function goBack(){
 
-  if(historyStack.length <= 1){
+  if(stack.length <= 1){
+    stack = [];
     show("onboarding");
-    historyStack = [];
     return;
   }
 
-  historyStack.pop();
-  let prev = historyStack.pop();
+  stack.pop();
+  const prev = stack.pop();
 
   if(prev === "home"){
     show("home");
-  } 
+  }
   else if(prev === "onboarding"){
     show("onboarding");
   }
-  else if(prev && prev.startsWith("card")){
-    let id = prev.replace("card","");
+  else if(prev?.includes("card")){
+    const id = prev.replace("card","");
     document.getElementById("cardTitle").innerText = "CARD " + id;
     show("cardView");
   }
