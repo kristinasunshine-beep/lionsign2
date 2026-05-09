@@ -12,6 +12,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<!-- PWA META -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b0b0b">
 
@@ -138,10 +139,8 @@ nav a{
   border:1px solid #e5e5e7;
   text-decoration:none;
   color:#000;
-  transition:0.2s ease;
+  transition:0.25s ease;
   display:block;
-  touch-action: manipulation;
-  will-change: transform;
 }
 
 .card:hover{
@@ -166,34 +165,115 @@ nav a{
   margin-top:6px;
 }
 
-/* MANIFEST / FAQ / POWER / FOOTER — ISTO NETAKNUTO */
-.manifest{padding:80px;}
-.manifest-title{font-family:'Anton';font-size:80px;margin-bottom:30px;}
-.manifest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.m-card{background:#fff;padding:20px;border-radius:8px;border:1.5px solid rgba(185,31,42,0.6);}
+/* MANIFEST */
+.manifest{
+  padding:80px;
+}
 
-.faq{padding:80px;}
-.faq-title{font-family:'Anton';font-size:80px;margin-bottom:30px;}
-.faq-item{background:#fff;border:1px solid #e5e5e7;border-radius:10px;margin-bottom:12px;overflow:hidden;}
-.faq-question{padding:22px;font-family:'Anton';font-size:24px;cursor:pointer;display:flex;justify-content:space-between;}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease;padding:0 22px;}
-.faq-item.active .faq-answer{max-height:200px;}
-.faq-answer p{font-size:20px;padding-bottom:20px;opacity:0.85;}
+.manifest-title{
+  font-family:'Anton';
+  font-size:80px;
+  margin-bottom:30px;
+}
 
-.power{padding:60px 80px;font-family:'Anton';font-size:80px;}
+.manifest-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.m-card{
+  background:#fff;
+  padding:20px;
+  border-radius:8px;
+  border:1.5px solid rgba(185,31,42,0.6);
+}
+
+/* FAQ */
+.faq{
+  padding:80px;
+}
+
+.faq-title{
+  font-family:'Anton';
+  font-size:80px;
+  margin-bottom:30px;
+}
+
+.faq-item{
+  background:#fff;
+  border:1px solid #e5e5e7;
+  border-radius:10px;
+  margin-bottom:12px;
+  overflow:hidden;
+}
+
+.faq-question{
+  padding:22px;
+  font-family:'Anton';
+  font-size:24px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.35s ease;
+  padding:0 22px;
+}
+
+.faq-item.active .faq-answer{
+  max-height:200px;
+}
+
+.faq-answer p{
+  font-size:20px;
+  padding-bottom:20px;
+  opacity:0.85;
+}
+
+/* POWER */
+.power{
+  padding:60px 80px;
+  font-family:'Anton';
+  font-size:80px;
+}
+
 .power span{color:#B91F2A;}
 
-.footer{padding:30px 80px;}
+/* FOOTER */
+.footer{
+  padding:30px 80px;
+}
 
+/* MOBILE */
 @media(max-width:768px){
+
 body{cursor:none;}
-.services{grid-template-columns:1fr;padding:40px 20px;}
+
+.services{
+  grid-template-columns:1fr;
+  padding:40px 20px;
+}
+
 .hero{padding:120px 20px;}
 .hero h1{font-size:52px;}
-.manifest,.faq{padding:40px 20px;}
-.manifest-grid{grid-template-columns:1fr;}
+
+.manifest,
+.faq{
+  padding:40px 20px;
+}
+
+.manifest-grid{
+  grid-template-columns:1fr;
+}
+
 .power{font-size:42px;}
+
 .hero p{font-size:18px;}
+
 .faq-title{font-size:42px;}
 }
 
@@ -226,7 +306,7 @@ body{cursor:none;}
 <a href="https://preview.mailerlite.io/preview/2126552/sites/180110322571413099/Uysoji" class="card">
 <div class="num">02</div>
 <h3>DIGITAL DESIGN</h3>
-<p>Systems that combine aesthetics and obsession with detail</p>
+<p>Systems that combine aesthetics and obssesion with detail</p>
 </a>
 
 <a href="https://preview.mailerlite.io/preview/2126552/sites/186276712092272536/lionsign-research-design-1h32yv" class="card">
@@ -253,6 +333,7 @@ body{cursor:none;}
 </div>
 
 <div class="faq">
+
 <div class="faq-title">FAQ</div>
 
 <div class="faq-item">
@@ -289,7 +370,7 @@ document.querySelectorAll(".faq-item").forEach(item=>{
   });
 });
 
-/* CURSOR — untouched */
+/* CURSOR */
 const cursor = document.getElementById("cursor");
 
 let mouseX = 0, mouseY = 0;
@@ -299,6 +380,21 @@ document.addEventListener("mousemove", e=>{
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
+
+document.addEventListener("touchmove", e=>{
+  const t = e.touches[0];
+  mouseX = t.clientX;
+  mouseY = t.clientY;
+
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+
+  if(el && el.closest("a, .card, .faq-question")){
+    cursor.classList.add("active");
+  }else{
+    cursor.classList.remove("active");
+  }
+
+},{passive:true});
 
 function animate(){
   posX += (mouseX - posX) * 0.12;
@@ -311,6 +407,7 @@ function animate(){
 }
 animate();
 
+/* DESKTOP */
 document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
   el.addEventListener("mouseenter", ()=> cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
