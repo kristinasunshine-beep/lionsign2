@@ -13,14 +13,9 @@
 body{
   margin:0;
   height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
   font-family:'Oswald', sans-serif;
-  text-align:center;
-  overflow:hidden;
   background:#f6f6f8;
+  overflow:hidden;
 }
 
 /* GRID */
@@ -34,12 +29,7 @@ body::before{
     linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
 
-  background-size:
-    140px 140px,
-    140px 140px,
-    28px 28px,
-    28px 28px;
-
+  background-size:140px 140px,140px 140px,28px 28px,28px 28px;
   z-index:0;
   pointer-events:none;
 }
@@ -55,27 +45,24 @@ body::before{
   z-index:10;
 }
 
-/* SECTIONS */
-.screen{
-  display:none;
+/* ONBOARDING */
+#onboarding{
+  position:absolute;
+  inset:0;
+  display:flex;
   flex-direction:column;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  text-align:center;
   z-index:2;
 }
 
-.active{
-  display:flex;
-}
-
-/* LOGO */
 .logo{
   width:360px;
   height:360px;
   background:url('icon-512.png') no-repeat center/contain;
 }
 
-/* TEXT */
 h1{
   font-size:72px;
   margin:0;
@@ -86,16 +73,26 @@ p{
   margin:0 0 18px 0;
 }
 
-/* BUTTON */
 button{
   padding:16px 64px;
   background:#B91F2A;
   color:#fff;
   border:none;
-  border-radius:6px;
   cursor:pointer;
+  border-radius:6px;
 }
 
+/* TVOJ SAJT (LAYOUT ISPOD ONBOARDINGA) */
+#app{
+  display:none;
+  position:absolute;
+  inset:0;
+  z-index:1;
+  padding-top:80px;
+  text-align:center;
+}
+
+/* OVDE OSTAVLJAŠ TVOJ ORIGINALNI SAJT */
 </style>
 </head>
 
@@ -104,7 +101,7 @@ button{
 <div class="back" onclick="goBack()">›</div>
 
 <!-- ONBOARDING -->
-<div id="onboarding" class="screen active">
+<div id="onboarding">
 
   <div class="logo"></div>
   <h1>LIONSIGN</h1>
@@ -114,31 +111,26 @@ button{
 
 </div>
 
-<!-- TVOJ SAJT (OVO JE TVOJ REALAN CONTENT) -->
-<div id="site" class="screen">
+<!-- TVOJ REALAN SAJT IDE OVDE -->
+<div id="app">
 
-  <!-- OVDE IDE TVOJ POSTOJEĆI SAJT -->
-  <h1>LIONSIGN</h1>
-  <p>YOUR REAL WEBSITE CONTENT HERE</p>
+  <!-- 👇 OVDE NE DIRAM TVOJ LAYOUT -->
+  <h1>LIONSIGN SAJT</h1>
 
 </div>
 
 <script>
 
-/* ENTER → samo zameni ekran */
+/* ENTER → prikazuje sajt */
 function enter(){
-  show('site');
+  document.getElementById('onboarding').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
 }
 
-/* BACK → onboarding */
+/* BACK → vraća onboarding */
 function goBack(){
-  show('onboarding');
-}
-
-/* SWITCH */
-function show(id){
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('onboarding').style.display = 'flex';
 }
 
 </script>
