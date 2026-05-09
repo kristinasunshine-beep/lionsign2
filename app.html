@@ -23,7 +23,7 @@ body{
   overflow:hidden;
 }
 
-/* GRID (NE MENJAMO) */
+/* GRID (NE DIRAMO) */
 body::before{
   content:'';
   position:absolute;
@@ -72,7 +72,7 @@ p{
 a.button{
   display:inline-block;
   padding:16px 64px;
-  background:#B91F2A;
+  background:#B91F2A; /* OSTAVLJENO ISTO */
   color:#fff;
   text-decoration:none;
   border-radius:8px;
@@ -82,47 +82,41 @@ a.button{
   position:relative;
   overflow:hidden;
 
-  /* osnovni shadow (bez glow-a) */
-  box-shadow:0 8px 0 rgba(0,0,0,0.08);
-
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    filter 0.18s ease;
+  transition:transform 0.15s ease;
 }
 
-/* HOVER — minimalni lift */
+/* HOVER — lagani “anticipation” */
 a.button:hover{
   transform:translateY(-2px);
-  filter:brightness(1.03);
 }
 
-/* ACTIVE — “real press” efekat */
+/* ================= DRAMATIC CLICK ================= */
 a.button:active{
-  transform:translateY(3px) scale(0.98);
-  box-shadow:0 2px 0 rgba(0,0,0,0.08);
-  filter:brightness(0.98);
+  animation:buttonSnap 0.42s cubic-bezier(.2,.9,.2,1) both;
 }
 
-/* SOFT MICRO SHIMMER (NE GLARE, SAMO POKRET SVETLA) */
-a.button::after{
-  content:'';
-  position:absolute;
-  top:0;
-  left:-120%;
-  width:120%;
-  height:100%;
-  background:linear-gradient(120deg, transparent, rgba(255,255,255,0.12), transparent);
-  transform:skewX(-20deg);
-}
+/* SNAP + ELASTIC RETURN */
+@keyframes buttonSnap{
 
-a.button:hover::after{
-  animation:shine 1s ease;
-}
+  0%{
+    transform:scale(1);
+  }
 
-@keyframes shine{
-  0%{left:-120%;}
-  100%{left:120%;}
+  30%{
+    transform:scale(0.86);
+  }
+
+  55%{
+    transform:scale(1.08);
+  }
+
+  75%{
+    transform:scale(0.96);
+  }
+
+  100%{
+    transform:scale(1);
+  }
 }
 
 </style>
