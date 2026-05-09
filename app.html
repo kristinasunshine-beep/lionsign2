@@ -6,8 +6,6 @@
 
 <title>LIONSIGN</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-
 <style>
 
 body{
@@ -17,90 +15,52 @@ body{
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  font-family:'Oswald', sans-serif;
-  text-align:center;
-  overflow:hidden;
+  font-family:Arial;
   background:#f6f6f8;
+  overflow:hidden;
 }
 
-/* GRID (tvoj originalni clean) */
-body::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
-
-  background-size:
-    140px 140px,
-    140px 140px,
-    28px 28px,
-    28px 28px;
-
-  z-index:0;
-  pointer-events:none;
+/* SCREENS */
+.screen{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
-/* BACK ARROW */
+.active{
+  display:flex;
+}
+
+/* BACK */
 .back{
   position:fixed;
-  top:18px;
-  left:18px;
+  top:15px;
+  left:15px;
   font-size:28px;
   cursor:pointer;
-  opacity:0.7;
-  z-index:10;
-  user-select:none;
-}
-
-.back:hover{
-  opacity:1;
 }
 
 /* LOGO */
 .logo{
-  width:360px;
-  height:360px;
+  width:320px;
+  height:320px;
   background:url('icon-512.png') no-repeat center/contain;
-  z-index:2;
+}
+
+/* BUTTON */
+button{
+  padding:16px 60px;
+  background:#B91F2A;
+  color:#fff;
+  border:none;
+  cursor:pointer;
 }
 
 /* TEXT */
 h1{
   font-size:72px;
   margin:0;
-  letter-spacing:-1px;
-}
-
-p{
-  font-size:18px;
-  margin:0 0 18px 0;
-  font-weight:300;
-}
-
-/* BUTTON */
-button{
-  padding:16px 64px;
-  background:#B91F2A;
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  font-size:15px;
-  letter-spacing:2px;
-  cursor:pointer;
-  z-index:2;
-}
-
-/* FADE */
-.fade-out{
-  animation:fadeOut 0.3s ease forwards;
-}
-
-@keyframes fadeOut{
-  to{opacity:0;}
 }
 
 </style>
@@ -110,42 +70,42 @@ button{
 
 <div class="back" onclick="goBack()">›</div>
 
-<div class="logo"></div>
+<!-- ONBOARDING -->
+<div id="onboarding" class="screen active">
+  <div class="logo"></div>
+  <h1>LIONSIGN</h1>
+  <button onclick="goHome()">ENTER</button>
+</div>
 
-<h1>LIONSIGN</h1>
-<p>Digital dominance system</p>
-
-<button onclick="enter()">ENTER</button>
+<!-- HOME -->
+<div id="home" class="screen">
+  <h1>HOME</h1>
+</div>
 
 <script>
 
-/* ENTER → ulaz u sajt */
-function enter(){
-  document.body.classList.add("fade-out");
-
-  setTimeout(()=>{
-    // samo ulazak u app state
-    window.location.hash = "app";
-  },300);
+/* SWITCH */
+function show(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
-/* 🔥 KLJUČ FIX: UVEK VRATI NA ONBOARDING */
+/* ENTER */
+function goHome(){
+  show('home');
+}
+
+/* BACK */
 function goBack(){
 
-  document.body.classList.add("fade-out");
+  const home = document.getElementById('home').classList.contains('active');
 
-  setTimeout(()=>{
+  if(home){
+    show('onboarding');
+  } else {
+    show('onboarding');
+  }
 
-    // 1) ako postoji history → vrati nazad (ONBOARDING)
-    if(window.history.length > 1){
-      window.history.back();
-    }
-    else{
-      // 2) fallback (nema history)
-      window.location.hash = "";
-    }
-
-  },200);
 }
 
 </script>
