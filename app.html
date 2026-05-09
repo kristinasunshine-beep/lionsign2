@@ -23,7 +23,7 @@ body{
   background:#f6f6f8;
 }
 
-/* GRID */
+/* GRID CLEAN */
 body::before{
   content:'';
   position:absolute;
@@ -57,8 +57,8 @@ body::before{
 
 /* LOGO */
 .logo{
-  width:320px;
-  height:320px;
+  width:340px;
+  height:340px;
   background:url('icon-512.png') no-repeat center/contain;
   z-index:2;
 }
@@ -88,19 +88,19 @@ button{
   cursor:pointer;
 }
 
-/* SECTIONS */
-.view{
+/* SCREENS */
+.screen{
   display:none;
   z-index:2;
   flex-direction:column;
   align-items:center;
 }
 
-.active{
+.show{
   display:flex;
 }
 
-/* CARDS FIX (OVO JE BIO GLITCH) */
+/* CARDS */
 .cards{
   display:flex;
   gap:12px;
@@ -117,14 +117,8 @@ button{
   cursor:pointer;
 }
 
-/* HOME CONTENT FIX */
-#home h1{
-  font-size:52px;
-  margin-bottom:10px;
-}
-
-/* CARD VIEW */
-#cardView h1{
+/* CARD VIEW TEXT */
+#cardTitle{
   font-size:60px;
 }
 
@@ -136,15 +130,15 @@ button{
 <div class="back" onclick="goBack()">›</div>
 
 <!-- ONBOARDING -->
-<div id="onboarding" class="view active">
+<div id="onboarding" class="screen show">
   <div class="logo"></div>
   <h1>LIONSIGN</h1>
   <p>Digital dominance system</p>
-  <button onclick="enterApp()">ENTER</button>
+  <button onclick="goHome()">ENTER</button>
 </div>
 
 <!-- HOME -->
-<div id="home" class="view">
+<div id="home" class="screen">
   <h1>HOME</h1>
 
   <div class="cards">
@@ -155,61 +149,44 @@ button{
 </div>
 
 <!-- CARD -->
-<div id="cardView" class="view">
+<div id="card" class="screen">
   <h1 id="cardTitle"></h1>
-  <p>Content goes here</p>
+  <p>Content</p>
 </div>
 
 <script>
 
-let stack = [];
-
-/* SWITCH VIEW */
+/* SWITCH SYSTEM */
 function show(id){
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('show'));
+  document.getElementById(id).classList.add('show');
 }
 
 /* ENTER */
-function enterApp(){
-  stack = ["onboarding", "home"];
-  show("home");
+function goHome(){
+  show('home');
 }
 
 /* CARD */
 function openCard(id){
-  stack.push("home");
-  stack.push("card"+id);
   document.getElementById("cardTitle").innerText = "CARD " + id;
-  show("cardView");
+  show('card');
 }
 
-/* BACK */
+/* BACK SYSTEM (STABILAN) */
 function goBack(){
 
-  if(stack.length <= 1){
-    stack = [];
-    show("onboarding");
+  if(document.getElementById('card').classList.contains('show')){
+    show('home');
     return;
   }
 
-  stack.pop();
-  const prev = stack.pop();
+  if(document.getElementById('home').classList.contains('show')){
+    show('onboarding');
+    return;
+  }
 
-  if(prev === "home"){
-    show("home");
-  }
-  else if(prev === "onboarding"){
-    show("onboarding");
-  }
-  else if(prev?.includes("card")){
-    const id = prev.replace("card","");
-    document.getElementById("cardTitle").innerText = "CARD " + id;
-    show("cardView");
-  }
-  else{
-    show("onboarding");
-  }
+  show('onboarding');
 }
 
 </script>
