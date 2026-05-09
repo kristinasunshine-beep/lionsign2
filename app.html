@@ -23,7 +23,7 @@ body{
   background:#f6f6f8;
 }
 
-/* GRID */
+/* GRID CLEAN */
 body::before{
   content:'';
   position:absolute;
@@ -34,24 +34,29 @@ body::before{
     linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
 
-  background-size:140px 140px,140px 140px,28px 28px,28px 28px;
+  background-size:
+    140px 140px,
+    140px 140px,
+    28px 28px,
+    28px 28px;
+
   z-index:0;
-  pointer-events:none;
 }
 
-/* ONBOARDING */
-#onboarding{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  z-index:2;
+/* BACK BUTTON */
+.back{
+  position:fixed;
+  top:18px;
+  left:18px;
+  font-size:28px;
+  cursor:pointer;
+  opacity:0.7;
+  z-index:10;
+  user-select:none;
 }
 
-/* SAJT */
-#app{
-  display:none;
-  z-index:2;
+.back:hover{
+  opacity:1;
 }
 
 /* LOGO */
@@ -59,17 +64,21 @@ body::before{
   width:360px;
   height:360px;
   background:url('icon-512.png') no-repeat center/contain;
+  z-index:2;
 }
 
 /* TEXT */
 h1{
   font-size:72px;
   margin:0;
+  font-weight:700;
+  letter-spacing:-1px;
 }
 
 p{
   font-size:18px;
   margin:0 0 18px 0;
+  font-weight:300;
 }
 
 /* BUTTON */
@@ -79,16 +88,18 @@ button{
   color:#fff;
   border:none;
   border-radius:6px;
+  font-size:15px;
+  letter-spacing:2px;
   cursor:pointer;
 }
 
-/* APP MODE */
-.app #onboarding{
-  display:none;
+/* FADE */
+.fade-out{
+  animation:fadeOut 0.3s ease forwards;
 }
 
-.app #app{
-  display:block;
+@keyframes fadeOut{
+  to{opacity:0;}
 }
 
 </style>
@@ -96,38 +107,43 @@ button{
 
 <body>
 
-<!-- ONBOARDING -->
-<div id="onboarding">
+<div class="back" onclick="goBack()">›</div>
 
-  <div class="logo"></div>
-  <h1>LIONSIGN</h1>
-  <p>Digital dominance system</p>
+<div class="logo"></div>
 
-  <button onclick="enter()">ENTER</button>
+<h1>LIONSIGN</h1>
+<p>Digital dominance system</p>
 
-</div>
-
-<!-- TVOJ SAJT IDE OVDE -->
-<div id="app">
-
-  <h1>LIONSIGN SAJT</h1>
-
-</div>
+<button onclick="enter()">ENTER</button>
 
 <script>
 
-/* ENTER → ulazak u SAJT + history push (mobile back radi) */
+/* ENTER → samo ulazak (bez fajlova) */
 function enter(){
-  document.body.classList.add("app");
+  document.body.classList.add("fade-out");
 
-  // ključ za mobilni back gesture
-  history.pushState({page:"app"}, "", "#app");
+  setTimeout(()=>{
+    window.location.hash = "#app";
+  },300);
 }
 
-/* mobile BACK / swipe / browser back */
-window.addEventListener("popstate", function(){
-  document.body.classList.remove("app");
-});
+/* BACK → vraća na onboarding bez 404 */
+function goBack(){
+
+  document.body.classList.add("fade-out");
+
+  setTimeout(()=>{
+
+    // 1. pokušaj: browser history (NAJBOLJE)
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      // 2. fallback (ako nema history)
+      window.location.hash = "";
+    }
+
+  },200);
+}
 
 </script>
 
