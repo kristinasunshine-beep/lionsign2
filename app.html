@@ -23,7 +23,7 @@ body{
   background:#f6f6f8;
 }
 
-/* GRID CLEAN */
+/* GRID */
 body::before{
   content:'';
   position:absolute;
@@ -41,9 +41,10 @@ body::before{
     28px 28px;
 
   z-index:0;
+  pointer-events:none;
 }
 
-/* BACK BUTTON */
+/* BACK */
 .back{
   position:fixed;
   top:18px;
@@ -52,11 +53,19 @@ body::before{
   cursor:pointer;
   opacity:0.7;
   z-index:10;
-  user-select:none;
 }
 
-.back:hover{
-  opacity:1;
+/* SCREEN SYSTEM */
+.screen{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+}
+
+.active{
+  display:flex;
 }
 
 /* LOGO */
@@ -64,21 +73,17 @@ body::before{
   width:360px;
   height:360px;
   background:url('icon-512.png') no-repeat center/contain;
-  z-index:2;
 }
 
 /* TEXT */
 h1{
   font-size:72px;
   margin:0;
-  font-weight:700;
-  letter-spacing:-1px;
 }
 
 p{
   font-size:18px;
   margin:0 0 18px 0;
-  font-weight:300;
 }
 
 /* BUTTON */
@@ -88,18 +93,7 @@ button{
   color:#fff;
   border:none;
   border-radius:6px;
-  font-size:15px;
-  letter-spacing:2px;
   cursor:pointer;
-}
-
-/* FADE */
-.fade-out{
-  animation:fadeOut 0.3s ease forwards;
-}
-
-@keyframes fadeOut{
-  to{opacity:0;}
 }
 
 </style>
@@ -109,47 +103,42 @@ button{
 
 <div class="back" onclick="goBack()">›</div>
 
-<div class="logo"></div>
+<!-- ONBOARDING -->
+<div id="onboarding" class="screen active">
 
-<h1>LIONSIGN</h1>
-<p>Digital dominance system</p>
+  <div class="logo"></div>
+  <h1>LIONSIGN</h1>
+  <p>Digital dominance system</p>
 
-<button onclick="enter()">ENTER</button>
+  <button onclick="enterApp()">ENTER</button>
+
+</div>
+
+<!-- SAJT (APP) -->
+<div id="app" class="screen">
+
+  <h1>LIONSIGN</h1>
+  <p>Your website content goes here</p>
+
+</div>
 
 <script>
 
-/* ENTER → ulazak u app stanje (bez hash bug-a) */
-function enter(){
-  document.body.classList.add("fade-out");
-
-  setTimeout(()=>{
-    sessionStorage.setItem("lionsign_state", "app");
-    location.reload();
-  },300);
+/* SWITCH SYSTEM */
+function show(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
-/* BACK → uvek vraća onboarding */
+/* ENTER → SAJT */
+function enterApp(){
+  show('app');
+}
+
+/* BACK → ONBOARDING */
 function goBack(){
-
-  document.body.classList.add("fade-out");
-
-  setTimeout(()=>{
-
-    sessionStorage.removeItem("lionsign_state");
-    location.reload();
-
-  },200);
+  show('onboarding');
 }
-
-/* AUTO STATE CHECK */
-(function(){
-  const state = sessionStorage.getItem("lionsign_state");
-
-  if(state === "app"){
-    document.querySelector("h1").innerText = "APP";
-    document.querySelector("p").innerText = "Welcome inside";
-  }
-})();
 
 </script>
 
