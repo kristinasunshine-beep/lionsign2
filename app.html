@@ -23,27 +23,22 @@ body{
   background:#f6f6f8;
 }
 
+/* GRID */
 body::before{
   content:'';
   position:absolute;
   inset:0;
   background:
     linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-  background-size:140px 140px;
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
+
+  background-size:140px 140px,140px 140px,28px 28px,28px 28px;
   z-index:0;
 }
 
-.back{
-  position:fixed;
-  top:18px;
-  left:18px;
-  font-size:28px;
-  cursor:pointer;
-  opacity:0.7;
-  z-index:10;
-}
-
+/* LOGO */
 .logo{
   width:360px;
   height:360px;
@@ -51,26 +46,31 @@ body::before{
   z-index:2;
 }
 
+/* TEXT */
 h1{
   font-size:72px;
   margin:0;
+  font-weight:700;
 }
 
 p{
   font-size:18px;
-  margin-bottom:18px;
+  margin:0 0 18px 0;
 }
 
+/* BUTTON */
 button{
   padding:16px 64px;
   background:#B91F2A;
   color:#fff;
   border:none;
   border-radius:6px;
+  font-size:15px;
   letter-spacing:2px;
   cursor:pointer;
 }
 
+/* FADE */
 .fade-out{
   animation:fadeOut 0.3s ease forwards;
 }
@@ -84,8 +84,6 @@ button{
 
 <body>
 
-<div class="back" onclick="goBack()">›</div>
-
 <div class="logo"></div>
 
 <h1>LIONSIGN</h1>
@@ -95,7 +93,7 @@ button{
 
 <script>
 
-/* 🔥 KLJUČNO: isti folder → index.html */
+/* GLAVNI SAJT (isti folder) */
 const SITE_URL = "index.html";
 
 /* ENTER */
@@ -105,20 +103,6 @@ function enter(){
   setTimeout(()=>{
     window.location.href = SITE_URL;
   },300);
-}
-
-/* BACK */
-function goBack(){
-
-  document.body.classList.add("fade-out");
-
-  setTimeout(()=>{
-    if (window.history.length > 1){
-      window.history.back();
-    } else {
-      window.location.href = SITE_URL;
-    }
-  },200);
 }
 
 </script>
