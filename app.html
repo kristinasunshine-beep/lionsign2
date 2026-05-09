@@ -34,33 +34,23 @@ body::before{
     linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
 
-  background-size:
-    140px 140px,
-    140px 140px,
-    28px 28px,
-    28px 28px;
-
+  background-size:140px 140px,140px 140px,28px 28px,28px 28px;
   z-index:0;
   pointer-events:none;
 }
 
-/* BACK */
-.back{
-  position:fixed;
-  top:18px;
-  left:18px;
-  font-size:28px;
-  cursor:pointer;
-  opacity:0.7;
-  z-index:10;
-}
-
-/* ONBOARDING WRAPPER */
+/* ONBOARDING */
 #onboarding{
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
+  z-index:2;
+}
+
+/* SAJT */
+#app{
+  display:none;
   z-index:2;
 }
 
@@ -75,13 +65,11 @@ body::before{
 h1{
   font-size:72px;
   margin:0;
-  transition:0.3s;
 }
 
 p{
   font-size:18px;
   margin:0 0 18px 0;
-  transition:0.3s;
 }
 
 /* BUTTON */
@@ -92,37 +80,26 @@ button{
   border:none;
   border-radius:6px;
   cursor:pointer;
-  font-size:15px;
-  letter-spacing:2px;
 }
 
 /* APP MODE */
-.app-mode .logo{
+.app #onboarding{
   display:none;
 }
 
-.app-mode h1{
-  font-size:60px;
+.app #app{
+  display:block;
 }
-
-.app-mode p{
-  display:none;
-}
-
-/* BACK */
-.back{ user-select:none; }
 
 </style>
 </head>
 
 <body>
 
-<div class="back" onclick="goBack()">›</div>
-
+<!-- ONBOARDING -->
 <div id="onboarding">
 
   <div class="logo"></div>
-
   <h1>LIONSIGN</h1>
   <p>Digital dominance system</p>
 
@@ -130,17 +107,27 @@ button{
 
 </div>
 
+<!-- TVOJ SAJT IDE OVDE -->
+<div id="app">
+
+  <h1>LIONSIGN SAJT</h1>
+
+</div>
+
 <script>
 
-/* ENTER → PRELAZ U SAJT */
+/* ENTER → ulazak u SAJT + history push (mobile back radi) */
 function enter(){
-  document.body.classList.add("app-mode");
+  document.body.classList.add("app");
+
+  // ključ za mobilni back gesture
+  history.pushState({page:"app"}, "", "#app");
 }
 
-/* BACK → POVRATAK NA ONBOARDING */
-function goBack(){
-  document.body.classList.remove("app-mode");
-}
+/* mobile BACK / swipe / browser back */
+window.addEventListener("popstate", function(){
+  document.body.classList.remove("app");
+});
 
 </script>
 
