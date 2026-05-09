@@ -26,7 +26,7 @@ body{
   animation:fadeIn 0.6s ease forwards;
 }
 
-/* GRID BACKGROUND */
+/* GRID */
 body::before{
   content:'';
   position:absolute;
@@ -41,41 +41,37 @@ body::before{
 
 /* LOGO */
 .logo-wrap{
-  position:relative;
-  margin-bottom:10px; /* bliže naslovu */
+  margin-bottom:4px;
 }
 
 .logo{
   width:360px;
   height:360px;
   background:url('icon-512.png') no-repeat center/contain;
-  position:relative;
-  z-index:2;
 }
 
-/* uklonjen stroke efekat */
-.logo.clone{
-  display:none;
+/* BLOK TEKSTA — PODIGNUT */
+.content{
+  margin-top:-10px;
 }
 
 /* NASLOV */
 h1{
-  font-size:64px; /* +50% */
-  font-weight:700; /* jači bold */
-  letter-spacing:0.5px;
-  margin-bottom:2px;
+  font-size:64px;
+  font-weight:700;
+  margin-bottom:0;
 }
 
 /* PODNASLOV */
 p{
   font-size:18px;
-  margin-top:0;
-  margin-bottom:24px;
+  margin:0;
+  margin-bottom:18px;
 }
 
 /* DUGME */
 button{
-  padding:10px 44px; /* niže + šire */
+  padding:10px 44px;
   border:none;
   background:#B91F2A;
   color:#fff;
@@ -112,16 +108,17 @@ button:active{
   <div class="logo"></div>
 </div>
 
-<h1>LIONSIGN</h1>
-<p>Digital dominance system</p>
-
-<button onclick="enterApp()">ENTER</button>
+<div class="content">
+  <h1>LIONSIGN</h1>
+  <p>Digital dominance system</p>
+  <button onclick="enterApp()">ENTER</button>
+</div>
 
 <script>
 function enterApp(){
   document.body.classList.add("fade-out");
   setTimeout(()=>{
-    window.location.href = "index.html";
+    window.location.href = "/"; // FIX: siguran ulaz na sajt
   }, 400);
 }
 </script>
