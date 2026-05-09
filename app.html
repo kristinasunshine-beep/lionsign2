@@ -6,6 +6,8 @@
 
 <title>LIONSIGN</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
 
 body{
@@ -14,22 +16,9 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  flex-direction:column;
-  font-family:Arial;
+  font-family:'Oswald', sans-serif;
   background:#f6f6f8;
   overflow:hidden;
-}
-
-/* SCREENS */
-.screen{
-  display:none;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-}
-
-.active{
-  display:flex;
 }
 
 /* BACK */
@@ -39,13 +28,39 @@ body{
   left:15px;
   font-size:28px;
   cursor:pointer;
+  opacity:0.7;
+  z-index:10;
+}
+
+/* SCREENS */
+.screen{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.active{
+  display:flex;
 }
 
 /* LOGO */
 .logo{
-  width:320px;
-  height:320px;
+  width:340px;
+  height:340px;
   background:url('icon-512.png') no-repeat center/contain;
+}
+
+/* TEXT */
+h1{
+  font-size:72px;
+  margin:0;
+}
+
+p{
+  font-size:18px;
+  margin:0 0 18px 0;
 }
 
 /* BUTTON */
@@ -55,12 +70,7 @@ button{
   color:#fff;
   border:none;
   cursor:pointer;
-}
-
-/* TEXT */
-h1{
-  font-size:72px;
-  margin:0;
+  border-radius:6px;
 }
 
 </style>
@@ -74,38 +84,29 @@ h1{
 <div id="onboarding" class="screen active">
   <div class="logo"></div>
   <h1>LIONSIGN</h1>
-  <button onclick="goHome()">ENTER</button>
+  <p>Digital dominance system</p>
+  <button onclick="enter()">ENTER</button>
 </div>
 
-<!-- HOME -->
-<div id="home" class="screen">
-  <h1>HOME</h1>
+<!-- APP -->
+<div id="app" class="screen">
+  <h1>APP</h1>
+  <p>Welcome inside</p>
 </div>
 
 <script>
 
-/* SWITCH */
 function show(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-/* ENTER */
-function goHome(){
-  show('home');
+function enter(){
+  show('app');
 }
 
-/* BACK */
 function goBack(){
-
-  const home = document.getElementById('home').classList.contains('active');
-
-  if(home){
-    show('onboarding');
-  } else {
-    show('onboarding');
-  }
-
+  show('onboarding');
 }
 
 </script>
