@@ -23,7 +23,7 @@ body{
   background:#f6f6f8;
 }
 
-/* GRID CLEAN */
+/* GRID */
 body::before{
   content:'';
   position:absolute;
@@ -43,7 +43,7 @@ body::before{
   z-index:0;
 }
 
-/* BACK BUTTON */
+/* BACK */
 .back{
   position:fixed;
   top:18px;
@@ -72,13 +72,11 @@ h1{
   font-size:72px;
   margin:0;
   font-weight:700;
-  letter-spacing:-1px;
 }
 
 p{
   font-size:18px;
   margin:0 0 18px 0;
-  font-weight:300;
 }
 
 /* BUTTON */
@@ -118,28 +116,33 @@ button{
 
 <script>
 
-/* ENTER → samo ulazak (bez fajlova) */
+/* ========================= */
+/* TVOJ GLAVNI SAJT (INDEX)  */
+/* ========================= */
+const SITE_URL = "index.html"; 
+// ako je online domen → stavi npr:
+// const SITE_URL = "https://tvojdomen.com";
+
+/* ENTER */
 function enter(){
   document.body.classList.add("fade-out");
 
   setTimeout(()=>{
-    window.location.hash = "#app";
+    window.location.href = SITE_URL;
   },300);
 }
 
-/* BACK → vraća na onboarding bez 404 */
+/* BACK */
 function goBack(){
 
   document.body.classList.add("fade-out");
 
   setTimeout(()=>{
 
-    // 1. pokušaj: browser history (NAJBOLJE)
-    if (window.history.length > 1) {
+    if (window.history.length > 1){
       window.history.back();
     } else {
-      // 2. fallback (ako nema history)
-      window.location.hash = "";
+      window.location.href = SITE_URL;
     }
 
   },200);
