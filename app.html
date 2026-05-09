@@ -23,7 +23,7 @@ body{
   background:#f6f6f8;
 }
 
-/* GRID CLEAN */
+/* GRID */
 body::before{
   content:'';
   position:absolute;
@@ -44,7 +44,7 @@ body::before{
   pointer-events:none;
 }
 
-/* BACK BUTTON */
+/* BACK */
 .back{
   position:fixed;
   top:18px;
@@ -53,6 +53,15 @@ body::before{
   cursor:pointer;
   opacity:0.7;
   z-index:10;
+}
+
+/* ONBOARDING WRAPPER */
+#onboarding{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
 }
 
 /* LOGO */
@@ -66,11 +75,13 @@ body::before{
 h1{
   font-size:72px;
   margin:0;
+  transition:0.3s;
 }
 
 p{
   font-size:18px;
   margin:0 0 18px 0;
+  transition:0.3s;
 }
 
 /* BUTTON */
@@ -81,16 +92,25 @@ button{
   border:none;
   border-radius:6px;
   cursor:pointer;
+  font-size:15px;
+  letter-spacing:2px;
 }
 
-/* FADE */
-.fade-out{
-  animation:fadeOut 0.3s ease forwards;
+/* APP MODE */
+.app-mode .logo{
+  display:none;
 }
 
-@keyframes fadeOut{
-  to{opacity:0;}
+.app-mode h1{
+  font-size:60px;
 }
+
+.app-mode p{
+  display:none;
+}
+
+/* BACK */
+.back{ user-select:none; }
 
 </style>
 </head>
@@ -99,50 +119,28 @@ button{
 
 <div class="back" onclick="goBack()">›</div>
 
-<div class="logo"></div>
+<div id="onboarding">
 
-<h1>LIONSIGN</h1>
-<p>Digital dominance system</p>
+  <div class="logo"></div>
 
-<button onclick="enter()">ENTER</button>
+  <h1>LIONSIGN</h1>
+  <p>Digital dominance system</p>
+
+  <button onclick="enter()">ENTER</button>
+
+</div>
 
 <script>
 
-/* ENTER → ostaje isto */
+/* ENTER → PRELAZ U SAJT */
 function enter(){
-  document.body.classList.add("fade-out");
-
-  setTimeout(()=>{
-    sessionStorage.setItem("lionsign", "app");
-    location.reload();
-  },300);
+  document.body.classList.add("app-mode");
 }
 
-/* BACK → JEDINI FIX (ovo je bilo pokvareno) */
+/* BACK → POVRATAK NA ONBOARDING */
 function goBack(){
-
-  document.body.classList.add("fade-out");
-
-  setTimeout(()=>{
-
-    sessionStorage.removeItem("lionsign");
-
-    // vrati početno stanje bez praznog ekrana
-    location.reload();
-
-  },200);
+  document.body.classList.remove("app-mode");
 }
-
-/* STATE RESTORE */
-(function(){
-  const state = sessionStorage.getItem("lionsign");
-
-  // ako si u app modu → samo promeni sadržaj, ne pravi novi ekran
-  if(state === "app"){
-    document.querySelector("h1").innerText = "APP";
-    document.querySelector("p").innerText = "Digital dominance system (inside)";
-  }
-})();
 
 </script>
 
