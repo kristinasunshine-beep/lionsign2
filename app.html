@@ -25,31 +25,28 @@ body{
   opacity:0;
   animation:fadeIn 0.6s ease forwards;
 
-  transform: translateY(-30px);
+  transform: translateY(-28px);
 }
 
-/* GRID */
+/* CLEAN GRID (UKLONJENE PRLJAVE TAČKE) */
 body::before{
   content:'';
   position:absolute;
   inset:0;
   background:
-    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px),
-    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px),
     linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
 
   background-size:
-    120px 120px,
-    120px 120px,
-    40px 40px,
-    40px 40px,
-    10px 10px,
-    10px 10px;
+    140px 140px,
+    140px 140px,
+    28px 28px,
+    28px 28px;
 
   z-index:0;
+  pointer-events:none;
 }
 
 /* LOGO */
@@ -62,21 +59,22 @@ body::before{
   width:360px;
   height:360px;
   background:url('icon-512.png') no-repeat center/contain;
+  filter:none;
 }
 
-/* 🔼 JAČE OPTIČKO POMERANJE */
+/* OPTIČKO CENTRIRANJE */
 .content{
-  margin-top:-55px;
+  margin-top:-60px;
   z-index:2;
   position:relative;
 }
 
-/* 🔽 NASLOV JOŠ MANJI (VIDLJIVO) */
+/* 🔽 NASLOV (MANJI + TIGHTER TRACKING) */
 h1{
-  font-size:72px;
+  font-size:68px;
   font-weight:700;
   margin:0;
-  letter-spacing:1px;
+  letter-spacing:-1px; /* TIGHT */
 }
 
 /* PODNASLOV */
@@ -87,9 +85,9 @@ p{
   font-weight:300;
 }
 
-/* 🔴 ENTER DUGME VEĆE */
+/* 🔴 ENTER VEĆI */
 button{
-  padding:16px 64px;
+  padding:16px 66px;
   border:none;
   background:#B91F2A;
   color:#fff;
@@ -124,10 +122,23 @@ button:active{
   to{opacity:0;}
 }
 
+/* BACK LINK (REAL SYSTEM FIX) */
+.back{
+  position:absolute;
+  top:18px;
+  left:18px;
+  font-size:12px;
+  opacity:0.6;
+  cursor:pointer;
+  z-index:5;
+}
+
 </style>
 </head>
 
 <body>
+
+<div class="back" onclick="goBack()">← back</div>
 
 <div class="logo-wrap">
   <div class="logo"></div>
@@ -140,13 +151,34 @@ button:active{
 </div>
 
 <script>
+
+/* ENTER → SITE */
 function enterApp(){
+  sessionStorage.setItem("lionsign_state", "site");
+
   document.body.classList.add("fade-out");
 
   setTimeout(() => {
-    window.location.href = "./index.html";
-  }, 400);
+    window.location.href = "index.html";
+  }, 350);
 }
+
+/* BACK → ONBOARDING */
+function goBack(){
+  sessionStorage.setItem("lionsign_state", "onboarding");
+
+  document.body.classList.add("fade-out");
+
+  setTimeout(() => {
+    window.location.href = "onboarding.html";
+  }, 300);
+}
+
+/* SAFE LOAD (sprečava prazan ekran posle install / refresh) */
+window.onload = () => {
+  document.body.style.opacity = "1";
+};
+
 </script>
 
 </body>
