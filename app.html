@@ -23,7 +23,7 @@ body{
   overflow:hidden;
 }
 
-/* GRID (ostaje isto) */
+/* GRID (NE MENJAMO) */
 body::before{
   content:'';
   position:absolute;
@@ -68,56 +68,61 @@ p{
   opacity:0.8;
 }
 
-/* ================= GLASS BUTTON ================= */
+/* ================= ENTER BUTTON ================= */
 a.button{
   display:inline-block;
   padding:16px 64px;
+  background:#B91F2A;
+  color:#fff;
   text-decoration:none;
+  border-radius:8px;
   font-size:15px;
   letter-spacing:2px;
-  color:#fff;
-  border-radius:10px;
-
-  /* GLASS EFFECT */
-  background:rgba(185,31,42,0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  border:1px solid rgba(255,255,255,0.25);
 
   position:relative;
   overflow:hidden;
 
-  transition:transform .25s ease, background .25s ease;
+  /* osnovni shadow (bez glow-a) */
+  box-shadow:0 8px 0 rgba(0,0,0,0.08);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
 }
 
-/* SOFT LIGHT REFLECTION (NO GLOW) */
-a.button::before{
+/* HOVER — minimalni lift */
+a.button:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.03);
+}
+
+/* ACTIVE — “real press” efekat */
+a.button:active{
+  transform:translateY(3px) scale(0.98);
+  box-shadow:0 2px 0 rgba(0,0,0,0.08);
+  filter:brightness(0.98);
+}
+
+/* SOFT MICRO SHIMMER (NE GLARE, SAMO POKRET SVETLA) */
+a.button::after{
   content:'';
   position:absolute;
-  top:-50%;
-  left:-60%;
-  width:200%;
-  height:200%;
-  background:linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
-  transform:rotate(20deg);
-  transition:all 0.8s ease;
+  top:0;
+  left:-120%;
+  width:120%;
+  height:100%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,0.12), transparent);
+  transform:skewX(-20deg);
 }
 
-a.button:hover::before{
-  left:120%;
+a.button:hover::after{
+  animation:shine 1s ease;
 }
 
-/* HOVER DEPTH */
-a.button:hover{
-  transform:translateY(-2px) scale(1.02);
-  background:rgba(185,31,42,0.7);
-}
-
-/* PRESS FEEL */
-a.button:active{
-  transform:scale(0.97);
-  background:rgba(185,31,42,0.5);
+@keyframes shine{
+  0%{left:-120%;}
+  100%{left:120%;}
 }
 
 </style>
@@ -130,7 +135,6 @@ a.button:active{
 <h1>LIONSIGN</h1>
 <p>Digital dominance system</p>
 
-<!-- STABILAN LINK -->
 <a class="button" href="index.html">ENTER</a>
 
 </body>
