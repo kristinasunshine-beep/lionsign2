@@ -6,6 +6,8 @@
 
 <title>LIONSIGN</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 
 body{
@@ -15,114 +17,91 @@ body{
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  font-family: 'Barlow Condensed', sans-serif;
-
-  /* SKUPO IZGLED — TAMNI ŠAMPANJAC */
-  background: linear-gradient(135deg, #eae7df 0%, #d6c6a5 40%, #c6a75e 100%);
-  color:#111;
+  font-family:'Oswald', sans-serif;
   text-align:center;
   overflow:hidden;
+
+  background:#f6f6f8;
+  opacity:0;
+  animation:fadeIn 0.6s ease forwards;
 }
 
-/* SHIMMER OVERLAY */
-body::after{
-  content:"";
+/* GRID BACKGROUND */
+body::before{
+  content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.25) 50%, transparent 60%);
-  animation:shimmer 4s infinite;
+  background:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size:80px 80px,80px 80px,20px 20px,20px 20px;
 }
 
-@keyframes shimmer{
-  0%{transform:translateX(-100%);}
-  100%{transform:translateX(100%);}
-}
-
-/* LOGO */
-.logo{
-  width:200px; /* +40% */
-  height:200px;
-  background:url('icon-512.png') no-repeat center/contain;
+/* LOGO DUO */
+.logo-wrap{
+  position:relative;
   margin-bottom:20px;
-  opacity:0;
-  transform:scale(0.9);
-  animation:fadeScale 1s ease forwards;
+}
+
+.logo{
+  width:360px; /* POVECANO */
+  height:360px;
+  background:url('icon-512.png') no-repeat center/contain;
+  position:relative;
+  z-index:2;
+}
+
+.logo.clone{
+  position:absolute;
+  top:0;
+  left:0;
+  transform:scale(1.15);
+  opacity:0.15;
 }
 
 /* NASLOV */
 h1{
-  font-size:28px;
-  letter-spacing:1px; /* kondenzovano */
+  font-size:42px;
+  letter-spacing:0.5px;
   margin-bottom:4px;
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.3s;
 }
 
 /* PODNASLOV */
 p{
-  font-size:13px;
-  opacity:0.7;
+  font-size:18px;
   margin-bottom:30px;
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.5s;
 }
 
 /* DUGME */
 button{
-  padding:14px 32px;
+  padding:16px 36px;
   border:none;
-  background:#111;
+  background:#B91F2A;
   color:#fff;
-  font-size:13px;
+  font-size:14px;
   letter-spacing:2px;
   cursor:pointer;
-  border-radius:6px;
-  position:relative;
-  overflow:hidden;
+  border-radius:4px;
   transition:0.3s;
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.7s;
 }
 
-/* GOLD HOVER */
-button:hover{
-  background:#B91F2A;
+button:active{
+  transform:scale(0.95);
 }
 
-/* TAP RIPPLE */
-button::after{
-  content:"";
-  position:absolute;
-  width:10px;
-  height:10px;
-  background:rgba(255,255,255,0.4);
-  border-radius:50%;
-  transform:scale(0);
-  opacity:0;
+/* FADE ANIMACIJE */
+@keyframes fadeIn{
+  to{opacity:1;}
 }
 
-button:active::after{
-  transform:scale(12);
-  opacity:1;
-  transition:0.4s;
+.fade-out{
+  animation:fadeOut 0.4s ease forwards;
 }
 
-/* ANIMACIJE */
-@keyframes fadeUp{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-@keyframes fadeScale{
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
+@keyframes fadeOut{
+  to{opacity:0;}
 }
 
 </style>
@@ -130,7 +109,10 @@ button:active::after{
 
 <body>
 
-<div class="logo"></div>
+<div class="logo-wrap">
+  <div class="logo clone"></div>
+  <div class="logo"></div>
+</div>
 
 <h1>LIONSIGN</h1>
 <p>Digital dominance system</p>
@@ -139,10 +121,10 @@ button:active::after{
 
 <script>
 function enterApp(){
-  document.body.style.opacity = "0";
+  document.body.classList.add("fade-out");
   setTimeout(()=>{
     window.location.href = "index.html";
-  }, 300);
+  }, 400);
 }
 </script>
 
