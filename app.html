@@ -55,7 +55,7 @@ body::before{
   z-index:10;
 }
 
-/* SCREEN SYSTEM */
+/* SECTIONS */
 .screen{
   display:none;
   flex-direction:column;
@@ -110,34 +110,35 @@ button{
   <h1>LIONSIGN</h1>
   <p>Digital dominance system</p>
 
-  <button onclick="enterApp()">ENTER</button>
+  <button onclick="enter()">ENTER</button>
 
 </div>
 
-<!-- SAJT (APP) -->
-<div id="app" class="screen">
+<!-- TVOJ SAJT (OVO JE TVOJ REALAN CONTENT) -->
+<div id="site" class="screen">
 
+  <!-- OVDE IDE TVOJ POSTOJEĆI SAJT -->
   <h1>LIONSIGN</h1>
-  <p>Your website content goes here</p>
+  <p>YOUR REAL WEBSITE CONTENT HERE</p>
 
 </div>
 
 <script>
 
-/* SWITCH SYSTEM */
+/* ENTER → samo zameni ekran */
+function enter(){
+  show('site');
+}
+
+/* BACK → onboarding */
+function goBack(){
+  show('onboarding');
+}
+
+/* SWITCH */
 function show(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-}
-
-/* ENTER → SAJT */
-function enterApp(){
-  show('app');
-}
-
-/* BACK → ONBOARDING */
-function goBack(){
-  show('onboarding');
 }
 
 </script>
