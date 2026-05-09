@@ -23,7 +23,7 @@ body{
   background:#f6f6f8;
 }
 
-/* GRID CLEAN */
+/* GRID (tvoj originalni clean) */
 body::before{
   content:'';
   position:absolute;
@@ -44,7 +44,7 @@ body::before{
   pointer-events:none;
 }
 
-/* BACK */
+/* BACK ARROW */
 .back{
   position:fixed;
   top:18px;
@@ -53,12 +53,17 @@ body::before{
   cursor:pointer;
   opacity:0.7;
   z-index:10;
+  user-select:none;
+}
+
+.back:hover{
+  opacity:1;
 }
 
 /* LOGO */
 .logo{
-  width:340px;
-  height:340px;
+  width:360px;
+  height:360px;
   background:url('icon-512.png') no-repeat center/contain;
   z-index:2;
 }
@@ -86,40 +91,16 @@ button{
   font-size:15px;
   letter-spacing:2px;
   cursor:pointer;
-}
-
-/* SCREENS */
-.screen{
-  display:none;
   z-index:2;
-  flex-direction:column;
-  align-items:center;
 }
 
-.show{
-  display:flex;
+/* FADE */
+.fade-out{
+  animation:fadeOut 0.3s ease forwards;
 }
 
-/* CARDS */
-.cards{
-  display:flex;
-  gap:12px;
-  margin-top:20px;
-}
-
-.card{
-  width:120px;
-  height:80px;
-  border:1px solid rgba(0,0,0,0.2);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  cursor:pointer;
-}
-
-/* CARD VIEW TEXT */
-#cardTitle{
-  font-size:60px;
+@keyframes fadeOut{
+  to{opacity:0;}
 }
 
 </style>
@@ -129,64 +110,42 @@ button{
 
 <div class="back" onclick="goBack()">›</div>
 
-<!-- ONBOARDING -->
-<div id="onboarding" class="screen show">
-  <div class="logo"></div>
-  <h1>LIONSIGN</h1>
-  <p>Digital dominance system</p>
-  <button onclick="goHome()">ENTER</button>
-</div>
+<div class="logo"></div>
 
-<!-- HOME -->
-<div id="home" class="screen">
-  <h1>HOME</h1>
+<h1>LIONSIGN</h1>
+<p>Digital dominance system</p>
 
-  <div class="cards">
-    <div class="card" onclick="openCard(1)">1</div>
-    <div class="card" onclick="openCard(2)">2</div>
-    <div class="card" onclick="openCard(3)">3</div>
-  </div>
-</div>
-
-<!-- CARD -->
-<div id="card" class="screen">
-  <h1 id="cardTitle"></h1>
-  <p>Content</p>
-</div>
+<button onclick="enter()">ENTER</button>
 
 <script>
 
-/* SWITCH SYSTEM */
-function show(id){
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('show'));
-  document.getElementById(id).classList.add('show');
+/* ENTER → ulaz u sajt */
+function enter(){
+  document.body.classList.add("fade-out");
+
+  setTimeout(()=>{
+    // samo ulazak u app state
+    window.location.hash = "app";
+  },300);
 }
 
-/* ENTER */
-function goHome(){
-  show('home');
-}
-
-/* CARD */
-function openCard(id){
-  document.getElementById("cardTitle").innerText = "CARD " + id;
-  show('card');
-}
-
-/* BACK SYSTEM (STABILAN) */
+/* 🔥 KLJUČ FIX: UVEK VRATI NA ONBOARDING */
 function goBack(){
 
-  if(document.getElementById('card').classList.contains('show')){
-    show('home');
-    return;
-  }
+  document.body.classList.add("fade-out");
 
-  if(document.getElementById('home').classList.contains('show')){
-    show('onboarding');
-    return;
-  }
+  setTimeout(()=>{
 
-  show('onboarding');
+    // 1) ako postoji history → vrati nazad (ONBOARDING)
+    if(window.history.length > 1){
+      window.history.back();
+    }
+    else{
+      // 2) fallback (nema history)
+      window.location.hash = "";
+    }
+
+  },200);
 }
 
 </script>
