@@ -23,27 +23,17 @@ body{
   background:#f6f6f8;
 }
 
-/* GRID */
 body::before{
   content:'';
   position:absolute;
   inset:0;
   background:
     linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
-
-  background-size:
-    140px 140px,
-    140px 140px,
-    28px 28px,
-    28px 28px;
-
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size:140px 140px;
   z-index:0;
 }
 
-/* BACK */
 .back{
   position:fixed;
   top:18px;
@@ -52,14 +42,8 @@ body::before{
   cursor:pointer;
   opacity:0.7;
   z-index:10;
-  user-select:none;
 }
 
-.back:hover{
-  opacity:1;
-}
-
-/* LOGO */
 .logo{
   width:360px;
   height:360px;
@@ -67,31 +51,26 @@ body::before{
   z-index:2;
 }
 
-/* TEXT */
 h1{
   font-size:72px;
   margin:0;
-  font-weight:700;
 }
 
 p{
   font-size:18px;
-  margin:0 0 18px 0;
+  margin-bottom:18px;
 }
 
-/* BUTTON */
 button{
   padding:16px 64px;
   background:#B91F2A;
   color:#fff;
   border:none;
   border-radius:6px;
-  font-size:15px;
   letter-spacing:2px;
   cursor:pointer;
 }
 
-/* FADE */
 .fade-out{
   animation:fadeOut 0.3s ease forwards;
 }
@@ -116,12 +95,8 @@ button{
 
 <script>
 
-/* ========================= */
-/* TVOJ GLAVNI SAJT (INDEX)  */
-/* ========================= */
-const SITE_URL = "index.html"; 
-// ako je online domen → stavi npr:
-// const SITE_URL = "https://tvojdomen.com";
+/* ✅ DIREKTAN LINK NA TVOJ SAJT */
+const SITE_URL = "https://preview.mailerlite.io/preview/2126552/sites/186170656816104474/lionsign-research-design-tqdlog";
 
 /* ENTER */
 function enter(){
@@ -134,17 +109,14 @@ function enter(){
 
 /* BACK */
 function goBack(){
-
   document.body.classList.add("fade-out");
 
   setTimeout(()=>{
-
     if (window.history.length > 1){
       window.history.back();
     } else {
       window.location.href = SITE_URL;
     }
-
   },200);
 }
 
