@@ -413,6 +413,15 @@ document.querySelectorAll("a, .card, .faq-question").forEach(el=>{
   el.addEventListener("mouseleave", ()=> cursor.classList.remove("active"));
 });
 
+/* ✅ MOBILE TAP SPEED FIX (jedina izmena) */
+document.querySelectorAll(".card").forEach(card=>{
+  card.addEventListener("click", function(e){
+    e.preventDefault();
+    const url = this.href;
+    window.location.href = url;
+  });
+});
+
 </script>
 
 <!-- SERVICE WORKER -->
