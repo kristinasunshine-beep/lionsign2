@@ -24,6 +24,8 @@ body{
   background:#f6f6f8;
   opacity:0;
   animation:fadeIn 0.6s ease forwards;
+
+  transform: translateY(-20px); /* PODIGNUT CEO BLOK */
 }
 
 /* GRID */
@@ -41,25 +43,28 @@ body::before{
 
 /* LOGO */
 .logo-wrap{
-  margin-bottom:4px;
+  margin-bottom:2px; /* BLIŽE NASLOVU */
 }
 
 .logo{
   width:360px;
   height:360px;
   background:url('icon-512.png') no-repeat center/contain;
+  box-shadow:none;
+  filter:none;
 }
 
-/* BLOK TEKSTA — PODIGNUT */
+/* BLOK TEKSTA — JOŠ BLIŽE IKONICI */
 .content{
-  margin-top:-10px;
+  margin-top:-25px; /* POVUČENO GORE */
 }
 
 /* NASLOV */
 h1{
-  font-size:64px;
+  font-size:96px; /* +50% OD 64px */
   font-weight:700;
   margin-bottom:0;
+  letter-spacing:1px;
 }
 
 /* PODNASLOV */
@@ -118,7 +123,7 @@ button:active{
 function enterApp(){
   document.body.classList.add("fade-out");
   setTimeout(()=>{
-    window.location.href = "/"; // FIX: siguran ulaz na sajt
+    window.location.href = "/";
   }, 400);
 }
 </script>
