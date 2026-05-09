@@ -25,24 +25,19 @@ body{
   opacity:0;
   animation:fadeIn 0.6s ease forwards;
 
-  transform: translateY(-30px); /* PODIGNUT CEO BLOK */
+  transform: translateY(-30px);
 }
 
-/* 🔳 FINIJI GRID (KOCKA U KOCKI) */
+/* GRID */
 body::before{
   content:'';
   position:absolute;
   inset:0;
   background:
-    /* krupni grid */
     linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px),
-
-    /* srednji grid */
     linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
-
-    /* mali grid (NOVO - usitnjeno) */
     linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
 
@@ -71,16 +66,16 @@ body::before{
   filter:none;
 }
 
-/* 🔼 CEO TEKST BLOK PODIGNUT BLIZE IKONI */
+/* TEXT BLOK */
 .content{
   margin-top:-45px;
   z-index:2;
   position:relative;
 }
 
-/* NASLOV */
+/* 🔽 NASLOV SMANJEN ~9% */
 h1{
-  font-size:96px;
+  font-size:88px;
   font-weight:700;
   margin:0;
   letter-spacing:1px;
