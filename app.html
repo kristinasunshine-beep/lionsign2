@@ -23,7 +23,7 @@ body{
   overflow:hidden;
 }
 
-/* ================= GRID (KOCKA U KOCKI) ================= */
+/* GRID (ostaje isto) */
 body::before{
   content:'';
   position:absolute;
@@ -34,12 +34,7 @@ body::before{
     linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
 
-  background-size:
-    120px 120px,
-    120px 120px,
-    24px 24px,
-    24px 24px;
-
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;
   z-index:0;
   animation:gridMove 18s linear infinite;
 }
@@ -54,7 +49,6 @@ body::before{
   width:340px;
   height:340px;
   background:url('icon-512.png') no-repeat center/contain;
-  z-index:2;
   animation:float 6s ease-in-out infinite;
 }
 
@@ -66,7 +60,6 @@ body::before{
 h1{
   font-size:64px;
   margin:10px 0 0 0;
-  letter-spacing:-1px;
 }
 
 p{
@@ -75,53 +68,56 @@ p{
   opacity:0.8;
 }
 
-/* ================= ENTER BUTTON ================= */
+/* ================= GLASS BUTTON ================= */
 a.button{
   display:inline-block;
   padding:16px 64px;
-  background:#B91F2A;
-  color:#fff;
   text-decoration:none;
-  border-radius:8px;
   font-size:15px;
   letter-spacing:2px;
+  color:#fff;
+  border-radius:10px;
+
+  /* GLASS EFFECT */
+  background:rgba(185,31,42,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border:1px solid rgba(255,255,255,0.25);
 
   position:relative;
   overflow:hidden;
 
-  transition:transform .2s ease, box-shadow .4s ease;
+  transition:transform .25s ease, background .25s ease;
 }
 
-/* APPLE STYLE HOVER */
-a.button:hover{
-  transform:scale(1.03);
-  box-shadow:0 20px 60px rgba(185,31,42,0.35);
-}
-
-/* LIGHT SWEEP EFFECT */
-a.button::after{
+/* SOFT LIGHT REFLECTION (NO GLOW) */
+a.button::before{
   content:'';
   position:absolute;
-  top:0;
-  left:-150%;
-  width:120%;
-  height:100%;
-  background:linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-  transform:skewX(-20deg);
+  top:-50%;
+  left:-60%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
+  transform:rotate(20deg);
+  transition:all 0.8s ease;
 }
 
-a.button:hover::after{
-  animation:sweep 1.2s ease;
+a.button:hover::before{
+  left:120%;
 }
 
-@keyframes sweep{
-  0%{left:-150%;}
-  100%{left:150%;}
+/* HOVER DEPTH */
+a.button:hover{
+  transform:translateY(-2px) scale(1.02);
+  background:rgba(185,31,42,0.7);
 }
 
-/* CLICK MICRO-ANIMATION (APPLE FEEL) */
+/* PRESS FEEL */
 a.button:active{
   transform:scale(0.97);
+  background:rgba(185,31,42,0.5);
 }
 
 </style>
