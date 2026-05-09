@@ -20,15 +20,10 @@ body{
   font-family:'Oswald', sans-serif;
   text-align:center;
   overflow:hidden;
-
   background:#f6f6f8;
-  opacity:0;
-  animation:fadeIn 0.6s ease forwards;
-
-  transform: translateY(-28px);
 }
 
-/* CLEAN GRID (UKLONJENE PRLJAVE TAČKE) */
+/* GRID CLEAN */
 body::before{
   content:'';
   position:absolute;
@@ -49,88 +44,92 @@ body::before{
   pointer-events:none;
 }
 
-/* LOGO */
-.logo-wrap{
-  margin-bottom:0px;
-  z-index:2;
+/* BACK BUTTON */
+.back{
+  position:fixed;
+  top:18px;
+  left:18px;
+  font-size:28px;
+  cursor:pointer;
+  opacity:0.7;
+  z-index:10;
 }
 
+.back:hover{
+  opacity:1;
+}
+
+/* LOGO */
 .logo{
   width:360px;
   height:360px;
   background:url('icon-512.png') no-repeat center/contain;
-  filter:none;
-}
-
-/* OPTIČKO CENTRIRANJE */
-.content{
-  margin-top:-60px;
   z-index:2;
-  position:relative;
 }
 
-/* 🔽 NASLOV (MANJI + TIGHTER TRACKING) */
+/* TEXT */
 h1{
-  font-size:68px;
-  font-weight:700;
+  font-size:72px;
   margin:0;
-  letter-spacing:-1px; /* TIGHT */
+  letter-spacing:-1px;
 }
 
-/* PODNASLOV */
 p{
   font-size:18px;
-  margin:0;
-  margin-bottom:18px;
+  margin:0 0 18px 0;
   font-weight:300;
 }
 
-/* 🔴 ENTER VEĆI */
+/* BUTTON */
 button{
-  padding:16px 66px;
-  border:none;
+  padding:16px 64px;
   background:#B91F2A;
   color:#fff;
+  border:none;
+  border-radius:6px;
   font-size:15px;
   letter-spacing:2px;
   cursor:pointer;
-  border-radius:6px;
-  transition:0.2s ease;
-
-  position:relative;
-  z-index:3;
 }
 
-button:hover{
-  transform:scale(1.06);
+/* CARDS */
+.cards{
+  display:none;
+  gap:10px;
+  margin-top:20px;
 }
 
-button:active{
-  transform:scale(0.96);
+.card{
+  width:120px;
+  height:80px;
+  border:1px solid rgba(0,0,0,0.2);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  font-size:14px;
+}
+
+/* VIEWS */
+.view{
+  display:none;
+  z-index:2;
+}
+
+.active{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
 /* FADE */
-@keyframes fadeIn{
+.fade{
+  animation:fade 0.3s ease;
+}
+
+@keyframes fade{
+  from{opacity:0;}
   to{opacity:1;}
-}
-
-.fade-out{
-  animation:fadeOut 0.4s ease forwards;
-}
-
-@keyframes fadeOut{
-  to{opacity:0;}
-}
-
-/* BACK LINK (REAL SYSTEM FIX) */
-.back{
-  position:absolute;
-  top:18px;
-  left:18px;
-  font-size:12px;
-  opacity:0.6;
-  cursor:pointer;
-  z-index:5;
 }
 
 </style>
@@ -138,46 +137,85 @@ button:active{
 
 <body>
 
-<div class="back" onclick="goBack()">← back</div>
+<div class="back" onclick="goBack()">›</div>
 
-<div class="logo-wrap">
+<!-- ONBOARDING -->
+<div id="onboarding" class="view active">
   <div class="logo"></div>
-</div>
-
-<div class="content">
   <h1>LIONSIGN</h1>
   <p>Digital dominance system</p>
   <button onclick="enterApp()">ENTER</button>
 </div>
 
+<!-- HOME -->
+<div id="home" class="view">
+  <h1>HOME</h1>
+  <div class="cards">
+    <div class="card" onclick="openCard(1)">1</div>
+    <div class="card" onclick="openCard(2)">2</div>
+    <div class="card" onclick="openCard(3)">3</div>
+  </div>
+</div>
+
+<!-- CARD VIEW -->
+<div id="cardView" class="view">
+  <h1 id="cardTitle"></h1>
+  <p>Card content here</p>
+</div>
+
 <script>
 
-/* ENTER → SITE */
+let historyStack = [];
+
+/* VIEW SWITCH */
+function show(view){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(view).classList.add('active');
+}
+
+/* ENTER */
 function enterApp(){
-  sessionStorage.setItem("lionsign_state", "site");
-
-  document.body.classList.add("fade-out");
-
-  setTimeout(() => {
-    window.location.href = "index.html";
-  }, 350);
+  historyStack.push("onboarding");
+  historyStack.push("home");
+  show("home");
 }
 
-/* BACK → ONBOARDING */
+/* OPEN CARD */
+function openCard(id){
+  historyStack.push("home");
+  historyStack.push("card"+id);
+
+  document.getElementById("cardTitle").innerText = "CARD " + id;
+  show("cardView");
+}
+
+/* BACK SYSTEM (KLJUČ) */
 function goBack(){
-  sessionStorage.setItem("lionsign_state", "onboarding");
 
-  document.body.classList.add("fade-out");
+  if(historyStack.length <= 1){
+    show("onboarding");
+    historyStack = [];
+    return;
+  }
 
-  setTimeout(() => {
-    window.location.href = "onboarding.html";
-  }, 300);
+  historyStack.pop();
+  let prev = historyStack.pop();
+
+  if(prev === "home"){
+    show("home");
+  } 
+  else if(prev === "onboarding"){
+    show("onboarding");
+  }
+  else if(prev && prev.startsWith("card")){
+    let id = prev.replace("card","");
+    document.getElementById("cardTitle").innerText = "CARD " + id;
+    show("cardView");
+  }
+  else{
+    show("onboarding");
+  }
 }
-
-/* SAFE LOAD (sprečava prazan ekran posle install / refresh) */
-window.onload = () => {
-  document.body.style.opacity = "1";
-};
 
 </script>
 
