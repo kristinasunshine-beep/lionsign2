@@ -25,8 +25,7 @@ body{
   opacity:0;
   animation:fadeIn 0.6s ease forwards;
 
-  /* OPTIČKO CENTRIRANJE */
-  transform: translateY(-22px);
+  transform: translateY(-30px);
 }
 
 /* GRID */
@@ -63,20 +62,18 @@ body::before{
   width:360px;
   height:360px;
   background:url('icon-512.png') no-repeat center/contain;
-  box-shadow:none;
-  filter:none;
 }
 
-/* TEXT BLOK */
+/* 🔼 JAČE OPTIČKO POMERANJE */
 .content{
-  margin-top:-35px; /* optički bliže logo-u */
+  margin-top:-55px;
   z-index:2;
   position:relative;
 }
 
-/* 🔽 NASLOV SMANJEN */
+/* 🔽 NASLOV JOŠ MANJI (VIDLJIVO) */
 h1{
-  font-size:80px; /* ~9% manje */
+  font-size:72px;
   font-weight:700;
   margin:0;
   letter-spacing:1px;
@@ -86,20 +83,20 @@ h1{
 p{
   font-size:18px;
   margin:0;
-  margin-bottom:16px;
+  margin-bottom:18px;
   font-weight:300;
 }
 
-/* 🔴 ENTER DUGME POJAČANO */
+/* 🔴 ENTER DUGME VEĆE */
 button{
-  padding:14px 56px;
+  padding:16px 64px;
   border:none;
   background:#B91F2A;
   color:#fff;
-  font-size:14px;
+  font-size:15px;
   letter-spacing:2px;
   cursor:pointer;
-  border-radius:5px;
+  border-radius:6px;
   transition:0.2s ease;
 
   position:relative;
@@ -107,7 +104,7 @@ button{
 }
 
 button:hover{
-  transform:scale(1.05);
+  transform:scale(1.06);
 }
 
 button:active{
@@ -127,17 +124,6 @@ button:active{
   to{opacity:0;}
 }
 
-/* BACK BUTTON (nevidljiv UI helper) */
-.back-hint{
-  position:absolute;
-  top:20px;
-  left:20px;
-  font-size:12px;
-  opacity:0.5;
-  cursor:pointer;
-  z-index:5;
-}
-
 </style>
 </head>
 
@@ -153,36 +139,14 @@ button:active{
   <button onclick="enterApp()">ENTER</button>
 </div>
 
-<div class="back-hint" onclick="goBack()">← back</div>
-
 <script>
-
 function enterApp(){
   document.body.classList.add("fade-out");
 
   setTimeout(() => {
-    // čuva onboarding stanje za povratak
-    sessionStorage.setItem("fromOnboarding", "true");
     window.location.href = "./index.html";
   }, 400);
 }
-
-/* povratak na onboarding */
-function goBack(){
-  document.body.classList.add("fade-out");
-
-  setTimeout(() => {
-    window.location.href = "./onboarding.html";
-  }, 300);
-}
-
-/* ESC kao back */
-document.addEventListener("keydown", (e) => {
-  if(e.key === "Escape"){
-    goBack();
-  }
-});
-
 </script>
 
 </body>
