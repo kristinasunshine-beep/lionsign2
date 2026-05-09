@@ -19,64 +19,41 @@ body{
   flex-direction:column;
   font-family:'Oswald', sans-serif;
   text-align:center;
-  overflow:hidden;
   background:#f6f6f8;
-}
-
-/* GRID */
-body::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
-
-  background-size:140px 140px,140px 140px,28px 28px,28px 28px;
-  z-index:0;
 }
 
 /* LOGO */
 .logo{
-  width:360px;
-  height:360px;
+  width:320px;
+  height:320px;
   background:url('icon-512.png') no-repeat center/contain;
-  z-index:2;
 }
 
 /* TEXT */
 h1{
-  font-size:72px;
-  margin:0;
-  font-weight:700;
+  font-size:64px;
+  margin:10px 0 0 0;
 }
 
 p{
   font-size:18px;
-  margin:0 0 18px 0;
+  margin:0 0 20px 0;
 }
 
-/* BUTTON */
-button{
+/* ENTER BUTTON (link stil) */
+a.button{
+  display:inline-block;
   padding:16px 64px;
   background:#B91F2A;
   color:#fff;
-  border:none;
+  text-decoration:none;
   border-radius:6px;
   font-size:15px;
   letter-spacing:2px;
-  cursor:pointer;
 }
 
-/* FADE */
-.fade-out{
-  animation:fadeOut 0.3s ease forwards;
-}
-
-@keyframes fadeOut{
-  to{opacity:0;}
+a.button:active{
+  transform:scale(0.98);
 }
 
 </style>
@@ -89,23 +66,8 @@ button{
 <h1>LIONSIGN</h1>
 <p>Digital dominance system</p>
 
-<button onclick="enter()">ENTER</button>
-
-<script>
-
-/* GLAVNI SAJT (isti folder) */
-const SITE_URL = "index.html";
-
-/* ENTER */
-function enter(){
-  document.body.classList.add("fade-out");
-
-  setTimeout(()=>{
-    window.location.href = SITE_URL;
-  },300);
-}
-
-</script>
+<!-- 🔥 DIREKTAN LINK -->
+<a class="button" href="index.html">ENTER</a>
 
 </body>
 </html>
