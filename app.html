@@ -13,12 +13,17 @@
 body{
   margin:0;
   height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
   font-family:'Oswald', sans-serif;
-  background:#f6f6f8;
+  text-align:center;
   overflow:hidden;
+  background:#f6f6f8;
 }
 
-/* GRID */
+/* GRID CLEAN */
 body::before{
   content:'';
   position:absolute;
@@ -29,12 +34,17 @@ body::before{
     linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
 
-  background-size:140px 140px,140px 140px,28px 28px,28px 28px;
+  background-size:
+    140px 140px,
+    140px 140px,
+    28px 28px,
+    28px 28px;
+
   z-index:0;
   pointer-events:none;
 }
 
-/* BACK */
+/* BACK BUTTON */
 .back{
   position:fixed;
   top:18px;
@@ -45,24 +55,14 @@ body::before{
   z-index:10;
 }
 
-/* ONBOARDING */
-#onboarding{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  z-index:2;
-}
-
+/* LOGO */
 .logo{
   width:360px;
   height:360px;
   background:url('icon-512.png') no-repeat center/contain;
 }
 
+/* TEXT */
 h1{
   font-size:72px;
   margin:0;
@@ -73,26 +73,25 @@ p{
   margin:0 0 18px 0;
 }
 
+/* BUTTON */
 button{
   padding:16px 64px;
   background:#B91F2A;
   color:#fff;
   border:none;
-  cursor:pointer;
   border-radius:6px;
+  cursor:pointer;
 }
 
-/* TVOJ SAJT (LAYOUT ISPOD ONBOARDINGA) */
-#app{
-  display:none;
-  position:absolute;
-  inset:0;
-  z-index:1;
-  padding-top:80px;
-  text-align:center;
+/* FADE */
+.fade-out{
+  animation:fadeOut 0.3s ease forwards;
 }
 
-/* OVDE OSTAVLJAŠ TVOJ ORIGINALNI SAJT */
+@keyframes fadeOut{
+  to{opacity:0;}
+}
+
 </style>
 </head>
 
@@ -100,38 +99,50 @@ button{
 
 <div class="back" onclick="goBack()">›</div>
 
-<!-- ONBOARDING -->
-<div id="onboarding">
+<div class="logo"></div>
 
-  <div class="logo"></div>
-  <h1>LIONSIGN</h1>
-  <p>Digital dominance system</p>
+<h1>LIONSIGN</h1>
+<p>Digital dominance system</p>
 
-  <button onclick="enter()">ENTER</button>
-
-</div>
-
-<!-- TVOJ REALAN SAJT IDE OVDE -->
-<div id="app">
-
-  <!-- 👇 OVDE NE DIRAM TVOJ LAYOUT -->
-  <h1>LIONSIGN SAJT</h1>
-
-</div>
+<button onclick="enter()">ENTER</button>
 
 <script>
 
-/* ENTER → prikazuje sajt */
+/* ENTER → ostaje isto */
 function enter(){
-  document.getElementById('onboarding').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
+  document.body.classList.add("fade-out");
+
+  setTimeout(()=>{
+    sessionStorage.setItem("lionsign", "app");
+    location.reload();
+  },300);
 }
 
-/* BACK → vraća onboarding */
+/* BACK → JEDINI FIX (ovo je bilo pokvareno) */
 function goBack(){
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('onboarding').style.display = 'flex';
+
+  document.body.classList.add("fade-out");
+
+  setTimeout(()=>{
+
+    sessionStorage.removeItem("lionsign");
+
+    // vrati početno stanje bez praznog ekrana
+    location.reload();
+
+  },200);
 }
+
+/* STATE RESTORE */
+(function(){
+  const state = sessionStorage.getItem("lionsign");
+
+  // ako si u app modu → samo promeni sadržaj, ne pravi novi ekran
+  if(state === "app"){
+    document.querySelector("h1").innerText = "APP";
+    document.querySelector("p").innerText = "Digital dominance system (inside)";
+  }
+})();
 
 </script>
 
