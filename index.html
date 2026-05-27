@@ -147,14 +147,14 @@ body {
 /* CURSOR */
 .cur {
   width: 10px; height: 10px;
-  background: var(--ink);
+  background: #1a3a5c;
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%,-50%);
-  transition: width .2s, height .2s, background .2s, border-radius .2s, opacity .3s;
-  mix-blend-mode: multiply;
+  transition: width .2s, height .2s, border-radius .2s, opacity .3s;
+  mix-blend-mode: normal;
 }
 @media (hover: none) {
   body { cursor: auto; }
@@ -461,15 +461,15 @@ section { padding: 100px 80px; position: relative; box-sizing: border-box; }
 }
 .flow-step {
   flex: 1; min-width: 140px; padding: 36px 28px;
-  text-align: center; border: 1px solid rgba(255,255,255,0.08);
+  text-align: center; border: 1.5px solid rgba(192,57,43,0.4);
   position: relative; background: rgba(255,255,255,0.04);
   transition: transform .2s, box-shadow .2s, border-color .2s;
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
 }
 .flow-step:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  border-color: rgba(192,57,43,0.85); border-width: 2px; z-index: 2;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  border-color: rgba(192,57,43,1); border-width: 3px; z-index: 2;
 }
 .flow-step-num {
   font-family: 'Barlow Condensed', sans-serif; font-size: 78px;
@@ -712,7 +712,7 @@ footer {
   .logo { font-size: 22px; letter-spacing: 3px; gap: 10px; }
   .logo-icon-wrap { width: 32px; height: 32px; border-radius: 7px; }
   nav a { padding: 7px 10px; font-size: 11px; letter-spacing: 2px; margin-left: 8px; }
-  nav a:not(.contact-link) { padding: 7px 9px; font-size: 10px; }
+  nav a:not(.contact-link) { display: none; }
 
   /* STRIPE — thin, stays visible */
   .stripe { width: 2px; }
@@ -730,14 +730,8 @@ footer {
   .btn-primary { min-height: 46px; padding: 0 28px; font-size: 12px; letter-spacing: 2px; border-radius: 8px; }
   .btn-ghost { font-size: 12px; }
 
-  /* HERO::AFTER — scaled down, positioned inside viewport */
-  .hero::after {
-    width: min(56vw, 240px);
-    height: min(56vw, 240px);
-    right: -20px;
-    top: 42%;
-    opacity: .3;
-  }
+  /* HERO::AFTER — hidden on mobile so text dominates */
+  .hero::after { display: none; }
 
   /* HERO NUMBER — scaled down, visible */
   .hero-number { font-size: 200px; right: -10px; bottom: -20px; }
@@ -949,16 +943,20 @@ footer {
   <h2 class="section-title reveal">Questions<br><em>answered.</em></h2>
   <div class="faq reveal">
     <div class="faq-item">
-      <div class="faq-q">What happens when I click a numbered card?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Each card opens a dedicated landing page with a full system.</div>
+      <div class="faq-q">What is Doberman Branding?<div class="faq-icon">+</div></div>
+      <div class="faq-a">Card 01. A complete identity system built exclusively for Doberman breeders — logo, visual language and positioning that reflects the breed's precision and dominance.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Are all landing pages different?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Yes. Each service has its own structured page.</div>
+      <div class="faq-q">What does Digital Design include?<div class="faq-icon">+</div></div>
+      <div class="faq-a">Card 02. Web systems, landing pages and digital assets engineered with obsession for detail — where every pixel serves a purpose and aesthetics follow structure.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Do pages include forms?<div class="faq-icon">+</div></div>
-      <div class="faq-a">Yes. Every landing page includes conversion flow.</div>
+      <div class="faq-q">What is Landscape Design?<div class="faq-icon">+</div></div>
+      <div class="faq-a">Card 03. Spatial systems designed with the same deliberate intent as our visual work — outdoor environments built to command presence and reflect your identity.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is the Obsidian Line?<div class="faq-icon">+</div></div>
+      <div class="faq-a">Card 04. A limited garment collection produced in small quantities. No fast fashion, no compromise — worn by those who understand that how you present yourself is a design decision.</div>
     </div>
   </div>
 </section>
@@ -967,11 +965,11 @@ footer {
   <div class="section-label">Start Today</div>
   <h2 class="section-title">Power is not given.<br><em>It is designed.</em></h2>
 
-  <div class="form-wrap reveal">
-    <form action="https://assets.mailerlite.com/jsonp/2126552/forms/188607575467492469/subscribe" method="post" target="_blank" style="margin:0;">
-      <input type="email" name="fields[email]" placeholder="Your email address" required autocomplete="email">
+  <div class="form-wrap reveal" id="contact-form-wrap">
+    <form id="contact-form" style="margin:0;" novalidate>
+      <input type="email" id="f-email" name="fields[email]" placeholder="Your email address" required autocomplete="email">
       <div class="package-select" data-package-select>
-        <input type="hidden" name="fields[requested_service]" value="" id="pkg-hidden">
+        <input type="hidden" name="fields[requested_service]" id="f-service" value="">
         <button class="package-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">Select a service</button>
         <div class="package-select-options" role="listbox">
           <button class="package-option" type="button" role="option" data-value="DOBERMAN BRANDING">Doberman Branding</button>
@@ -980,10 +978,12 @@ footer {
           <button class="package-option" type="button" role="option" data-value="OBSIDIAN LINE">Obsidian Line</button>
         </div>
       </div>
-      <input type="hidden" name="ml-submit" value="1">
-      <input type="hidden" name="anticsrf" value="true">
-      <button type="submit" class="form-submit">Get in touch →</button>
+      <button type="submit" class="form-submit" id="f-submit">Get in touch →</button>
     </form>
+    <div id="form-thank-you" style="display:none; text-align:center; padding: 20px 0;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-size:32px; font-weight:900; letter-spacing:2px; color:var(--ink); margin-bottom:12px;">THANK YOU</div>
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--ink-mid); letter-spacing:1px; line-height:1.7; text-transform:uppercase;">Your design inquiry has been received.<br>You will receive a response within 1–2 business days.</div>
+    </div>
   </div>
 </section>
 
@@ -1089,10 +1089,12 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// Package select dropdown
 document.querySelectorAll('[data-package-select]').forEach(select => {
   const trigger = select.querySelector('.package-select-trigger');
-  const input = select.querySelector('input[type="hidden"]');
+  const input   = select.querySelector('input[type="hidden"]');
   const options = select.querySelectorAll('.package-option');
+
   trigger.addEventListener('click', () => {
     const isOpen = select.classList.toggle('open');
     trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -1111,6 +1113,41 @@ document.querySelectorAll('[data-package-select]').forEach(select => {
     trigger.setAttribute('aria-expanded', 'false');
   });
 });
+
+// Form submit → MailerLite API + thank you message
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email   = document.getElementById('f-email').value.trim();
+    const service = document.getElementById('f-service').value.trim();
+    const btn     = document.getElementById('f-submit');
+
+    if (!email) { document.getElementById('f-email').focus(); return; }
+
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    const body = new URLSearchParams();
+    body.append('fields[email]',             email);
+    body.append('fields[requested_service]', service);
+    body.append('ml-submit',                 '1');
+    body.append('anticsrf',                  'true');
+
+    try {
+      await fetch('https://assets.mailerlite.com/jsonp/2126552/forms/188607575467492469/subscribe', {
+        method: 'POST',
+        mode:   'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString()
+      });
+    } catch (_) {}
+
+    // Always show thank you (no-cors means we can't read response)
+    contactForm.style.display = 'none';
+    document.getElementById('form-thank-you').style.display = 'block';
+  });
+}
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 </script>
 
