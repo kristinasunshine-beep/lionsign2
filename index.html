@@ -147,7 +147,7 @@ body {
 /* CURSOR */
 .cur {
   width: 10px; height: 10px;
-  background: #1a3a5c;
+  background: #1e3f7a;
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
@@ -724,7 +724,7 @@ footer {
   .hero { padding: 90px 20px 56px; overflow: hidden; }
   .hero-eyebrow { font-size: 9px; letter-spacing: 4px; margin-bottom: 20px; }
   .hero-eyebrow::before { width: 28px; }
-  .hero h1 { font-size: clamp(52px, 16vw, 90px); line-height: 0.82; letter-spacing: 0; }
+  .hero h1 { font-size: clamp(52px, 22.5vw, 90px); line-height: 0.82; letter-spacing: -0.02em; }
   .hero p { font-size: 11px; letter-spacing: 0.05em; margin-top: 20px; max-width: 100%; }
   .hero-cta { margin-top: 32px; flex-direction: column; align-items: flex-start; gap: 16px; }
   .btn-primary { min-height: 46px; padding: 0 28px; font-size: 12px; letter-spacing: 2px; border-radius: 8px; }
@@ -1040,11 +1040,8 @@ document.addEventListener('touchstart', e => {
   cur.style.display = 'block';
 }, { passive: true });
 
-// Touch end — hide cursor when finger lifts
+// Touch end — cursor stays visible at last position
 document.addEventListener('touchend', () => {
-  setTimeout(() => { cur.style.opacity = '0'; }, 300);
-}, { passive: true });
-document.addEventListener('touchstart', () => {
   cur.style.opacity = '1';
 }, { passive: true });
 
