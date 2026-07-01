@@ -1,42 +1,935 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LIONSIGN - Doberman Kennel System</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface2: #f6f6f6;
+      --ink: #111111;
+      --ink-mid: #515856;
+      --ink-faint: rgba(17,17,17,.18);
+      --gold: #a07830;
+      --gold-light: #c8a96e;
+      --red: #b91f2a;
+      --red-glow: rgba(185,31,42,.14);
+      --border: rgba(17,17,17,.1);
+      --border-gold: rgba(185,31,42,.25);
+      --service-bg: #111111;
+      --service-card: #171717;
+      --service-red: #b91f2a;
+    }
 
-<title>Doberman Branding | Kennel Identity Design | Lionsign Studio</title>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Space Grotesk", Arial, sans-serif;
+      font-weight: 500;
+      overflow-x: hidden;
+      max-width: 100vw;
+      text-transform: uppercase;
+      letter-spacing: .045em;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,0,0,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.055) 1px, transparent 1px),
+        linear-gradient(rgba(0,0,0,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.025) 1px, transparent 1px);
+      background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 4;
+      width: 4px;
+      height: 100vh;
+      background: linear-gradient(to bottom, transparent, var(--gold-light) 28%, var(--red) 58%, var(--red) 72%, transparent);
+      opacity: .85;
+      pointer-events: none;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; height: auto; }
+    p {
+      margin: 0;
+      color: var(--ink-mid);
+      font-size: 13px;
+      line-height: 1.65;
+      font-weight: 500;
+      letter-spacing: .06em;
+    }
+    h1, h2, h3 { margin: 0; }
+    .page { position: relative; z-index: 1; }
 
-<meta name="description" content="Premium doberman branding and kennel identity design. Build authority, trust and value through structured visual systems.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.lionsignstudio.com/doberman-branding.html">
+    header {
+      position: fixed;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(246,246,248,.88);
+      backdrop-filter: blur(20px);
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 5px;
+      color: var(--ink);
+    }
+    .logo-icon-wrap {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,.18);
+      border-radius: 12px;
+      background: var(--ink);
+      box-shadow: 0 2px 14px rgba(0,0,0,.1);
+    }
+    .logo-icon {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      mix-blend-mode: screen;
+    }
+    .logo-text span { color: var(--red); }
+    nav a {
+      margin-left: 14px;
+      padding: 8px 12px;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      color: var(--ink-mid);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    nav a:hover {
+      color: var(--ink);
+      border-color: rgba(185,31,42,.4);
+      background: rgba(185,31,42,.06);
+    }
 
+    section {
+      position: relative;
+      padding: 112px 80px;
+    }
+    .wrap {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+    .section-label,
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      color: var(--red);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 6px;
+    }
+    .section-label::before,
+    .hero-eyebrow::before {
+      content: "";
+      display: block;
+      width: 46px;
+      height: 2px;
+      background: var(--red);
+      box-shadow: 0 0 12px rgba(185,31,42,.35);
+    }
+    .section-title {
+      color: var(--ink);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(54px, 6.6vw, 96px);
+      font-weight: 900;
+      line-height: .8;
+      letter-spacing: 0;
+    }
+    .section-title em { color: var(--gold); font-style: normal; }
+    .section-copy {
+      max-width: 570px;
+      margin-top: 28px;
+    }
+    .split-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 470px);
+      gap: 56px;
+      align-items: end;
+      margin-bottom: 64px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      min-height: 54px;
+      padding: 0 38px;
+      border: 1px solid var(--red);
+      border-radius: 10px;
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 12px 40px rgba(185,31,42,.22);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      transition: background .2s, color .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: transparent;
+      color: var(--red);
+      box-shadow: 0 20px 60px rgba(185,31,42,.18);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(185,31,42,.45);
+      color: var(--ink-mid);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      transition: color .2s, border-color .2s;
+    }
+    .btn-ghost:hover { color: var(--red); border-color: var(--red); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 150px 80px 88px;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+      gap: 64px;
+      align-items: center;
+    }
+    .hero h1 {
+      max-width: 930px;
+      color: var(--ink);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(64px, 9.2vw, 136px);
+      font-weight: 900;
+      line-height: .74;
+      letter-spacing: 0;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero p {
+      max-width: 650px;
+      margin-top: 40px;
+      font-size: 15px;
+      line-height: 1.65;
+      letter-spacing: .075em;
+    }
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+    }
+    .hero-card {
+      position: relative;
+      width: min(430px, 100%);
+      justify-self: end;
+      align-self: start;
+      margin-top: 10px;
+      margin-right: -26px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: 0 28px 80px rgba(0,0,0,.12);
+      padding: 12px;
+      transform: none;
+    }
+    .hero-card img {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(.12) contrast(1.04);
+    }
+    .hero-card::after {
+      content: "01 / 24";
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      padding: 8px 10px;
+      background: var(--red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+    .hero-number {
+      position: absolute;
+      right: -26px;
+      bottom: -62px;
+      color: rgba(185,31,42,.06);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(300px, 32vw, 500px);
+      font-weight: 900;
+      line-height: .78;
+      letter-spacing: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .marquee-wrap {
+      overflow: hidden;
+      max-width: 100vw;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      background: var(--surface);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      width: max-content;
+      animation: move 30s linear infinite;
+    }
+    .marquee-track span {
+      color: rgba(15,15,15,.35);
+      white-space: nowrap;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 4px;
+    }
+    .marquee-track b { color: var(--red); font-size: 12px; }
+    @keyframes move { to { transform: translateX(-50%); } }
+
+    .services-section {
+      background: var(--service-bg);
+      color: #f4f1ea;
+      overflow: hidden;
+    }
+    .services-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 42px 42px, 42px 42px;
+      pointer-events: none;
+    }
+    .services-section .wrap { position: relative; z-index: 1; }
+    .services-section .section-label { color: var(--gold-light); }
+    .services-section .section-title { color: #f4f1ea; }
+    .services-section .section-title em { color: var(--gold-light); }
+    .services-section p { color: rgba(244,241,234,.68); }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(220px, 1fr));
+      gap: 1px;
+      border: 1px solid rgba(244,241,234,.09);
+      background: rgba(244,241,234,.09);
+    }
+    .service-card {
+      min-height: 310px;
+      padding: 34px 28px;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--service-card);
+      transition: background-color .28s ease, box-shadow .28s ease, transform .28s ease;
+    }
+    .service-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border: 1px solid rgba(185,31,42,0);
+      box-shadow: inset 0 0 0 0 rgba(185,31,42,0);
+      transition: border-color .28s ease, box-shadow .28s ease;
+      pointer-events: none;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      background-color: #202020;
+      box-shadow: 0 24px 58px rgba(0,0,0,.26);
+    }
+    .service-card:hover::after {
+      border-color: rgba(185,31,42,.82);
+      box-shadow: inset 0 0 0 2px rgba(185,31,42,.45);
+    }
+    .service-card > * {
+      position: relative;
+      z-index: 2;
+    }
+    .service-num {
+      color: rgba(185,31,42,.34);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 84px;
+      font-weight: 900;
+      line-height: .75;
+    }
+    .service-card h3 {
+      margin-top: 54px;
+      margin-bottom: 18px;
+      color: #f4f1ea;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(31px, 2.3vw, 38px);
+      font-weight: 800;
+      line-height: .88;
+      letter-spacing: 0;
+    }
+    .service-card p { font-size: 12px; }
+    .statement {
+      background: var(--surface);
+    }
+    .statement-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      align-items: stretch;
+      border: 1px solid var(--border);
+      background: var(--border);
+    }
+    .statement h2 {
+      min-height: 360px;
+      padding: 38px 34px;
+      background: var(--bg);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(40px, 5.2vw, 76px);
+      font-weight: 900;
+      line-height: .84;
+      letter-spacing: 0;
+    }
+    .statement h2 em { color: var(--gold); font-style: normal; }
+    .statement h2 .idc-red { color: var(--red); }
+    .statement h2 .idc-year { color: var(--ink); }
+    .statement-panel {
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg);
+      padding: 38px 34px;
+    }
+    .statement-panel p + p { margin-top: 18px; }
+    .before-after {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+      background: var(--border);
+      margin-top: 42px;
+    }
+    .ba-panel {
+      min-height: 320px;
+      padding: 34px;
+      background: var(--surface);
+    }
+    .ba-panel h3 {
+      color: var(--red);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(54px, 6vw, 88px);
+      font-weight: 900;
+      line-height: .78;
+      letter-spacing: 0;
+      margin-bottom: 34px;
+    }
+    .ba-panel p + p { margin-top: 14px; }
+
+    .work-section {
+      padding-left: 0;
+      padding-right: 0;
+      background: var(--bg);
+    }
+    .work-section .split-head {
+      width: min(1180px, calc(100% - 160px));
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .work-marquee {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      padding: 24px 0;
+    }
+    .work-track {
+      display: flex;
+      gap: 18px;
+      width: max-content;
+      animation: workMove 120s linear infinite;
+    }
+    .work-track:hover { animation-play-state: paused; }
+    @keyframes workMove { to { transform: translateX(-50%); } }
+    .work-card {
+      width: 420px;
+      position: relative;
+      border: 1px solid rgba(244,241,234,.16);
+      background: #111111;
+      overflow: hidden;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    .work-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(185,31,42,.68);
+      box-shadow: 0 18px 42px rgba(0,0,0,.18);
+    }
+    .work-card:focus-visible {
+      border-color: var(--red);
+      outline: 0;
+    }
+    .work-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 18px var(--red);
+      opacity: 0;
+      transition: opacity .16s ease;
+    }
+    .work-card:active::after,
+    .work-card:focus-visible::after,
+    .work-card.is-selected::after {
+      opacity: 1;
+    }
+    .work-card figure {
+      margin: 0;
+      padding: 10px 10px 0;
+      background: #111111;
+    }
+    .work-card img {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border: 1px solid rgba(244,241,234,.12);
+      filter: grayscale(.08) contrast(1.03);
+    }
+    .work-card figcaption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 46px;
+      padding: 0 14px;
+      border-top: 1px solid rgba(244,241,234,.14);
+      background: #111111;
+      color: rgba(244,241,234,.72);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .work-card figcaption span:last-child { color: var(--red); }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      border: 1px solid var(--border);
+      background: var(--border);
+    }
+    .process-step {
+      min-height: 260px;
+      padding: 38px 30px;
+      background: var(--surface);
+      transition: background .3s, transform .3s;
+    }
+    .process-step:hover {
+      transform: translateY(-3px);
+      background: rgba(185,31,42,.04);
+    }
+    .process-step span {
+      display: block;
+      margin-bottom: 30px;
+      color: rgba(185,31,42,.22);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 88px;
+      font-weight: 900;
+      line-height: .75;
+    }
+    .process-step h3 {
+      margin-bottom: 16px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(30px, 2.2vw, 38px);
+      font-weight: 800;
+      line-height: .9;
+      letter-spacing: 0;
+    }
+    .image-band {
+      background: var(--surface);
+    }
+    .image-feature {
+      width: min(940px, 100%);
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 12px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.1);
+    }
+    .image-feature img {
+      min-height: 520px;
+      object-fit: cover;
+      background: #111;
+    }
+
+    .final-cta {
+      background: var(--ink);
+      color: #f4f1ea;
+      text-align: center;
+    }
+    .final-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+      pointer-events: none;
+    }
+    .final-cta .wrap { position: relative; z-index: 1; }
+    .final-cta .section-label {
+      justify-content: center;
+      color: var(--gold-light);
+    }
+    .final-cta .section-title {
+      color: #f4f1ea;
+      max-width: 920px;
+      margin: 0 auto;
+      font-size: clamp(42px, 5.2vw, 76px);
+      line-height: .84;
+    }
+    .final-cta .section-title em { color: var(--gold-light); }
+    .final-cta p {
+      max-width: 620px;
+      margin: 34px auto 0;
+      color: rgba(244,241,234,.68);
+    }
+    .final-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      margin-top: 46px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 34px 48px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-mid);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+    .footer-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .footer-location { white-space: nowrap; }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .statement-grid,
+      .split-head,
+      .image-grid { grid-template-columns: 1fr; }
+      .process-grid,
+      .before-after { grid-template-columns: 1fr 1fr; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .work-section .split-head { width: calc(100% - 80px); }
+    }
+
+    @media (max-width: 720px) {
+      header { padding: 14px 20px; }
+      .logo { font-size: 34px; letter-spacing: 4px; gap: 12px; }
+      .logo-icon-wrap { width: 52px; height: 52px; border-radius: 18px; }
+      nav a { padding: 8px 12px; font-size: 11px; letter-spacing: 1.5px; margin-left: 8px; }
+      nav a:not(:last-child) { display: none; }
+      body::after { width: 2px; }
+      section { padding: 56px 20px; }
+      .hero { padding: 100px 20px 56px; }
+      .hero-grid { gap: 28px; }
+      .hero-eyebrow,
+      .section-label { font-size: 9px; letter-spacing: 4px; }
+      .hero-eyebrow::before,
+      .section-label::before { width: 28px; }
+      .hero h1 { font-size: clamp(48px, 11.3vw, 76px); line-height: .76; letter-spacing: 0; }
+      .hero p { max-width: 100%; margin-top: 20px; font-size: 11px; letter-spacing: .05em; }
+      .hero-cta { margin-top: 32px; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .btn-primary { min-height: 46px; padding: 0 28px; font-size: 12px; letter-spacing: 2px; border-radius: 8px; }
+      .btn-ghost { font-size: 12px; }
+      .hero-card {
+        width: min(420px, 100%);
+        justify-self: center;
+        align-self: auto;
+        margin: 18px auto 0;
+        padding: 8px;
+      }
+      .hero-card img { aspect-ratio: 1 / 1; object-position: center; }
+      .hero-number { font-size: 260px; right: -16px; bottom: -32px; }
+      .marquee-wrap { padding: 12px 0; }
+      .marquee-track span { font-size: 13px; letter-spacing: 3px; }
+      .section-title { font-size: clamp(42px, 13.5vw, 70px); line-height: .82; }
+      .section-copy { margin-top: 18px; }
+      .service-grid,
+      .process-grid,
+      .before-after { grid-template-columns: 1fr; }
+      .service-card { min-height: 250px; padding: 32px 20px; }
+      .service-num { font-size: 72px; }
+      .service-card h3 { font-size: clamp(30px, 9vw, 38px); margin-top: 36px; }
+      .work-section .split-head { width: calc(100% - 40px); }
+      .work-card { width: 280px; }
+      .image-feature { padding: 8px; }
+      .image-feature img { min-height: 360px; }
+      .process-step { min-height: unset; padding: 32px 20px; }
+      .process-step span { font-size: 72px; }
+      .statement h2 { font-size: clamp(38px, 12vw, 64px); }
+      .process-step h3 { font-size: clamp(30px, 9vw, 38px); }
+      .final-cta .section-title { font-size: clamp(38px, 11vw, 58px); }
+      .footer-grid {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 8px;
+        width: 100%;
+        white-space: nowrap;
+      }
+      footer {
+        padding: 22px 14px;
+        font-size: clamp(7px, 1.85vw, 10px);
+        letter-spacing: .35px;
+        overflow: hidden;
+      }
+      .footer-location {
+        font-size: inherit;
+        letter-spacing: inherit;
+        white-space: nowrap;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
+    <header>
+      <a class="logo" href="#">
+        <span class="logo-icon-wrap">
+          <img class="logo-icon" src="assets/01-0882bcedc2.png" alt="Lionsign Studio icon">
+        </span>
+        <span class="logo-text">LION<span>SIGN</span></span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#system">System</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#credibility">Proof</a>
+      </nav>
+    </header>
 
-<h1>Doberman Branding for Professional Kennels</h1>
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="hero-eyebrow">Doberman Kennel System</div>
+            <h1>Look professional<br><em>Be trusted</em><br>Get chosen</h1>
+            <p>Website. Branding. Mobile Experience. A complete digital presence for Doberman kennels built to create a premium first impression before the first message.</p>
+            <div class="hero-cta">
+              <a class="btn-primary" href="#system">Kennel upgrade</a>
+              <a class="btn-ghost" href="#work">View selected work</a>
+            </div>
+          </div>
+          <div class="hero-card">
+            <img src="assets/11-a1de93cb81.png" alt="Lionsign Doberman mobile preview">
+          </div>
+        </div>
+        <div class="hero-number">01</div>
+      </section>
 
-<p>In the modern breeding market, perception defines value. A strong visual identity is no longer optional — it is a competitive advantage.</p>
+      <div class="marquee-wrap" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Premium Logotype</span><b>/</b><span>Sales-Optimized Website</span><b>/</b><span>Mobile Experience</span><b>/</b><span>Structured Content</span><b>/</b><span>Recognizable Kennel Identity</span><b>/</b>
+          <span>Premium Logotype</span><b>/</b><span>Sales-Optimized Website</span><b>/</b><span>Mobile Experience</span><b>/</b><span>Structured Content</span><b>/</b><span>Recognizable Kennel Identity</span><b>/</b>
+        </div>
+      </div>
 
-<h2>Kennel Branding System</h2>
-<p>We create structured identity systems for doberman breeders who want to position themselves as premium, trusted and recognizable.</p>
+      <section class="statement">
+        <div class="wrap statement-grid">
+          <h2>Most kennels lose clients <em>before the first message</em></h2>
+          <div class="statement-panel">
+            <p>Not because of the dogs, but because of how they look online.</p>
+            <p>Weak presentation creates doubt. Inconsistency kills trust. Serious buyers simply move on.</p>
+            <p>This is where better presence becomes a sales advantage.</p>
+          </div>
+        </div>
+        <div class="wrap before-after">
+          <div class="ba-panel">
+            <h3>Before</h3>
+            <p>No clear identity</p>
+            <p>Random posts</p>
+            <p>Outdated or missing website</p>
+            <p>Low perceived value</p>
+          </div>
+          <div class="ba-panel">
+            <h3>After</h3>
+            <p>Strong, recognizable brand</p>
+            <p>Clean, structured website</p>
+            <p>Premium first impression</p>
+            <p>Higher quality buyers</p>
+          </div>
+        </div>
+      </section>
 
-<h2>What You Get</h2>
-<ul>
-<li>Logo and identity design</li>
-<li>Typography and visual hierarchy</li>
-<li>Color system and consistency</li>
-<li>Brand positioning for high-value clients</li>
-</ul>
+      <section class="services-section" id="system">
+        <div class="wrap">
+          <div class="split-head">
+            <div>
+              <div class="section-label">This is not just design</div>
+              <h2 class="section-title">This is a<br><em>sales system</em></h2>
+            </div>
+            <p class="section-copy">LIONSIGN builds complete digital presence for Doberman kennels structured to attract attention, build trust instantly and turn visitors into real inquiries.</p>
+          </div>
+          <div class="service-grid">
+            <article class="service-card"><div class="service-num">01</div><h3>Premium Logotype</h3><p>Built for recognition, authority and immediate kennel recall.</p></article>
+            <article class="service-card"><div class="service-num">02</div><h3>Sales-Optimized Website</h3><p>Designed to turn visitors into inquiries instead of passive views.</p></article>
+            <article class="service-card"><div class="service-num">03</div><h3>Mobile App-Level Experience</h3><p>Flawless presentation on any device, from first tap to final decision.</p></article>
+            <article class="service-card"><div class="service-num">04</div><h3>Structured Content Direction</h3><p>So everything looks consistent, intentional and premium over time.</p></article>
+          </div>
+        </div>
+      </section>
 
-<h2>Why It Matters</h2>
-<p>Buyers evaluate kennels visually before they evaluate pedigrees. Strong branding increases trust, perceived quality and pricing power.</p>
+      <section class="image-band">
+        <div class="wrap">
+          <figure class="image-feature">
+            <img src="assets/12-ac553e92df.png" alt="Launch offer visual">
+          </figure>
+        </div>
+      </section>
 
-<h2>Who This Is For</h2>
-<p>Breeders who want to move from hobby perception to professional positioning.</p>
+      <section class="work-section" id="work">
+        <div class="split-head">
+          <div>
+            <div class="section-label">Selected work</div>
+            <h2 class="section-title">Most kennels look the same<br><em>The few that don't win</em></h2>
+          </div>
+          <p class="section-copy">Selected concepts and identity directions designed for attention, trust and premium perception in the working Doberman world.</p>
+        </div>
+        <div class="work-marquee">
+          <div class="work-track">
+            <a class="work-card" href="assets/03-797c4f6424.png"><figure><img src="assets/03-797c4f6424.png" alt="Lionsign selected work"><figcaption><span>Structure</span><span>01</span></figcaption></figure></a>
+            <a class="work-card" href="assets/04-9fa781e820.png"><figure><img src="assets/04-9fa781e820.png" alt="Lionsign selected work"><figcaption><span>Identity</span><span>02</span></figcaption></figure></a>
+            <a class="work-card" href="assets/05-1d42762c49.png"><figure><img src="assets/05-1d42762c49.png" alt="Lionsign selected work"><figcaption><span>Symbol</span><span>03</span></figcaption></figure></a>
+            <a class="work-card" href="assets/06-0a47bd3bee.png"><figure><img src="assets/06-0a47bd3bee.png" alt="Lionsign selected work"><figcaption><span>Lineage</span><span>04</span></figcaption></figure></a>
+            <a class="work-card" href="assets/07-564edd76e5.png"><figure><img src="assets/07-564edd76e5.png" alt="Lionsign selected work"><figcaption><span>Reason</span><span>05</span></figcaption></figure></a>
+            <a class="work-card" href="assets/08-4ab10a49b7.png"><figure><img src="assets/08-4ab10a49b7.png" alt="Lionsign selected work"><figcaption><span>Authority</span><span>06</span></figcaption></figure></a>
+            <a class="work-card" href="assets/09-21138c4b83.png"><figure><img src="assets/09-21138c4b83.png" alt="Lionsign selected work"><figcaption><span>Kennel Mark</span><span>07</span></figcaption></figure></a>
+            <a class="work-card" href="assets/10-c2e28f97f7.png"><figure><img src="assets/10-c2e28f97f7.png" alt="Lionsign selected work"><figcaption><span>Premium</span><span>08</span></figcaption></figure></a>
 
-<h2>Start Your Project</h2>
-<p>Your identity defines your market position. Build it deliberately.</p>
+            <a class="work-card" href="assets/03-797c4f6424.png"><figure><img src="assets/03-797c4f6424.png" alt="Lionsign selected work"><figcaption><span>Structure</span><span>01</span></figcaption></figure></a>
+            <a class="work-card" href="assets/04-9fa781e820.png"><figure><img src="assets/04-9fa781e820.png" alt="Lionsign selected work"><figcaption><span>Identity</span><span>02</span></figcaption></figure></a>
+            <a class="work-card" href="assets/05-1d42762c49.png"><figure><img src="assets/05-1d42762c49.png" alt="Lionsign selected work"><figcaption><span>Symbol</span><span>03</span></figcaption></figure></a>
+            <a class="work-card" href="assets/06-0a47bd3bee.png"><figure><img src="assets/06-0a47bd3bee.png" alt="Lionsign selected work"><figcaption><span>Lineage</span><span>04</span></figcaption></figure></a>
+            <a class="work-card" href="assets/07-564edd76e5.png"><figure><img src="assets/07-564edd76e5.png" alt="Lionsign selected work"><figcaption><span>Reason</span><span>05</span></figcaption></figure></a>
+            <a class="work-card" href="assets/08-4ab10a49b7.png"><figure><img src="assets/08-4ab10a49b7.png" alt="Lionsign selected work"><figcaption><span>Authority</span><span>06</span></figcaption></figure></a>
+            <a class="work-card" href="assets/09-21138c4b83.png"><figure><img src="assets/09-21138c4b83.png" alt="Lionsign selected work"><figcaption><span>Kennel Mark</span><span>07</span></figcaption></figure></a>
+            <a class="work-card" href="assets/10-c2e28f97f7.png"><figure><img src="assets/10-c2e28f97f7.png" alt="Lionsign selected work"><figcaption><span>Premium</span><span>08</span></figcaption></figure></a>
+          </div>
+        </div>
+      </section>
 
+      <section>
+        <div class="wrap">
+          <div class="split-head">
+            <div>
+              <div class="section-label">Doberman focus</div>
+              <h2 class="section-title">Strength without noise<br><em>Elegance without fragility</em></h2>
+            </div>
+            <p class="section-copy">The Doberman carries a rare balance of control and intensity. This requires a visual approach that feels strong, controlled and precise. Your kennel should communicate quality before a single word is read.</p>
+          </div>
+          <div class="process-grid" id="process">
+            <article class="process-step"><span>01</span><h3>You Send Basic Info</h3><p>A quick direction request starts the positioning conversation.</p></article>
+            <article class="process-step"><span>02</span><h3>Direction Is Defined</h3><p>Identity, structure and visual hierarchy are clarified before execution.</p></article>
+            <article class="process-step"><span>03</span><h3>Your System Is Built</h3><p>Website, branding and mobile presence are developed as one coherent system.</p></article>
+            <article class="process-step"><span>04</span><h3>Ready To Use</h3><p>Final assets are prepared for immediate kennel presentation.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="statement" id="credibility">
+        <div class="wrap statement-grid">
+          <h2>Official sponsor<br><em><span class="idc-red">IDC World Championship IGP</span> <span class="idc-year">2026</span></em></h2>
+          <div class="statement-panel">
+            <p>LIONSIGN is listed as a sponsor of the IDC World Championship IGP 2026 in Denmark, one of the most prestigious events in the working Doberman world.</p>
+            <p>Two exclusive visual concepts were developed for the event, inspired by competition, precision and lineage excellence.</p>
+            <p>This reflects the studio's position within the professional community.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <div class="wrap">
+          <div class="section-label">Limited project intake</div>
+          <h2 class="section-title">Build a presence<br><em>serious buyers remember</em></h2>
+          <p>This is your opportunity to position your kennel differently. No generic templates. No separate elements. One complete presence system.</p>
+          <div class="final-links">
+            <a class="btn-primary" href="#system">Review the system</a>
+            <a class="btn-ghost" href="https://storage.googleapis.com/mailerlite-uploads-prod/2126552/DeGsLpXLFdmkE80IyGv5aDidV4PITc8wtGqsmYDx.pdf">View logotype archive</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <span>LIONSIGN - Research & Design Studio</span>
+        <span class="footer-location">Belgrade - Working internationally</span>
+      </div>
+    </footer>
+  </div>
+  <script>
+    document.querySelectorAll(".service-card").forEach(card => {
+      card.addEventListener("mousemove", event => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", ((event.clientX - rect.left) / rect.width * 100) + "%");
+        card.style.setProperty("--my", ((event.clientY - rect.top) / rect.height * 100) + "%");
+      });
+    });
+    document.querySelectorAll(".work-card").forEach(card => {
+      card.addEventListener("click", event => {
+        event.preventDefault();
+        document.querySelectorAll(".work-card.is-selected").forEach(selected => {
+          selected.classList.remove("is-selected");
+        });
+        card.classList.add("is-selected");
+        card.focus();
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,31 +1,566 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LIONSIGN - Obsidian Line Collector Series</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --obsidian: #061719;
+      --deep: #0b1f24;
+      --deep-2: #102b31;
+      --mist: #dde9e4;
+      --bone: #f5f2ed;
+      --soft: #c7cfd2;
+      --muted: #a8b3b7;
+      --red: #c1121f;
+      --gold: #c6a75e;
+      --ink: #111111;
+      --line: rgba(221,233,228,.14);
+      --dark-line: rgba(11,31,36,.16);
+    }
 
-<title>Obsidian Line | Limited Design Collection | Lionsign Studio</title>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--obsidian);
+      color: var(--soft);
+      font-family: "Space Grotesk", Arial, sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 72% 18%, rgba(221,233,228,.08), transparent 30%),
+        linear-gradient(rgba(221,233,228,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(221,233,228,.045) 1px, transparent 1px);
+      background-size: auto, 76px 76px, 76px 76px;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 4;
+      width: 4px;
+      height: 100vh;
+      background: linear-gradient(to bottom, transparent, var(--gold) 28%, var(--red) 56%, transparent);
+      opacity: .9;
+      pointer-events: none;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; height: auto; }
+    h1, h2, h3, p { margin: 0; }
+    p {
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.7;
+      letter-spacing: .065em;
+    }
 
-<meta name="description" content="Limited garments and apparel based on original design systems.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.lionsignstudio.com/obsidian-line.html">
+    .page { position: relative; z-index: 1; }
+    .wrap { width: min(1180px, calc(100% - 72px)); margin: 0 auto; }
 
+    header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 46px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(6,23,25,.82);
+      backdrop-filter: blur(20px);
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--bone);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 31px;
+      font-weight: 900;
+      letter-spacing: 5px;
+    }
+    .logo-icon-wrap {
+      width: 54px;
+      height: 54px;
+      overflow: hidden;
+      border: 1px solid rgba(221,233,228,.28);
+      border-radius: 12px;
+      background: var(--bone);
+      box-shadow: 0 12px 34px rgba(0,0,0,.22);
+    }
+    .logo-icon { height: 100%; object-fit: cover; }
+    .logo span span { color: var(--red); }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    nav a {
+      padding: 8px 10px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      transition: color .2s, background .2s;
+    }
+    nav a:hover { color: var(--bone); background: rgba(221,233,228,.06); }
+
+    section { position: relative; padding: 112px 0; }
+    .label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 5px;
+    }
+    .label::before {
+      content: "";
+      width: 44px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .title {
+      color: var(--bone);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(56px, 7vw, 108px);
+      font-weight: 900;
+      line-height: .78;
+      letter-spacing: 0;
+    }
+    .title em { color: var(--red); font-style: normal; }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 148px 0 88px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, .98fr) minmax(320px, 500px);
+      gap: 74px;
+      align-items: center;
+    }
+    .hero h1 {
+      max-width: 760px;
+      color: var(--bone);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(76px, 10vw, 148px);
+      font-weight: 900;
+      line-height: .72;
+      letter-spacing: 0;
+    }
+    .hero h1 em { color: var(--red); font-style: normal; }
+    .hero-copy {
+      max-width: 620px;
+      margin-top: 34px;
+      color: var(--soft);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: min(620px, 100%);
+      margin-top: 42px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .meta-box {
+      min-height: 98px;
+      padding: 22px 22px 22px 0;
+      background: transparent;
+      border-bottom: 1px solid rgba(221,233,228,.09);
+    }
+    .meta-box:nth-child(odd) { border-right: 1px solid rgba(221,233,228,.09); }
+    .meta-box:nth-child(even) { padding-left: 22px; }
+    .meta-box:nth-last-child(-n+2) { border-bottom: 0; }
+    .meta-box span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+    .meta-box strong {
+      color: var(--bone);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 30px;
+      line-height: .9;
+      letter-spacing: 0;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 42px;
+      flex-wrap: wrap;
+    }
+    .link {
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(193,18,31,.55);
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    .link:hover { color: var(--bone); border-color: var(--red); }
+    .product-card {
+      position: relative;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .product-card img {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: var(--deep);
+    }
+    .marquee {
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(11,31,36,.72);
+      padding: 16px 0;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 42px;
+      width: max-content;
+      animation: move 30s linear infinite;
+    }
+    .marquee span {
+      color: rgba(221,233,228,.46);
+      white-space: nowrap;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+    .marquee b { color: var(--red); }
+    @keyframes move { to { transform: translateX(-50%); } }
+
+    .light {
+      background: var(--bone);
+      color: var(--deep);
+    }
+    .light::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(11,31,36,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11,31,36,.055) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+    .light .wrap { position: relative; z-index: 1; }
+    .light .title { color: var(--deep); }
+    .light .title em { color: var(--red); }
+    .light p { color: rgba(11,31,36,.74); }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+      gap: 64px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 38px;
+      border-top: 1px solid var(--dark-line);
+      border-bottom: 1px solid var(--dark-line);
+    }
+    .panel {
+      min-height: 220px;
+      padding: 32px 0;
+      background: transparent;
+    }
+    .panel strong {
+      display: block;
+      margin-bottom: 26px;
+      color: rgba(193,18,31,.2);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 82px;
+      font-weight: 900;
+      line-height: .76;
+      letter-spacing: 0;
+    }
+    .panel h3 {
+      margin-bottom: 14px;
+      color: var(--deep);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 38px;
+      font-weight: 900;
+      line-height: .88;
+      letter-spacing: 0;
+    }
+
+    .art-grid {
+      display: grid;
+      grid-template-columns: minmax(300px, 512px) minmax(0, 1fr);
+      gap: 58px;
+      align-items: center;
+    }
+    .art-card {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .art-card img {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+    .statement {
+      max-width: 720px;
+    }
+    .statement .title { margin-bottom: 30px; }
+    .statement p + p { margin-top: 18px; }
+    .detail-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      margin-top: 38px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .detail-list div {
+      min-height: 104px;
+      padding: 22px 0;
+      background: transparent;
+      color: var(--bone);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .scarcity {
+      text-align: center;
+      background: var(--red);
+      color: var(--bone);
+    }
+    .scarcity .title { color: var(--bone); }
+    .scarcity p {
+      width: min(620px, 100%);
+      margin: 24px auto 0;
+      color: rgba(245,242,237,.82);
+    }
+
+    .final {
+      text-align: center;
+      background: var(--deep);
+    }
+    .final .title { margin-bottom: 22px; }
+    .final p {
+      width: min(700px, 100%);
+      margin: 0 auto;
+    }
+    .final-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 38px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: 26px 48px;
+      border-top: 1px solid var(--line);
+      background: #051315;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .footer-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      header { padding: 14px 20px; }
+      .logo { font-size: 26px; letter-spacing: 4px; }
+      .logo-icon-wrap { width: 48px; height: 48px; }
+      nav a:not(:last-child) { display: none; }
+      .wrap { width: min(100% - 40px, 1180px); }
+      section { padding: 76px 0; }
+      .hero { min-height: auto; padding: 128px 0 68px; }
+      .hero-grid,
+      .split,
+      .art-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+      .hero h1 { font-size: clamp(60px, 17vw, 88px); }
+      .hero-meta,
+      .panel-grid,
+      .detail-list {
+        grid-template-columns: 1fr;
+      }
+      .product-card { width: min(420px, 100%); margin: 0 auto; }
+      .title { font-size: clamp(48px, 14vw, 74px); }
+      .footer-grid {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
+    <header>
+      <a class="logo" href="#">
+        <span class="logo-icon-wrap"><img class="logo-icon" src="assets/01-91a0232ad6.png" alt="Lionsign mark"></span>
+        <span>LION<span>SIGN</span></span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#concept">Concept</a>
+        <a href="#edition">Edition</a>
+        <a href="#artwork">Artwork</a>
+        <a href="#scarcity">24 Pieces</a>
+      </nav>
+    </header>
 
-<h1>Obsidian Line</h1>
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="label">Limited Collector Series</div>
+            <h1>Obsidian<br><em>Line</em></h1>
+            <p class="hero-copy">Edition 1 is a numbered LIONSIGN artwork translated into wearable form. Built for those who do not follow. They lead.</p>
+            <div class="hero-meta">
+              <div class="meta-box"><span>Edition</span><strong>24 Pieces Worldwide</strong></div>
+              <div class="meta-box"><span>Price</span><strong>EUR 99</strong></div>
+              <div class="meta-box"><span>Numbering</span><strong>01/24 - 24/24</strong></div>
+              <div class="meta-box"><span>Status</span><strong>No Restock</strong></div>
+            </div>
+            <div class="hero-actions">
+              <a class="link" href="#artwork">View artwork detail</a>
+            </div>
+          </div>
+          <figure class="product-card">
+            <img src="assets/02-06586e7faa.png" alt="Obsidian Line collector T-shirt">
+          </figure>
+        </div>
+      </section>
 
-<p>A limited collection of garments built on original design systems.</p>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>No Restock</span><b>/</b><span>Numbered Edition</span><b>/</b><span>Art Monochrome Series</span><b>/</b><span>Heavyweight Cotton</span><b>/</b><span>Archived When Sold Out</span><b>/</b>
+          <span>No Restock</span><b>/</b><span>Numbered Edition</span><b>/</b><span>Art Monochrome Series</span><b>/</b><span>Heavyweight Cotton</span><b>/</b><span>Archived When Sold Out</span><b>/</b>
+        </div>
+      </div>
 
-<h2>Concept</h2>
-<p>Each piece reflects structure, discipline and identity.</p>
+      <section class="light" id="concept">
+        <div class="wrap">
+          <div class="split">
+            <div>
+              <div class="label">Not apparel</div>
+              <h2 class="title">Not a T-shirt<br><em>An edition</em></h2>
+            </div>
+            <p>Each piece carries an original LIONSIGN artwork, created as a collector object rather than a standard graphic product. Once sold out, it is archived.</p>
+          </div>
+          <div class="panel-grid">
+            <article class="panel"><strong>01</strong><h3>Statement</h3><p>Designed for those who identify with strength, discipline and wild spirit.</p></article>
+            <article class="panel"><strong>02</strong><h3>Presence</h3><p>The Doberman is treated as structural presence, not as a decorative symbol.</p></article>
+            <article class="panel"><strong>03</strong><h3>Restraint</h3><p>Tension, discipline and controlled power are reduced into line, depth and silence.</p></article>
+          </div>
+        </div>
+      </section>
 
-<h2>Philosophy</h2>
-<p>Design is not trend — it is a system applied across mediums.</p>
+      <section id="edition">
+        <div class="wrap art-grid">
+          <figure class="art-card">
+            <img src="assets/03-541b726e9e.png" alt="Obsidian Line artwork detail">
+          </figure>
+          <div class="statement">
+            <div class="label">Edition 1</div>
+            <h2 class="title">The architecture<br><em>of instinct</em></h2>
+            <p>The full composition was developed through an extended conceptual study of the Doberman as a breed, not as a symbol but as a structural force.</p>
+            <p>The final print is an architectural interpretation of form: reduced, deconstructed and rebuilt through layered studies and intuitive abstraction.</p>
+            <div class="detail-list">
+              <div>Author print by LIONSIGN studio</div>
+              <div>Individually numbered 01/24 - 24/24</div>
+              <div>Premium heavyweight cotton</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<h2>Availability</h2>
-<p>Limited runs. No repetition.</p>
+      <section class="light" id="artwork">
+        <div class="wrap">
+          <div class="split">
+            <div>
+              <div class="label">Artwork detail</div>
+              <h2 class="title">The print is<br><em>not decorative</em></h2>
+            </div>
+            <p>It is a monochrome study of controlled force. The image holds strength in restraint, leaving the composition sharp, minimal and deliberately unresolved.</p>
+          </div>
+          <div class="panel-grid">
+            <article class="panel"><strong>Line</strong><h3>Reduced</h3><p>The form is stripped back until only pressure, mass and direction remain.</p></article>
+            <article class="panel"><strong>Depth</strong><h3>Layered</h3><p>Texture and shadow create the sense of movement beneath the surface.</p></article>
+            <article class="panel"><strong>Silence</strong><h3>Held</h3><p>The composition avoids noise so the instinct stays concentrated.</p></article>
+          </div>
+        </div>
+      </section>
 
+      <section class="scarcity" id="scarcity">
+        <div class="wrap">
+          <div class="label">Limited to 24</div>
+          <h2 class="title">Numbered pieces<br>worldwide</h2>
+          <p>Individually numbered. No restocks. No reprints. When the edition is sold out, it becomes archive only.</p>
+        </div>
+      </section>
+
+      <section class="final">
+        <div class="wrap">
+          <div class="label">Created by LIONSIGN</div>
+          <h2 class="title">Be brave<br><em>Stay wild</em></h2>
+          <p>Where canine power meets minimal luxury aesthetics, built for collectors who recognize strength before it becomes loud.</p>
+          <div class="final-links">
+            <a class="link" href="#concept">Review the concept</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <span>LIONSIGN - Research & Design Studio</span>
+        <span>Obsidian Line - Edition 1</span>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
