@@ -1,0 +1,98 @@
+{
+  "page": "https://lionsign-research-design-1h32yv.subscribepage.io",
+  "assets": [
+    {
+      "file": "01-91a0232ad6.png",
+      "source_url": "https://storage.mlcdn.com/account_image/2126552/E5zIQMsTGnSlOymGgp9s0dLtKRC91O2P3fxUvaAk.png",
+      "found_as": [
+        "img:data-src",
+        "img:src"
+      ],
+      "content_type": "image/png",
+      "bytes": 680973
+    },
+    {
+      "file": "02-ce90ea32c0.jpg",
+      "source_url": "https://storage.mlcdn.com/account_image/2126552/R9YQ9bYQZTQb6CGoLDZGulYtdHjC7HNrTZbyrbRu.jpg",
+      "found_as": [
+        "css:url",
+        "div:inline-style"
+      ],
+      "content_type": "image/jpeg",
+      "bytes": 1364682
+    },
+    {
+      "file": "03-49c1137cef.jpg",
+      "source_url": "https://storage.mlcdn.com/account_image/2126552/zQvU8RiL0PPPHI25tNBi460WgNwnuNDRkPTWSsRV.jpg",
+      "found_as": [
+        "img:src"
+      ],
+      "content_type": "image/jpeg",
+      "bytes": 2060049
+    },
+    {
+      "file": "04-62318b439c.jpg",
+      "source_url": "https://storage.mlcdn.com/account_image/2126552/z9l3xgtbgpZxLpCyS9yZnJuH3wzfi705DpKrLZPb.jpg",
+      "found_as": [
+        "img:src"
+      ],
+      "content_type": "image/jpeg",
+      "bytes": 1897438
+    },
+    {
+      "file": "05-b286d91260.jpg",
+      "source_url": "https://storage.mlcdn.com/account_image/2126552/dW6k1A26q2lmV7AXaEwLkacR64glUrTB558iUYxt.jpg",
+      "found_as": [
+        "img:src"
+      ],
+      "content_type": "image/jpeg",
+      "bytes": 1932550
+    },
+    {
+      "file": "06-16a6efe81d.jpg",
+      "source_url": "https://storage.mlcdn.com/account_image/2126552/F0DKOJXWhkl2Gyb18C5sCOVw3A95TiVe1XF5siqV.jpg",
+      "found_as": [
+        "css:url",
+        "div:inline-style"
+      ],
+      "content_type": "image/jpeg",
+      "bytes": 1766388
+    },
+    {
+      "file": "07-0908ce5e36.png",
+      "source_url": "https://assets.mlcdn.com/ml/images/icons/default/round/white/facebook.png",
+      "found_as": [
+        "img:src"
+      ],
+      "content_type": "image/png",
+      "bytes": 1334
+    },
+    {
+      "file": "08-10ed176648.png",
+      "source_url": "https://assets.mlcdn.com/ml/images/icons/default/round/white/x.png",
+      "found_as": [
+        "img:src"
+      ],
+      "content_type": "image/png",
+      "bytes": 1303
+    },
+    {
+      "file": "09-87bc1b7771.png",
+      "source_url": "https://assets.mlcdn.com/ml/images/icons/default/round/white/instagram.png",
+      "found_as": [
+        "img:src"
+      ],
+      "content_type": "image/png",
+      "bytes": 2094
+    },
+    {
+      "file": "10-92a77ce2d2.png",
+      "source_url": "https://assets.mlcdn.com/ml/logo/created-with-mailerlite.png",
+      "found_as": [
+        "img:src"
+      ],
+      "content_type": "image/png",
+      "bytes": 2386
+    }
+  ]
+}
