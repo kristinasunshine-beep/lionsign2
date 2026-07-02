@@ -230,9 +230,9 @@
     }
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
-      gap: 64px;
-      align-items: center;
+      grid-template-columns: minmax(0, 1fr) minmax(290px, 440px);
+      gap: 88px;
+      align-items: start;
     }
     .hero h1 {
       max-width: 930px;
@@ -260,16 +260,26 @@
     }
     .hero-card {
       position: relative;
-      width: min(430px, 100%);
+      width: min(440px, 100%);
       justify-self: end;
       align-self: start;
-      margin-top: 10px;
-      margin-right: -26px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      box-shadow: 0 28px 80px rgba(0,0,0,.12);
-      padding: 12px;
+      margin: -10px -64px 0 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
       transform: none;
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 8% -4% 6% -4%;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at center, rgba(185,31,42,.13), rgba(185,31,42,0) 58%),
+        radial-gradient(ellipse at center, rgba(0,0,0,.08), rgba(0,0,0,0) 66%);
+      filter: blur(18px);
+      pointer-events: none;
     }
     .hero-card img {
       aspect-ratio: 1 / 1;
@@ -662,6 +672,10 @@
       .statement-grid,
       .split-head,
       .image-grid { grid-template-columns: 1fr; }
+      .hero-card {
+        justify-self: center;
+        margin: 10px auto 0;
+      }
       .process-grid,
       .before-after { grid-template-columns: 1fr 1fr; }
       .service-grid { grid-template-columns: repeat(2, 1fr); }
@@ -692,7 +706,7 @@
         justify-self: center;
         align-self: auto;
         margin: 18px auto 0;
-        padding: 8px;
+        padding: 0;
       }
       .hero-card img { aspect-ratio: 1 / 1; object-position: center; }
       .hero-number { font-size: 260px; right: -16px; bottom: -32px; }
