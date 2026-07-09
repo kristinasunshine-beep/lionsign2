@@ -680,8 +680,8 @@
       right: 0;
       top: 50%;
       z-index: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(83,111,91,.34), transparent);
+      height: 4px;
+      background: linear-gradient(90deg, transparent, rgba(83,111,91,.58), transparent);
       pointer-events: none;
     }
     .work-track {
@@ -1056,6 +1056,26 @@
       .service-card h3 { font-size: clamp(28px, 8.2vw, 36px); margin-top: 26px; }
       .work-section .split-head { width: calc(100% - 40px); }
       .work-card { width: 280px; }
+      .work-card::after {
+        box-shadow: inset 0 0 0 4px var(--red);
+      }
+      .work-lightbox {
+        padding: 10px;
+      }
+      .work-lightbox__frame {
+        width: min(96vw, 960px);
+        max-height: 86vh;
+      }
+      .work-lightbox__frame::before {
+        box-shadow: inset 0 0 0 4px var(--red);
+      }
+      .work-lightbox__close {
+        right: -8px;
+        top: -8px;
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+      }
       .image-feature { padding: 8px; }
       .image-feature::before {
         left: 8px;
@@ -1339,7 +1359,8 @@
       let distance = 1;
       let offset = 0;
       let lastTime = performance.now();
-      const speed = 24;
+      const mobileMotion = window.matchMedia("(max-width: 720px)");
+      const getSpeed = () => mobileMotion.matches ? 64 : 24;
 
       const measure = () => {
         distance = Math.max(1, cards[midpoint].offsetLeft - cards[0].offsetLeft);
@@ -1348,7 +1369,7 @@
       const animate = now => {
         const elapsed = Math.min(34, now - lastTime);
         lastTime = now;
-        offset = (offset + speed * elapsed / 1000) % distance;
+        offset = (offset + getSpeed() * elapsed / 1000) % distance;
         track.style.transform = `translate3d(${-offset}px,0,0)`;
         requestAnimationFrame(animate);
       };
