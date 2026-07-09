@@ -713,38 +713,6 @@ section { padding: 100px 80px; position: relative; box-sizing: border-box; }
 .svc-card:hover .svc-arrow,
 .svc-card:focus-visible .svc-arrow { color: var(--card-accent); transform: rotate(-45deg) scale(1.2); }
 
-.studio-code {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  margin-top: 22px;
-  border: 1px solid var(--border);
-  background: var(--border);
-}
-.studio-code div {
-  min-height: 76px;
-  padding: 18px 20px;
-  background: rgba(255,255,255,.82);
-}
-.studio-code strong {
-  display: block;
-  margin-bottom: 8px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 26px;
-  font-weight: 900;
-  line-height: .86;
-  letter-spacing: 0;
-}
-.studio-code span {
-  color: var(--ink-mid);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2.2px;
-}
-.studio-code div:nth-child(1) strong { color: var(--red); }
-.studio-code div:nth-child(2) strong { color: var(--gold); }
-.studio-code div:nth-child(3) strong { color: var(--blue); }
-
 /* MANIFEST */
 .manifest-grid {
   display: grid; grid-template-columns: repeat(3,1fr);
@@ -968,9 +936,6 @@ footer {
   .svc-num { font-size: 72px; }
   .svc-card h3 { font-size: 32px; }
   .svc-card p { font-size: 12px; }
-  .studio-code { grid-template-columns: 1fr; }
-  .studio-code div { min-height: 64px; padding: 16px 18px; }
-  .studio-code strong { font-size: 22px; }
   .svc-arrow { top: 20px; right: 20px; font-size: 20px; }
 
   /* MANIFEST GRID */
@@ -1060,11 +1025,6 @@ footer {
       <h3>Identity Is Power</h3>
       <p>A strong identity doesn't follow trends &mdash; it sets them</p>
     </div>
-  </div>
-  <div class="studio-code reveal" aria-label="LIONSIGN studio color code">
-    <div><strong>Red</strong><span>Authority / energy / LIONSIGN mark</span></div>
-    <div><strong>Gold</strong><span>Premium value / selected work</span></div>
-    <div><strong>Blue</strong><span>Structure / intelligence / precision</span></div>
   </div>
 </section>
 
