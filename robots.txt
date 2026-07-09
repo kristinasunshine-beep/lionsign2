@@ -1,4 +1,46 @@
 User-agent: *
 Allow: /
 
+User-agent: Googlebot
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Claude-SearchBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: GrokBot
+Allow: /
+
+User-agent: xAI-Bot
+Allow: /
+
 Sitemap: https://www.lionsignstudio.com/sitemap.xml
