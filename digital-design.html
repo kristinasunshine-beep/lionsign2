@@ -30,6 +30,7 @@
 <meta name="twitter:description" content="Visual identity, web, content and spatial direction organized into usable brand architecture.">
 <meta name="twitter:image" content="https://www.lionsignstudio.com/assets/lionsign-og-image.png">
 
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -226,12 +227,12 @@
       color: var(--ink);
     }
     .logo-icon-wrap {
-      width: 56px;
-      height: 56px;
+      width: 68px;
+      height: 68px;
       flex-shrink: 0;
       overflow: hidden;
       border: 1px solid rgba(0,0,0,.18);
-      border-radius: 12px;
+      border-radius: 14px;
       background: #ffffff;
       box-shadow: 0 2px 14px rgba(0,0,0,.1);
     }
@@ -663,8 +664,8 @@
     .work-lightbox img {
       position: relative;
       display: block;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       background: transparent;
     }
@@ -860,7 +861,7 @@
     @media (max-width: 720px) {
       header { padding: 14px 20px; }
       .logo { font-size: 34px; letter-spacing: 4px; gap: 12px; }
-      .logo-icon-wrap { width: 52px; height: 52px; border-radius: 18px; }
+      .logo-icon-wrap { width: 60px; height: 60px; border-radius: 16px; }
       nav a { padding: 8px 12px; font-size: 11px; letter-spacing: 1.5px; margin-left: 8px; }
       nav a:not(:last-child) { display: none; }
       body::after { width: 2px; }
@@ -891,18 +892,19 @@
         box-shadow: inset 0 0 0 4px var(--red);
       }
       .work-lightbox {
-        padding: 10px;
+        padding: 14px;
       }
       .work-lightbox__frame {
-        width: min(96vw, 960px);
-        max-height: 86vh;
+        width: min(calc(100vw - 28px), 960px);
+        max-height: 84vh;
+        box-sizing: border-box;
       }
       .work-lightbox__frame::before {
         box-shadow: inset 0 0 0 4px var(--red);
       }
       .work-lightbox__close {
-        right: -8px;
-        top: -8px;
+        right: 8px;
+        top: 8px;
         width: 32px;
         height: 32px;
         font-size: 18px;
@@ -963,6 +965,13 @@
       background: var(--red);
       border-radius: 12px;
     }
+    body.work-lightbox-active .cur {
+      background: #f5c84c;
+      box-shadow: 0 0 0 1px rgba(245,200,76,.35), 0 0 18px rgba(245,200,76,.34);
+    }
+    body.work-lightbox-active .cur.big {
+      background: #f5c84c;
+    }
     @media (hover: none) {
       body.has-custom-cursor { cursor: auto; }
       .cur { display: none; }
@@ -975,7 +984,7 @@
     <header>
       <a class="logo" href="index.html">
         <span class="logo-icon-wrap">
-          <img class="logo-icon" src="assets/lionsign-icon-bw.png" alt="Lionsign Studio icon" width="56" height="56" decoding="sync" fetchpriority="high">
+          <img class="logo-icon" src="assets/lionsign-icon-bw.png" alt="Lionsign Studio icon" width="68" height="68" decoding="sync" fetchpriority="high">
         </span>
         <span class="logo-text">LION<span>SIGN</span></span>
       </a>
@@ -1046,7 +1055,7 @@
             <a class="work-card" href="portfolio/5.png"><figure><img src="portfolio/5.png" alt="Lionsign portfolio slide 05"><figcaption><span>Logo Design</span><span>05</span></figcaption></figure></a>
             <a class="work-card" href="portfolio/6.png"><figure><img src="portfolio/6.png" alt="Lionsign portfolio slide 06"><figcaption><span>Form</span><span>06</span></figcaption></figure></a>
             <a class="work-card" href="portfolio/7.png"><figure><img src="portfolio/7.png" alt="Lionsign portfolio slide 07"><figcaption><span>2D Banners</span><span>07</span></figcaption></figure></a>
-            <a class="work-card" href="portfolio/digital-3d-banners-composed-clean.png"><figure><img src="portfolio/digital-3d-banners-composed-clean.png" alt="3D Banners digital artwork slide"><figcaption><span>3D Banners</span><span>08</span></figcaption></figure></a>
+            <a class="work-card" href="portfolio/digital-3d-banners-final-slide.png"><figure><img src="portfolio/digital-3d-banners-final-slide.png" alt="3D Banners slide with text and Doberman visual"><figcaption><span>3D Banners</span><span>08</span></figcaption></figure></a>
             <a class="work-card" href="portfolio/9.png"><figure><img src="portfolio/9.png" alt="Lionsign portfolio slide 09"><figcaption><span>Visibility</span><span>09</span></figcaption></figure></a>
             <a class="work-card" href="portfolio/10.png"><figure><img src="portfolio/10.png" alt="Lionsign portfolio slide 10"><figcaption><span>Billboards</span><span>10</span></figcaption></figure></a>
             <a class="work-card" href="portfolio/11.png"><figure><img src="portfolio/11.png" alt="Lionsign portfolio slide 11"><figcaption><span>Exhibition</span><span>11</span></figcaption></figure></a>
@@ -1069,7 +1078,7 @@
             <a class="work-card" href="portfolio/5.png"><figure><img src="portfolio/5.png" alt="Lionsign portfolio slide 05"><figcaption><span>Logo Design</span><span>05</span></figcaption></figure></a>
             <a class="work-card" href="portfolio/6.png"><figure><img src="portfolio/6.png" alt="Lionsign portfolio slide 06"><figcaption><span>Form</span><span>06</span></figcaption></figure></a>
             <a class="work-card" href="portfolio/7.png"><figure><img src="portfolio/7.png" alt="Lionsign portfolio slide 07"><figcaption><span>2D Banners</span><span>07</span></figcaption></figure></a>
-            <a class="work-card" href="portfolio/digital-3d-banners-composed-clean.png"><figure><img src="portfolio/digital-3d-banners-composed-clean.png" alt="3D Banners digital artwork slide"><figcaption><span>3D Banners</span><span>08</span></figcaption></figure></a>
+            <a class="work-card" href="portfolio/digital-3d-banners-final-slide.png"><figure><img src="portfolio/digital-3d-banners-final-slide.png" alt="3D Banners slide with text and Doberman visual"><figcaption><span>3D Banners</span><span>08</span></figcaption></figure></a>
             <a class="work-card" href="portfolio/9.png"><figure><img src="portfolio/9.png" alt="Lionsign portfolio slide 09"><figcaption><span>Visibility</span><span>09</span></figcaption></figure></a>
             <a class="work-card" href="portfolio/10.png"><figure><img src="portfolio/10.png" alt="Lionsign portfolio slide 10"><figcaption><span>Billboards</span><span>10</span></figcaption></figure></a>
             <a class="work-card" href="portfolio/11.png"><figure><img src="portfolio/11.png" alt="Lionsign portfolio slide 11"><figcaption><span>Exhibition</span><span>11</span></figcaption></figure></a>
@@ -1199,6 +1208,7 @@
     const workLightboxImage = workLightbox.querySelector("img");
     const closeWorkLightbox = () => {
       workLightbox.classList.remove("is-open");
+      document.body.classList.remove("work-lightbox-active");
       workLightboxImage.removeAttribute("src");
     };
     const openWorkLightbox = (src, alt) => {
@@ -1206,6 +1216,7 @@
       workLightboxImage.src = src;
       workLightboxImage.alt = alt;
       workLightbox.classList.add("is-open");
+      document.body.classList.add("work-lightbox-active");
     };
     workLightbox.addEventListener("click", event => {
       if (event.target === workLightbox || event.target.closest(".work-lightbox__close")) {
