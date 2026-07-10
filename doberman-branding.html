@@ -362,13 +362,13 @@
       content: "";
       position: absolute;
       right: 16vw;
-      top: 28px;
+      top: 52px;
       z-index: 1;
-      height: min(122vh, 1180px);
+      height: calc(100% + 96px);
       aspect-ratio: 477 / 1254;
-      background: url("assets/doberman-hero-pola-dobija.png") center / cover no-repeat;
-      opacity: .42;
-      filter: brightness(1.34) contrast(.88) saturate(.92);
+      background: url("assets/doberman-hero-pola-dobija.png") center center / cover no-repeat;
+      opacity: .40;
+      filter: brightness(1.76) contrast(.72) saturate(.82);
       pointer-events: none;
       -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
       mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
@@ -931,6 +931,9 @@
       width: min(1240px, calc(100% - 96px));
     }
     .image-feature {
+      --showcase-inset: clamp(16px, 2.4vw, 30px);
+      --showcase-line: clamp(7px, .9vw, 12px);
+      --showcase-text-x: calc(var(--showcase-inset) + var(--showcase-line) + clamp(12px, 1.5vw, 18px));
       position: relative;
       width: min(100%, 1180px);
       margin: 0 auto;
@@ -947,10 +950,10 @@
     .image-feature::before {
       content: "";
       position: absolute;
-      left: clamp(16px, 2.4vw, 30px);
-      top: clamp(16px, 2.4vw, 30px);
-      bottom: clamp(16px, 2.4vw, 30px);
-      width: clamp(7px, .9vw, 12px);
+      left: var(--showcase-inset);
+      top: var(--showcase-inset);
+      bottom: var(--showcase-inset);
+      width: var(--showcase-line);
       z-index: 2;
       background: var(--red);
       box-shadow: 0 0 0 1px rgba(16,12,10,.08);
@@ -972,12 +975,15 @@
       pointer-events: none;
     }
     .showcase-topline {
-      position: relative;
-      z-index: 4;
+      position: absolute;
+      left: var(--showcase-text-x);
+      top: var(--showcase-inset);
+      right: var(--showcase-inset);
+      z-index: 5;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      padding: 0 0 18px clamp(22px, 3vw, 40px);
+      padding: 0;
       color: var(--red);
       font-size: 10px;
       font-weight: 900;
@@ -990,7 +996,7 @@
       display: grid;
       place-items: center;
       min-height: 548px;
-      padding: clamp(18px, 2.5vw, 30px) clamp(18px, 2.5vw, 34px) clamp(18px, 2.5vw, 30px) clamp(34px, 4vw, 56px);
+      padding: clamp(54px, 5vw, 76px) clamp(18px, 2.5vw, 34px) clamp(50px, 4vw, 68px) clamp(34px, 4vw, 56px);
       background:
         linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.94)),
         #ffffff;
@@ -1004,13 +1010,16 @@
       filter: drop-shadow(0 18px 32px rgba(16,12,10,.12));
     }
     .image-feature figcaption {
-      position: relative;
-      z-index: 3;
+      position: absolute;
+      left: var(--showcase-text-x);
+      right: var(--showcase-inset);
+      bottom: var(--showcase-inset);
+      z-index: 5;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 18px 0 0 clamp(22px, 3vw, 40px);
+      padding: 0;
       color: rgba(16,12,10,.74);
       font-size: 11px;
       font-weight: 800;
@@ -1127,10 +1136,11 @@
       }
       .hero::after {
         right: -14vw;
-        top: 62px;
-        height: min(104vh, 780px);
-        opacity: .50;
-        filter: brightness(1.30) contrast(.88) saturate(.92);
+        top: 76px;
+        height: calc(100% + 110px);
+        background-position: center center;
+        opacity: .46;
+        filter: brightness(1.66) contrast(.74) saturate(.84);
       }
       .hero-grid { gap: 28px; }
       .hero-eyebrow,
@@ -1190,29 +1200,35 @@
       }
       .image-band .wrap { width: 100%; }
       .image-feature {
+        --showcase-inset: 12px;
+        --showcase-line: 6px;
+        --showcase-text-x: 28px;
         width: 100%;
         padding: 4px 0;
         border-left: 0;
         border-right: 0;
       }
       .image-feature::before {
-        left: 12px;
-        top: 12px;
-        bottom: 12px;
-        width: 6px;
+        left: var(--showcase-inset);
+        top: var(--showcase-inset);
+        bottom: var(--showcase-inset);
+        width: var(--showcase-line);
       }
       .image-feature::after {
         content: none;
       }
       .showcase-topline {
+        left: var(--showcase-text-x);
+        top: var(--showcase-inset);
+        right: var(--showcase-inset);
         align-items: flex-start;
-        padding: 0 0 12px 18px;
+        padding: 0;
         font-size: 8.5px;
         letter-spacing: 2.2px;
       }
       .showcase-stage {
         min-height: 0;
-        padding: 12px 0 10px 0;
+        padding: 42px 0 36px 0;
       }
       .image-feature img {
         width: 100%;
@@ -1221,10 +1237,13 @@
         object-fit: contain;
       }
       .image-feature figcaption {
+        left: var(--showcase-text-x);
+        right: var(--showcase-inset);
+        bottom: var(--showcase-inset);
         flex-direction: column;
         align-items: flex-start;
         gap: 6px;
-        padding: 12px 0 0 18px;
+        padding: 0;
         font-size: 9px;
         letter-spacing: 1.6px;
       }
