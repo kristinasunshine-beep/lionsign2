@@ -30,6 +30,7 @@
 <meta name="twitter:description" content="A complete identity and digital presence system for Doberman kennels: logotype, website, mobile experience and structured content direction.">
 <meta name="twitter:image" content="https://www.lionsignstudio.com/assets/lionsign-og-image.png">
 
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -221,12 +222,12 @@
       color: var(--ink);
     }
     .logo-icon-wrap {
-      width: 56px;
-      height: 56px;
+      width: 68px;
+      height: 68px;
       flex-shrink: 0;
       overflow: hidden;
       border: 1px solid rgba(0,0,0,.18);
-      border-radius: 12px;
+      border-radius: 14px;
       background: #ffffff;
       box-shadow: 0 2px 14px rgba(0,0,0,.1);
     }
@@ -354,10 +355,23 @@
       inset: 0;
       z-index: 0;
       background:
-        linear-gradient(90deg, rgba(244,241,234,.96) 0%, rgba(244,241,234,.88) 38%, rgba(244,241,234,.44) 68%, rgba(244,241,234,.82) 100%),
-        url("assets/11-a1de93cb81.png") right -6vw center / min(78vw, 1120px) auto no-repeat;
-      opacity: .46;
+        linear-gradient(90deg, rgba(244,241,234,.96) 0%, rgba(244,241,234,.84) 34%, rgba(244,241,234,.36) 62%, rgba(244,241,234,.74) 100%);
       pointer-events: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: 16vw;
+      top: 28px;
+      z-index: 1;
+      height: min(122vh, 1180px);
+      aspect-ratio: 477 / 1254;
+      background: url("assets/doberman-hero-pola-dobija.png") center / cover no-repeat;
+      opacity: .42;
+      filter: brightness(1.34) contrast(.88) saturate(.92);
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
     }
     .hero-grid {
       position: relative;
@@ -846,8 +860,8 @@
     .work-lightbox img {
       position: relative;
       display: block;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       background: transparent;
     }
@@ -1101,7 +1115,7 @@
     @media (max-width: 720px) {
       header { padding: 14px 20px; }
       .logo { font-size: 34px; letter-spacing: 4px; gap: 12px; }
-      .logo-icon-wrap { width: 52px; height: 52px; border-radius: 18px; }
+      .logo-icon-wrap { width: 60px; height: 60px; border-radius: 16px; }
       nav a { padding: 8px 12px; font-size: 11px; letter-spacing: 1.5px; margin-left: 8px; }
       nav a:not(:last-child) { display: none; }
       body::after { width: 2px; }
@@ -1109,9 +1123,14 @@
       .hero { padding: 100px 20px 56px; }
       .hero::before {
         background:
-          linear-gradient(180deg, rgba(244,241,234,.82) 0%, rgba(244,241,234,.56) 45%, rgba(244,241,234,.82) 100%),
-          url("assets/11-a1de93cb81.png") right -30vw top 92px / min(112vw, 640px) auto no-repeat;
-        opacity: .52;
+          linear-gradient(180deg, rgba(244,241,234,.78) 0%, rgba(244,241,234,.48) 42%, rgba(244,241,234,.84) 100%);
+      }
+      .hero::after {
+        right: -14vw;
+        top: 62px;
+        height: min(104vh, 780px);
+        opacity: .50;
+        filter: brightness(1.30) contrast(.88) saturate(.92);
       }
       .hero-grid { gap: 28px; }
       .hero-eyebrow,
@@ -1148,18 +1167,19 @@
         box-shadow: inset 0 0 0 4px var(--red);
       }
       .work-lightbox {
-        padding: 10px;
+        padding: 14px;
       }
       .work-lightbox__frame {
-        width: min(96vw, 960px);
-        max-height: 86vh;
+        width: min(calc(100vw - 28px), 960px);
+        max-height: 84vh;
+        box-sizing: border-box;
       }
       .work-lightbox__frame::before {
         box-shadow: inset 0 0 0 4px var(--red);
       }
       .work-lightbox__close {
-        right: -8px;
-        top: -8px;
+        right: 8px;
+        top: 8px;
         width: 32px;
         height: 32px;
         font-size: 18px;
@@ -1192,10 +1212,10 @@
       }
       .showcase-stage {
         min-height: 0;
-        padding: 12px 0 10px 12px;
+        padding: 12px 0 10px 0;
       }
       .image-feature img {
-        width: 104%;
+        width: 100%;
         max-width: none;
         height: auto;
         object-fit: contain;
@@ -1291,6 +1311,13 @@
       background: var(--red);
       border-radius: 12px;
     }
+    body.work-lightbox-active .cur {
+      background: #f5c84c;
+      box-shadow: 0 0 0 1px rgba(245,200,76,.35), 0 0 18px rgba(245,200,76,.34);
+    }
+    body.work-lightbox-active .cur.big {
+      background: #f5c84c;
+    }
     @media (hover: none) {
       body.has-custom-cursor { cursor: auto; }
       .cur { display: none; }
@@ -1303,7 +1330,7 @@
     <header>
       <a class="logo" href="index.html">
         <span class="logo-icon-wrap">
-          <img class="logo-icon" src="assets/lionsign-icon-bw.png" alt="Lionsign Studio icon" width="56" height="56" decoding="sync" fetchpriority="high">
+          <img class="logo-icon" src="assets/lionsign-icon-bw.png" alt="Lionsign Studio icon" width="68" height="68" decoding="sync" fetchpriority="high">
         </span>
         <span class="logo-text">LION<span>SIGN</span></span>
       </a>
@@ -1545,6 +1572,7 @@
     const workLightboxImage = workLightbox.querySelector("img");
     const closeWorkLightbox = () => {
       workLightbox.classList.remove("is-open");
+      document.body.classList.remove("work-lightbox-active");
       workLightboxImage.removeAttribute("src");
     };
     const openWorkLightbox = (src, alt) => {
@@ -1552,6 +1580,7 @@
       workLightboxImage.src = src;
       workLightboxImage.alt = alt;
       workLightbox.classList.add("is-open");
+      document.body.classList.add("work-lightbox-active");
     };
     workLightbox.addEventListener("click", event => {
       if (event.target === workLightbox || event.target.closest(".work-lightbox__close")) {
