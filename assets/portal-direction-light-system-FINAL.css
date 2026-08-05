@@ -8170,7 +8170,7 @@ select {
 }
 
 .forge-portal .hero h1 {
-  letter-spacing: -0.1em;
+  letter-spacing: -0.09em;
 }
 
 /* HARMONIZE: The Method's "Core belief." was the odd one out (its own small size) — join it to the shared --forge-section-title used by every other section (Four focus areas, Working principles, etc.) */
@@ -8265,8 +8265,11 @@ select {
 
 /* RESTORE (lost in a sandbox reset): hero-sub smaller + normal weight */
 .forge-portal .hero p.hero-sub {
-  font-size: clamp(11px, 1vw, 14px) !important;
+  font-size: clamp(9px, 0.8vw, 11px) !important;
   font-weight: 400 !important;
+  max-width: 420px !important;
+  white-space: nowrap !important;
+  margin-top: 4px !important;
 }
 
 /* RESTORE (lost in a sandbox reset): The Approach flow-step sizing + spacing */
