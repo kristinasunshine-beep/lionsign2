@@ -5742,7 +5742,7 @@ select {
 
   .forge-portal .footer-logo {
     bottom: -0.14em;
-    font-size: 106px;
+    font-size: clamp(50px, 14vw, 90px);
   }
 
   .forge-portal .footer-copy {
@@ -7592,7 +7592,7 @@ select {
 
 @media (max-width: 820px) {
   .forge-portal {
-    --forge-hero-title: clamp(54px, 17vw, 80px);
+    --forge-hero-title: clamp(64px, 22vw, 108px);
   }
 
   .forge-portal .cta-section .section-title em {
@@ -8264,12 +8264,12 @@ select {
 }
 
 /* RESTORE (lost in a sandbox reset): hero-sub smaller + normal weight */
-.forge-portal .hero p.hero-sub {
-  font-size: clamp(9px, 0.8vw, 11px) !important;
-  font-weight: 400 !important;
-  max-width: 420px !important;
-  white-space: nowrap !important;
-  margin-top: 4px !important;
+@media (min-width: 821px) {
+  .forge-portal .hero p.hero-sub {
+    max-width: 420px !important;
+    white-space: nowrap !important;
+    margin-top: 4px !important;
+  }
 }
 
 /* RESTORE (lost in a sandbox reset): The Approach flow-step sizing + spacing */
@@ -8387,5 +8387,25 @@ select {
 
   .forge-portal .hero-number b {
     font-size: 10px;
+  }
+}
+
+/* HERO hero-sub: size/weight apply everywhere; nowrap only on desktop (was pushing "attention" off-screen on mobile) */
+.forge-portal .hero p.hero-sub {
+  font-size: clamp(9px, 0.8vw, 11px) !important;
+  font-weight: 400 !important;
+}
+
+@media (max-width: 820px) {
+  .forge-portal .hero p.hero-sub {
+    white-space: normal !important;
+    max-width: 180px !important;
+  }
+}
+
+/* HERO monolith MOBILE: height +32% again, text-at-top rule untouched (still applies via the universal justify-content:flex-start) */
+@media (max-width: 820px) {
+  .forge-portal .hero-number {
+    height: clamp(284px, 75vw, 363px);
   }
 }
