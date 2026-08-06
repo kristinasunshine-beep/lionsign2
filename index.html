@@ -219,9 +219,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -969,10 +966,242 @@ footer {
   /* IMAGES */
   img { max-width: 100%; height: auto; }
 }
+
+/* FOUR FOCUS — FORGE CARD TREATMENT; EXISTING CARD TYPOGRAPHY IS PRESERVED */
+#services .services-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.3vw, 22px);
+  border: 0;
+  background: transparent;
+  perspective: none;
+}
+
+#services .svc-card,
+#services .svc-card:nth-child(2),
+#services .svc-card:nth-child(3),
+#services .svc-card:nth-child(4) {
+  --focus-card-bg: #111111;
+  --focus-card-ink: #ffffff;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: .94 / 1;
+  padding: clamp(18px, 1.5vw, 24px);
+  overflow: hidden;
+  border: 0;
+  background: var(--focus-card-bg);
+  color: var(--focus-card-ink);
+  box-shadow: none;
+  transform: none;
+  transition:
+    transform 320ms cubic-bezier(.22, 1, .36, 1),
+    filter 330ms cubic-bezier(.22, 1, .36, 1);
+}
+
+#services .svc-card:nth-child(2) {
+  --focus-card-bg: #1e3f7a;
+}
+
+#services .svc-card:nth-child(3) {
+  --focus-card-bg: #ffffff;
+  --focus-card-ink: #111111;
+}
+
+#services .svc-card::before {
+  position: absolute;
+  z-index: 0;
+  top: -.42em;
+  right: auto;
+  bottom: auto;
+  left: clamp(18px, 1.4vw, 22px);
+  display: block;
+  width: auto;
+  height: auto;
+  background: none;
+  color: var(--focus-card-ink);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(240px, 25vw, 410px);
+  font-weight: 900;
+  line-height: .92;
+  letter-spacing: -.05em;
+  opacity: .95;
+  transform: none;
+  transition: opacity 330ms cubic-bezier(.22, 1, .36, 1);
+  pointer-events: none;
+}
+
+#services .svc-card:nth-child(1)::before { content: 'D'; }
+#services .svc-card:nth-child(2)::before { content: 'D'; }
+#services .svc-card:nth-child(3)::before { content: 'L'; }
+#services .svc-card:nth-child(4)::before { content: 'O'; }
+
+#services .svc-card::after {
+  content: '';
+  position: absolute;
+  z-index: 4;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.78), rgba(255,255,255,.78)) 0 0 / 0% 100% no-repeat,
+    rgba(255,255,255,.12);
+  transform: none;
+  pointer-events: none;
+  transition: background-size 330ms cubic-bezier(.22, 1, .36, 1);
+}
+
+#services .svc-card:nth-child(3)::after {
+  background:
+    linear-gradient(90deg, rgba(17,17,17,.68), rgba(17,17,17,.68)) 0 0 / 0% 100% no-repeat,
+    rgba(17,17,17,.12);
+}
+
+#services .services-grid .svc-card:is(:hover, :focus-visible, :active) {
+  border: 0;
+  background: var(--focus-card-bg);
+  color: var(--focus-card-ink);
+  box-shadow: none;
+  filter: contrast(1.035);
+  outline: 0;
+  transform: translateY(-10px) scale(1.02);
+}
+
+#services .services-grid .svc-card:is(:hover, :focus-visible, :active)::before {
+  opacity: 1;
+}
+
+#services .services-grid .svc-card:is(:hover, :focus-visible, :active)::after {
+  background-size: 100% 100%, 100% 100%;
+}
+
+#services .svc-card > * {
+  position: relative;
+  z-index: 3;
+}
+
+#services .svc-num {
+  position: absolute;
+  top: clamp(40px, 3.3vw, 52px);
+  left: clamp(18px, 1.4vw, 22px);
+  display: inline-flex;
+  width: auto;
+  min-width: 80px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--focus-card-bg);
+  color: var(--focus-card-ink);
+  font-size: 14px;
+  line-height: 1;
+}
+
+#services .svc-card h3 {
+  align-self: stretch;
+  margin: 0 0 10px;
+  color: currentColor;
+}
+
+#services .svc-card p {
+  align-self: stretch;
+  margin: 0;
+  padding: 0;
+  color: currentColor;
+}
+
+#services .svc-arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: currentColor;
+  font-size: 0;
+  transform: none;
+  transition: transform 320ms cubic-bezier(.22, 1, .36, 1);
+}
+
+#services .svc-arrow::before {
+  content: '\2197';
+  font-size: 17px;
+  line-height: 1;
+}
+
+#services .services-grid .svc-card:is(:hover, :focus-visible, :active) .svc-arrow {
+  color: currentColor;
+  transform: translate(4px, -4px) scale(1.1);
+}
+
+@media (max-width: 1040px) and (min-width: 769px) {
+  #services .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #services .svc-card,
+  #services .svc-card:nth-child(2),
+  #services .svc-card:nth-child(3),
+  #services .svc-card:nth-child(4) {
+    aspect-ratio: 1.12 / 1;
+  }
+
+  #services .svc-card::before {
+    font-size: clamp(260px, 47vw, 430px);
+  }
+}
+
+@media (max-width: 768px) {
+  #services .services-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  #services .svc-card,
+  #services .svc-card:nth-child(2),
+  #services .svc-card:nth-child(3),
+  #services .svc-card:nth-child(4) {
+    min-height: 200px;
+    aspect-ratio: 1.55 / 1;
+    padding: 20px;
+  }
+
+  #services .svc-card::before {
+    top: -.44em;
+    font-size: clamp(175px, 50vw, 205px);
+  }
+
+  #services .svc-num {
+    top: 34px;
+    left: 20px;
+    min-width: 72px;
+    height: 25px;
+    padding-inline: 13px;
+    font-size: 13px;
+  }
+
+  #services .svc-arrow {
+    top: 18px;
+    right: 18px;
+  }
+}
 </style>
-<link rel="stylesheet" href="assets/portal-direction-light-system.css?v=cursor-ring-54">
 </head>
-<body class="forge-portal">
+<body>
 
 <div class="stripe" aria-hidden="true"></div>
 <div class="cur" id="cur" aria-hidden="true"></div>
@@ -993,18 +1222,13 @@ footer {
 <main>
 <section class="hero" aria-label="Hero">
   <div class="hero-eyebrow">Identity Studio</div>
-  <h1><span>Design builds</span><em>dominance.</em></h1>
-  <p class="hero-sub">Systems, spaces and brands that shape attention</p>
+  <h1>Design<br>builds <em>dominance</em></h1>
+  <p class="hero-sub">Identities, systems and spaces that shape attention</p>
   <div class="hero-cta">
     <a href="#services" class="btn-primary">View Services</a>
     <a href="https://www.facebook.com/kristina.radosavljevic" class="btn-ghost" target="_blank">Get in touch</a>
   </div>
-  <div class="hero-number" aria-hidden="true">
-    <strong>LIONSIGN&reg;</strong>
-    <span>Belgrade / International</span>
-    <p>Across disciplines. One point of view.</p>
-    <b>Difference, made visible</b>
-  </div>
+  <div class="hero-number" aria-hidden="true">I</div>
 </section>
 
 <div class="marquee-wrap">
@@ -1028,10 +1252,11 @@ footer {
 
 <section id="why">
   <div class="section-label reveal">The Method</div>
-  <h2 class="section-title reveal">Core belief.</h2>
+  <h2 class="section-title reveal">Core belief</h2>
   <div class="why-grid reveal">
     <div class="why-item">
-      <h3><span>Identity Is</span><strong>Power</strong></h3>
+      <div class="why-num">01</div>
+      <h3>Identity Is Power</h3>
       <p>A strong identity doesn't follow trends &mdash; it sets them</p>
     </div>
   </div>
@@ -1039,57 +1264,60 @@ footer {
 
 <section class="system-section" id="system">
   <div class="section-label reveal">The Approach</div>
-  <h2 class="section-title reveal">From insight<br><em>to presence.</em></h2>
+  <h2 class="section-title reveal">From insight<br><em>to presence</em></h2>
   <div class="flow-row reveal">
     <div class="flow-step">
       <div class="flow-step-num">1</div>
       <div class="flow-step-name">Research</div>
     </div>
+    <div class="flow-arrow">&rarr;</div>
     <div class="flow-step">
       <div class="flow-step-num">2</div>
-      <div class="flow-step-name">Insight</div>
+      <div class="flow-step-name">Identity</div>
     </div>
+    <div class="flow-arrow">&rarr;</div>
     <div class="flow-step">
       <div class="flow-step-num">3</div>
       <div class="flow-step-name">System</div>
     </div>
+    <div class="flow-arrow">&rarr;</div>
     <div class="flow-step">
       <div class="flow-step-num">4</div>
-      <div class="flow-step-name">Deployment</div>
+      <div class="flow-step-name">Deploy</div>
     </div>
+    <div class="flow-arrow">&rarr;</div>
     <div class="flow-step" style="background:var(--red);">
       <div class="flow-step-num" style="color:rgba(255,255,255,0.24);">5</div>
       <div class="flow-step-name" style="color:#fff;">Dominance</div>
     </div>
   </div>
-  <div class="flow-summary reveal">
-    <span class="flow-summary-label">Decision standard</span>
-    <p>Evidence sets the course. Coherence gives it form. The result is a position competitors cannot easily reproduce.</p>
-  </div>
 </section>
 
 <section id="services">
   <div class="section-label reveal">Services</div>
-  <h2 class="section-title reveal">Four<br><em>focus areas.</em></h2>
-  <div class="focus-view reveal" aria-hidden="true">View all 04</div>
+  <h2 class="section-title reveal">Four<br><em>focus areas</em></h2>
   <div class="services-grid reveal">
-    <a href="doberman-branding.html" class="svc-card" data-initial="D">
+    <a href="doberman-branding.html" class="svc-card">
       <div class="svc-num">01</div>
+      <div class="svc-arrow">&rarr;</div>
       <h3>Doberman Branding</h3>
       <p>Identity systems</p>
     </a>
-    <a href="digital-design.html" class="svc-card" data-initial="D">
+    <a href="digital-design.html" class="svc-card">
       <div class="svc-num">02</div>
+      <div class="svc-arrow">&rarr;</div>
       <h3>Digital Graphic</h3>
       <p>Design &amp; Marketing</p>
     </a>
-    <a href="landscape-design.html" class="svc-card" data-initial="L">
+    <a href="landscape-design.html" class="svc-card">
       <div class="svc-num">03</div>
+      <div class="svc-arrow">&rarr;</div>
       <h3>Landscaping</h3>
       <p>Spatial architecture</p>
     </a>
-    <a href="obsidian-line.html" class="svc-card" data-initial="O">
+    <a href="obsidian-line.html" class="svc-card">
       <div class="svc-num">04</div>
+      <div class="svc-arrow">&rarr;</div>
       <h3>Obsidian Line</h3>
       <p>Limited T-shirt collection</p>
     </a>
@@ -1098,7 +1326,7 @@ footer {
 
 <section id="manifest">
   <div class="section-label reveal">Manifest</div>
-  <h2 class="section-title reveal">Working<br><em>principles.</em></h2>
+  <h2 class="section-title reveal">Working<br><em>principles</em></h2>
   <div class="manifest-grid reveal">
     <div class="m-card">
       <p>Design Clarity</p>
@@ -1114,7 +1342,7 @@ footer {
 
 <section id="faq">
   <div class="section-label reveal">FAQ</div>
-  <h2 class="section-title reveal">Studio notes<br><em>before contact.</em></h2>
+  <h2 class="section-title reveal">Studio notes<br><em>before contact</em></h2>
   <div class="faq reveal">
     <div class="faq-item">
       <div class="faq-q">What are LIONSIGN Studio's core activities?<div class="faq-icon">+</div></div>
@@ -1145,7 +1373,7 @@ footer {
 
 <section class="cta-section" id="contact">
   <div class="section-label">Start Today</div>
-  <h2 class="section-title">Power is not given<br><em>It is designed.</em></h2>
+  <h2 class="section-title">Power is not given<br><em>It is designed</em></h2>
 
   <div class="form-wrap reveal" id="contact-form-wrap">
     <form id="contact-form" style="margin:0;" novalidate>
@@ -1171,17 +1399,14 @@ footer {
 
 </main>
 <footer>
-  <div class="footer-logo">LIONSIGN</div>
+  <div class="footer-logo">Lionsign</div>
   <div class="footer-copy">© 2019–2026 Lionsign — Identity Studio. All rights reserved · <a href="answers.html">Answer archive</a></div>
 </footer>
 
 <script>
 const cur = document.getElementById('cur');
-const cursorInteractiveSelector = 'a, button, .faq-q, .svc-card, .flow-step';
-const isCursorInteractive = target => target instanceof Element && Boolean(target.closest(cursorInteractiveSelector));
 let mx = 0, my = 0, posX = 0, posY = 0;
 let isTouchDevice = false;
-let touchCursorTimer;
 
 // Detect touch
 window.addEventListener('touchstart', () => { isTouchDevice = true; }, { once: true, passive: true });
@@ -1190,7 +1415,6 @@ window.addEventListener('touchstart', () => { isTouchDevice = true; }, { once: t
 document.addEventListener('mousemove', e => {
   if (isTouchDevice) return;
   mx = e.clientX; my = e.clientY;
-  cur.classList.toggle('big', isCursorInteractive(e.target));
 });
 
 function animateCursor() {
@@ -1224,75 +1448,23 @@ document.addEventListener('touchstart', e => {
   cur.style.left = posX + 'px';
   cur.style.top  = posY + 'px';
   cur.style.display = 'block';
-  cur.style.opacity = '1';
-  window.clearTimeout(touchCursorTimer);
-  cur.classList.add('touch-active');
-  cur.classList.toggle('big', isCursorInteractive(e.target));
 }, { passive: true });
 
 // Touch end — cursor stays visible at last position
 document.addEventListener('touchend', () => {
   cur.style.opacity = '1';
-  window.clearTimeout(touchCursorTimer);
-  window.setTimeout(() => cur.classList.remove('big'), 300);
-  touchCursorTimer = window.setTimeout(() => cur.classList.remove('touch-active'), 360);
-}, { passive: true });
-
-document.addEventListener('touchcancel', () => {
-  window.clearTimeout(touchCursorTimer);
-  touchCursorTimer = window.setTimeout(() => cur.classList.remove('touch-active'), 180);
-}, { passive: true });
-
-// Pointer fallback keeps the same signal in mobile browsers that normalize touch input.
-document.addEventListener('pointerdown', e => {
-  if (e.pointerType !== 'touch' && e.pointerType !== 'pen') return;
-  isTouchDevice = true;
-  mx = posX = e.clientX;
-  my = posY = e.clientY;
-  cur.style.left = posX + 'px';
-  cur.style.top = posY + 'px';
-  cur.style.display = 'block';
-  cur.style.opacity = '1';
-  window.clearTimeout(touchCursorTimer);
-  cur.classList.add('touch-active');
-  cur.classList.toggle('big', isCursorInteractive(e.target));
-}, { passive: true });
-
-document.addEventListener('pointermove', e => {
-  if (e.pointerType !== 'touch' && e.pointerType !== 'pen') return;
-  mx = posX = e.clientX;
-  my = posY = e.clientY;
-  cur.style.left = posX + 'px';
-  cur.style.top = posY + 'px';
-}, { passive: true });
-
-document.addEventListener('pointerup', e => {
-  if (e.pointerType !== 'touch' && e.pointerType !== 'pen') return;
-  window.clearTimeout(touchCursorTimer);
-  window.setTimeout(() => cur.classList.remove('big'), 300);
-  touchCursorTimer = window.setTimeout(() => cur.classList.remove('touch-active'), 520);
 }, { passive: true });
 
 // Hover states — desktop
-document.querySelectorAll(cursorInteractiveSelector).forEach(el => {
+document.querySelectorAll('a, button, .faq-q, .svc-card').forEach(el => {
   el.addEventListener('mouseenter', () => cur.classList.add('big'));
   el.addEventListener('mouseleave', () => cur.classList.remove('big'));
 });
 
 // Touch tap states — identical to hover on mobile
-document.querySelectorAll(cursorInteractiveSelector).forEach(el => {
+document.querySelectorAll('a, button, .faq-q, .svc-card').forEach(el => {
   el.addEventListener('touchstart', () => cur.classList.add('big'), { passive: true });
   el.addEventListener('touchend',   () => setTimeout(() => cur.classList.remove('big'), 300), { passive: true });
-});
-
-document.querySelectorAll('.flow-step').forEach(step => {
-  const clearTouchHover = () => {
-    window.setTimeout(() => step.classList.remove('touch-hover'), 260);
-  };
-
-  step.addEventListener('touchstart', () => step.classList.add('touch-hover'), { passive: true });
-  step.addEventListener('touchend', clearTouchHover, { passive: true });
-  step.addEventListener('touchcancel', clearTouchHover, { passive: true });
 });
 
 document.querySelectorAll('.svc-card').forEach(card => {
