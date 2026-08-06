@@ -8578,3 +8578,40 @@ select {
     bottom: -0.35em;
   }
 }
+
+/* ALL HEADLINES: tighten letter-spacing to match the hero h1 treatment, desktop and mobile */
+.forge-portal .section-title,
+.forge-portal .system-section .section-title,
+.forge-portal #why .why-item h3 {
+  letter-spacing: -0.09em !important;
+}
+
+/* "Identity Is Power": bold the first segment to match how "From insight" is bold in the next section (700, matching From insight's actual weight) */
+.forge-portal #why .why-item h3 span {
+  font-weight: 700;
+}
+
+/* "Identity Is Power" -> sentence case: only the very first letter capitalized */
+.forge-portal #why .why-item h3 {
+  text-transform: lowercase;
+}
+
+.forge-portal #why .why-item h3::first-letter {
+  text-transform: uppercase;
+}
+
+/* fix: span/strong had their own text-transform:none, which was blocking the lowercase from applying */
+.forge-portal #why .why-item h3 span,
+.forge-portal #why .why-item h3 strong {
+  text-transform: lowercase;
+}
+
+/* "Identity is power." — period attached directly after Power, inherits correct size from its context */
+.forge-portal #why .why-item h3 strong::after {
+  content: ".";
+}
+
+/* fix: ::first-letter on the h3 wasn't reaching through the nested block-level span — target the span directly */
+.forge-portal #why .why-item h3 span::first-letter {
+  text-transform: uppercase;
+}
