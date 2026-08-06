@@ -8131,7 +8131,7 @@ select {
 /* HERO: same principle as .cta-section::before (small offset, bleeds off the edge) but anchored to the TOP instead of bottom, so it sits above the headline instead of needing to "clear" it */
 @media (min-width: 821px) {
   .forge-portal .hero::before {
-    top: -0.3em;
+    top: -0.22em;
     bottom: auto;
   }
 }
@@ -8552,5 +8552,29 @@ select {
 @media (max-width: 820px) {
   .forge-portal #why .why-item h3 {
     font-size: var(--forge-section-title);
+  }
+}
+
+/* MOBILE: monolith -12% height */
+@media (max-width: 820px) {
+  .forge-portal .hero-number {
+    height: clamp(219px, 62vw, 277px);
+  }
+}
+
+/* MOBILE: View Services nudged left */
+@media (max-width: 820px) {
+  .forge-portal .hero-cta {
+    right: 45px;
+  }
+}
+
+/* Reverted — graph paper pattern removed from hero */
+
+/* HERO ghost LIONSIGN mobile: match the footer's huge size, and lower position slightly */
+@media (max-width: 820px) {
+  .forge-portal .hero::before {
+    font-size: clamp(140px, 21vw, 200px);
+    bottom: -0.35em;
   }
 }
