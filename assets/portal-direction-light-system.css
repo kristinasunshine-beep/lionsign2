@@ -8409,3 +8409,54 @@ select {
     height: clamp(284px, 75vw, 363px);
   }
 }
+
+/* MOBILE ONLY — desktop untouched */
+
+/* Monolith: -12% height */
+@media (max-width: 820px) {
+  .forge-portal .hero-number {
+    height: clamp(250px, 66vw, 319px);
+  }
+}
+
+/* Remove Get in touch, raise View Services */
+@media (max-width: 820px) {
+  .forge-portal .hero-cta .btn-ghost {
+    display: none;
+  }
+
+  .forge-portal .hero-cta {
+    bottom: 100px;
+  }
+}
+
+/* Ghost LIONSIGN: nudge down slightly */
+@media (max-width: 820px) {
+  .forge-portal .hero::before {
+    bottom: -0.25em;
+  }
+}
+
+/* "Systems, spaces..." fits on one line */
+@media (max-width: 820px) {
+  .forge-portal .hero p.hero-sub {
+    white-space: nowrap !important;
+    max-width: clamp(200px, 62vw, 300px) !important;
+    font-size: clamp(7px, 2vw, 9px) !important;
+  }
+}
+
+/* VIEW SERVICES: no color change on hover/tap, only the arrow rotates — applies desktop and mobile */
+.forge-portal .btn-primary:hover::after,
+.forge-portal .btn-primary:focus-visible::after,
+.forge-portal .hero-cta .btn-primary:hover::after,
+.forge-portal .hero-cta .btn-primary:focus-visible::after {
+  background: var(--forge-ink) !important;
+  color: var(--forge-white) !important;
+  transform: rotate(-45deg) !important;
+}
+
+/* CTA: tighten letter-spacing across "Power is not given / It is designed.", desktop and mobile */
+.forge-portal .cta-section .section-title {
+  letter-spacing: -0.03em;
+}
