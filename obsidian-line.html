@@ -717,6 +717,7 @@
     .cur {
       width: 10px;
       height: 10px;
+      border: 0 solid transparent;
       background: #1e3f7a;
       border-radius: 50%;
       position: fixed;
@@ -725,14 +726,21 @@
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%,-50%);
-      transition: width .2s, height .2s, border-radius .2s, opacity .3s, background .2s;
+      transition:
+        width .22s ease,
+        height .22s ease,
+        background-color .22s ease,
+        border-color .22s ease,
+        border-width .22s ease,
+        opacity .3s ease;
       mix-blend-mode: normal;
     }
     .cur.big {
-      width: 42px;
-      height: 42px;
-      background: var(--red);
-      border-radius: 12px;
+      width: 25px;
+      height: 25px;
+      border: 2px solid #b91f2a;
+      border-radius: 50%;
+      background: transparent;
     }
     @media (hover: none) {
       body.has-custom-cursor { cursor: auto; }
