@@ -1199,6 +1199,213 @@ footer {
     right: 18px;
   }
 }
+
+/* REQUESTED INDEX COSMETIC UPDATES */
+#services .section-title em {
+  color: var(--ink);
+}
+
+#services .svc-card,
+#services .svc-card:nth-child(2),
+#services .svc-card:nth-child(3),
+#services .svc-card:nth-child(4) {
+  padding: clamp(18px, 1.4vw, 20px);
+}
+
+#services .svc-card::before {
+  top: -.33em;
+  left: clamp(14px, 1.2vw, 18px);
+  font-size: clamp(260px, 27vw, 410px);
+  line-height: .9;
+}
+
+#services .svc-num {
+  top: 18px;
+  left: 6px;
+  width: 36px;
+  min-width: 0;
+  height: 21px;
+  padding: 0 3px;
+  font-size: 11px;
+}
+
+#services .svc-card h3 {
+  margin-bottom: 7px;
+  font-size: clamp(24px, 2.05vw, 30px);
+  line-height: .88;
+  letter-spacing: .03em;
+}
+
+#services .svc-card p {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+#services .svc-arrow {
+  display: none;
+}
+
+#manifest .section-label {
+  color: var(--blue);
+}
+
+#manifest .section-label::before {
+  background: var(--blue);
+  box-shadow: 0 0 12px rgba(30,63,122,0.35);
+}
+
+#manifest .section-title em {
+  color: var(--gold);
+}
+
+.cta-section .section-title em {
+  color: var(--gold);
+}
+
+/* CURSOR: BLUE DOT TO RED RING */
+.cur {
+  border: 0 solid transparent;
+  background: var(--blue);
+  border-radius: 50%;
+  transition:
+    width .22s ease,
+    height .22s ease,
+    background-color .22s ease,
+    border-color .22s ease,
+    border-width .22s ease,
+    opacity .3s ease;
+}
+
+.cur.big {
+  width: 25px;
+  height: 25px;
+  border: 2px solid var(--red);
+  border-radius: 50%;
+  background: transparent;
+}
+
+/* FOUR FOCUS: STATIONARY CARDS, QUIET INTERNAL MOTION */
+#services .svc-card,
+#services .svc-card:nth-child(2),
+#services .svc-card:nth-child(3),
+#services .svc-card:nth-child(4) {
+  transition: filter 320ms cubic-bezier(.22, 1, .36, 1);
+}
+
+#services .svc-card::before {
+  transition:
+    transform 360ms cubic-bezier(.22, 1, .36, 1),
+    opacity 320ms ease;
+}
+
+#services .services-grid .svc-card:is(:hover, :focus-visible, :active) {
+  transform: none;
+  filter: none;
+}
+
+#services .services-grid .svc-card:is(:hover, :focus-visible, :active)::before {
+  transform: translateX(14px);
+  opacity: .95;
+}
+
+@media (max-width: 1200px) and (min-width: 769px) {
+  #services .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #services .svc-card,
+  #services .svc-card:nth-child(2),
+  #services .svc-card:nth-child(3),
+  #services .svc-card:nth-child(4) {
+    aspect-ratio: 1.12 / 1;
+  }
+
+  #services .svc-card::before {
+    font-size: clamp(320px, 42vw, 500px);
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .logo {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 8px;
+    font-size: clamp(23px, 7vw, 28px);
+    letter-spacing: 3px;
+  }
+
+  .logo-icon-wrap {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+
+  .logo-text {
+    white-space: nowrap;
+  }
+
+  header nav {
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  header nav a.contact-link {
+    display: inline-flex;
+    margin-left: 0;
+    padding: 7px 9px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  #services .services-grid {
+    gap: 12px;
+    margin-top: 44px;
+  }
+
+  #services .svc-card,
+  #services .svc-card:nth-child(2),
+  #services .svc-card:nth-child(3),
+  #services .svc-card:nth-child(4) {
+    min-height: clamp(224px, 64vw, 300px);
+    aspect-ratio: auto;
+    padding: 18px 16px 20px;
+  }
+
+  #services .svc-card::before {
+    top: -.31em;
+    left: 10px;
+    font-size: clamp(230px, 72vw, 300px);
+    line-height: .9;
+  }
+
+  #services .svc-num {
+    top: 18px;
+    left: 6px;
+    width: 36px;
+    min-width: 0;
+    height: 21px;
+    padding: 0 3px;
+    font-size: 11px;
+  }
+
+  #services .svc-card h3 {
+    margin-bottom: 7px;
+    font-size: clamp(24px, 6.8vw, 28px);
+    line-height: .88;
+    letter-spacing: .03em;
+  }
+
+  #services .svc-card p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+}
 </style>
 </head>
 <body>
