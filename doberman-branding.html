@@ -358,21 +358,6 @@
         linear-gradient(90deg, rgba(244,241,234,.96) 0%, rgba(244,241,234,.84) 34%, rgba(244,241,234,.36) 62%, rgba(244,241,234,.74) 100%);
       pointer-events: none;
     }
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: 16vw;
-      top: 52px;
-      z-index: 1;
-      height: calc(100% + 96px);
-      aspect-ratio: 477 / 1254;
-      background: url("assets/doberman-hero-pola-dobija.png") center center / cover no-repeat;
-      opacity: .40;
-      filter: brightness(1.76) contrast(.72) saturate(.82);
-      pointer-events: none;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
-    }
     .hero-grid {
       position: relative;
       z-index: 2;
@@ -406,48 +391,6 @@
       margin-top: 56px;
       width: fit-content;
       max-width: 100%;
-    }
-    .hero-card {
-      display: none;
-      position: relative;
-      width: min(420px, 100%);
-      justify-self: end;
-      align-self: start;
-      margin: 18px -64px 0 0;
-      border: 0;
-      background: transparent;
-      box-shadow: none;
-      padding: 0;
-      transform: none;
-    }
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 8% -4% 6% -4%;
-      z-index: -1;
-      background:
-        radial-gradient(ellipse at center, rgba(185,31,42,.13), rgba(185,31,42,0) 58%),
-        radial-gradient(ellipse at center, rgba(0,0,0,.08), rgba(0,0,0,0) 66%);
-      filter: blur(18px);
-      pointer-events: none;
-    }
-    .hero-card img {
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      object-position: center;
-      filter: grayscale(.12) contrast(1.04);
-    }
-    .hero-card::after {
-      content: "01 / 24";
-      position: absolute;
-      right: 14px;
-      bottom: 14px;
-      padding: 8px 10px;
-      background: var(--red);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 3px;
     }
     .hero-number {
       position: absolute;
@@ -1111,10 +1054,6 @@
       .statement-grid,
       .split-head,
       .image-grid { grid-template-columns: 1fr; }
-      .hero-card {
-        justify-self: center;
-        margin: 10px auto 0;
-      }
       .process-grid,
       .before-after { grid-template-columns: 1fr 1fr; }
       .service-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1134,14 +1073,6 @@
         background:
           linear-gradient(180deg, rgba(244,241,234,.78) 0%, rgba(244,241,234,.48) 42%, rgba(244,241,234,.84) 100%);
       }
-      .hero::after {
-        right: -14vw;
-        top: 76px;
-        height: calc(100% + 110px);
-        background-position: center center;
-        opacity: .46;
-        filter: brightness(1.66) contrast(.74) saturate(.84);
-      }
       .hero-grid { gap: 28px; }
       .hero-eyebrow,
       .section-label { font-size: 9px; letter-spacing: 4px; }
@@ -1152,14 +1083,6 @@
       .hero-cta { margin-top: 32px; align-items: center; gap: 14px; }
       .btn-primary { min-height: 46px; padding: 0 28px; font-size: 12px; letter-spacing: 2px; border-radius: 8px; }
       .btn-ghost { font-size: 12px; }
-      .hero-card {
-        width: min(420px, 100%);
-        justify-self: center;
-        align-self: auto;
-        margin: 18px auto 0;
-        padding: 0;
-      }
-      .hero-card img { aspect-ratio: 1 / 1; object-position: center; }
       .hero-number { font-size: 260px; right: -16px; bottom: -32px; }
       .marquee-wrap { padding: 12px 0; }
       .marquee-track span { font-size: 13px; letter-spacing: 3px; }
@@ -1313,6 +1236,7 @@
     .cur {
       width: 10px;
       height: 10px;
+      border: 0 solid transparent;
       background: #1e3f7a;
       border-radius: 50%;
       position: fixed;
@@ -1321,21 +1245,21 @@
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%,-50%);
-      transition: width .2s, height .2s, border-radius .2s, opacity .3s, background .2s;
+      transition:
+        width .22s ease,
+        height .22s ease,
+        background-color .22s ease,
+        border-color .22s ease,
+        border-width .22s ease,
+        opacity .3s ease;
       mix-blend-mode: normal;
     }
     .cur.big {
-      width: 42px;
-      height: 42px;
-      background: var(--red);
-      border-radius: 12px;
-    }
-    body.work-lightbox-active .cur {
-      background: #f5c84c;
-      box-shadow: 0 0 0 1px rgba(245,200,76,.35), 0 0 18px rgba(245,200,76,.34);
-    }
-    body.work-lightbox-active .cur.big {
-      background: #f5c84c;
+      width: 25px;
+      height: 25px;
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      background: transparent;
     }
     @media (hover: none) {
       body.has-custom-cursor { cursor: auto; }
@@ -1372,9 +1296,6 @@
               <a class="btn-primary" href="#system">Design upgrade</a>
               <a class="btn-ghost" href="#work">View selected work</a>
             </div>
-          </div>
-          <div class="hero-card">
-            <img src="assets/11-a1de93cb81.png" alt="Lionsign Doberman mobile preview">
           </div>
         </div>
         <div class="hero-number">01</div>
@@ -1547,7 +1468,11 @@
       let offset = 0;
       let lastTime = performance.now();
       const mobileMotion = window.matchMedia("(max-width: 720px)");
-      const getSpeed = () => mobileMotion.matches ? 72 : 34;
+      const WORK_MARQUEE_SPEED_DESKTOP = 40;
+      const WORK_MARQUEE_SPEED_MOBILE = 80;
+      const getSpeed = () => mobileMotion.matches
+        ? WORK_MARQUEE_SPEED_MOBILE
+        : WORK_MARQUEE_SPEED_DESKTOP;
 
       const measure = () => {
         distance = Math.max(1, cards[midpoint].offsetLeft - cards[0].offsetLeft);
