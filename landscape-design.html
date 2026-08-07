@@ -682,7 +682,7 @@
       top: 50%;
       z-index: 0;
       height: 4px;
-      background: linear-gradient(90deg, transparent, rgba(83,111,91,.58), transparent);
+      background: var(--red);
       pointer-events: none;
     }
     .work-track {
@@ -1174,6 +1174,7 @@
     .cur {
       width: 10px;
       height: 10px;
+      border: 0 solid transparent;
       background: #1e3f7a;
       border-radius: 50%;
       position: fixed;
@@ -1182,21 +1183,29 @@
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%,-50%);
-      transition: width .2s, height .2s, border-radius .2s, opacity .3s, background .2s;
+      transition:
+        width .22s ease,
+        height .22s ease,
+        background-color .22s ease,
+        border-color .22s ease,
+        border-width .22s ease,
+        opacity .3s ease;
       mix-blend-mode: normal;
     }
     .cur.big {
-      width: 42px;
-      height: 42px;
-      background: var(--red);
-      border-radius: 12px;
+      width: 25px;
+      height: 25px;
+      border: 2px solid #b91f2a;
+      border-radius: 50%;
+      background: transparent;
     }
-    body.work-lightbox-active .cur {
-      background: #f5c84c;
-      box-shadow: 0 0 0 1px rgba(245,200,76,.35), 0 0 18px rgba(245,200,76,.34);
-    }
+    body.work-lightbox-active .cur,
     body.work-lightbox-active .cur.big {
-      background: #f5c84c;
+      width: 25px;
+      height: 25px;
+      border: 2px solid #f5c84c;
+      border-radius: 50%;
+      background: transparent;
     }
     @media (hover: none) {
       body.has-custom-cursor { cursor: auto; }
@@ -1365,27 +1374,43 @@
       const midpoint = cards.length / 2;
       if (!Number.isInteger(midpoint) || !cards[midpoint]) return;
 
-      let distance = 1;
-      let offset = 0;
-      let lastTime = performance.now();
       const mobileMotion = window.matchMedia("(max-width: 720px)");
-      const getSpeed = () => mobileMotion.matches ? 72 : 34;
+      const WORK_MARQUEE_SPEED_DESKTOP = 40;
+      const WORK_MARQUEE_SPEED_MOBILE = 80;
+      const getSpeed = () => mobileMotion.matches
+        ? WORK_MARQUEE_SPEED_MOBILE
+        : WORK_MARQUEE_SPEED_DESKTOP;
+      let workMarqueeAnimation;
+      let resizeFrame;
 
-      const measure = () => {
-        distance = Math.max(1, cards[midpoint].offsetLeft - cards[0].offsetLeft);
+      const startWorkMarquee = () => {
+        const distance = Math.max(1, cards[midpoint].offsetLeft - cards[0].offsetLeft);
+        const duration = distance / getSpeed() * 1000;
+        const previousDuration = workMarqueeAnimation?.effect.getTiming().duration;
+        const previousProgress = previousDuration
+          ? (workMarqueeAnimation.currentTime % previousDuration) / previousDuration
+          : 0;
+
+        workMarqueeAnimation?.cancel();
+        workMarqueeAnimation = track.animate(
+          [
+            { transform: "translate3d(0,0,0)" },
+            { transform: `translate3d(${-distance}px,0,0)` }
+          ],
+          {
+            duration,
+            iterations: Infinity,
+            easing: "linear"
+          }
+        );
+        workMarqueeAnimation.currentTime = previousProgress * duration;
       };
 
-      const animate = now => {
-        const elapsed = Math.min(34, now - lastTime);
-        lastTime = now;
-        offset = (offset + getSpeed() * elapsed / 1000) % distance;
-        track.style.transform = `translate3d(${-offset}px,0,0)`;
-        requestAnimationFrame(animate);
-      };
-
-      measure();
-      window.addEventListener("resize", measure, { passive: true });
-      requestAnimationFrame(animate);
+      requestAnimationFrame(startWorkMarquee);
+      window.addEventListener("resize", () => {
+        cancelAnimationFrame(resizeFrame);
+        resizeFrame = requestAnimationFrame(startWorkMarquee);
+      }, { passive: true });
     });
 
     document.querySelectorAll(".service-card").forEach(card => {
