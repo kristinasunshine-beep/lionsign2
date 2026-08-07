@@ -1211,40 +1211,85 @@ footer {
   color: var(--ink);
 }
 
+#services .services-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 1.8vw, 28px);
+}
+
 #services .svc-card,
 #services .svc-card:nth-child(2),
 #services .svc-card:nth-child(3),
 #services .svc-card:nth-child(4) {
-  padding: clamp(18px, 1.4vw, 20px);
+  --focus-accent: #b91f2a;
+  min-height: clamp(181px, 13.31vw, 218px);
+  aspect-ratio: auto;
+  justify-content: flex-end;
+  padding: clamp(14px, 1.25vw, 18px);
+  text-align: right;
+}
+
+#services .svc-card:nth-child(2) {
+  --focus-accent: #1e3f7a;
+}
+#services .svc-card:nth-child(3) {
+  --focus-accent: #536f5b;
+}
+#services .svc-card:nth-child(4) {
+  --focus-accent: #c6a75e;
 }
 
 #services .svc-card::before {
-  top: -.33em;
+  top: -.24em;
   left: clamp(14px, 1.2vw, 18px);
-  font-size: clamp(260px, 27vw, 410px);
+  font-size: clamp(180px, 17vw, 255px);
   line-height: .9;
 }
 
+#services .svc-card::after,
+#services .svc-card:nth-child(2)::after,
+#services .svc-card:nth-child(3)::after,
+#services .svc-card:nth-child(4)::after {
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(5px, .55vw, 8px);
+  background: var(--focus-accent);
+  box-shadow: none;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 360ms cubic-bezier(.22, 1, .36, 1);
+}
+
 #services .svc-num {
-  top: 18px;
+  top: 12px;
   left: 6px;
-  width: 36px;
+  width: 34px;
   min-width: 0;
-  height: 21px;
+  height: 19px;
   padding: 0 3px;
-  font-size: 11px;
+  font-size: 10px;
 }
 
 #services .svc-card h3 {
-  margin-bottom: 7px;
-  font-size: clamp(24px, 2.05vw, 30px);
-  line-height: .88;
+  align-self: flex-end;
+  width: min(46%, 460px);
+  margin-left: auto;
+  margin-bottom: 4px;
+  font-size: clamp(20px, 1.75vw, 26px);
+  line-height: .92;
   letter-spacing: .03em;
+  text-align: right;
 }
 
 #services .svc-card p {
-  font-size: 12px;
-  line-height: 1.45;
+  align-self: flex-end;
+  width: min(46%, 460px);
+  margin-left: auto;
+  font-size: 11px;
+  line-height: 1.35;
+  text-align: right;
 }
 
 #services .svc-arrow {
@@ -1314,20 +1359,37 @@ footer {
   opacity: .95;
 }
 
+#services .services-grid .svc-card:is(:hover, :focus-visible, :active)::after {
+  transform: scaleX(1);
+}
+
+@media (min-width: 1201px) {
+  #services .svc-card,
+  #services .svc-card:nth-child(2),
+  #services .svc-card:nth-child(3),
+  #services .svc-card:nth-child(4) {
+    height: clamp(196px, 14.38vw, 235px);
+    min-height: clamp(196px, 14.38vw, 235px);
+  }
+}
+
 @media (max-width: 1200px) and (min-width: 769px) {
   #services .services-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
   #services .svc-card,
   #services .svc-card:nth-child(2),
   #services .svc-card:nth-child(3),
   #services .svc-card:nth-child(4) {
-    aspect-ratio: 1.12 / 1;
+    min-height: clamp(181px, 21.77vw, 218px);
+    aspect-ratio: auto;
+    padding: 16px 18px;
   }
 
   #services .svc-card::before {
-    font-size: clamp(320px, 42vw, 500px);
+    top: -.29em;
+    font-size: clamp(190px, 27vw, 300px);
   }
 }
 
@@ -1370,7 +1432,8 @@ footer {
   }
 
   #services .services-grid {
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 18px;
     margin-top: 44px;
   }
 
@@ -1378,38 +1441,46 @@ footer {
   #services .svc-card:nth-child(2),
   #services .svc-card:nth-child(3),
   #services .svc-card:nth-child(4) {
-    min-height: clamp(224px, 64vw, 300px);
+    min-height: clamp(160px, 43.55vw, 193px);
     aspect-ratio: auto;
-    padding: 18px 16px 20px;
+    padding: 12px 14px 14px;
   }
 
   #services .svc-card::before {
-    top: -.31em;
-    left: 10px;
-    font-size: clamp(230px, 72vw, 300px);
+    top: -.25em;
+    left: 8px;
+    font-size: clamp(160px, 48vw, 205px);
     line-height: .9;
   }
 
   #services .svc-num {
-    top: 18px;
-    left: 6px;
-    width: 36px;
+    top: 11px;
+    left: 5px;
+    width: 32px;
     min-width: 0;
-    height: 21px;
+    height: 18px;
     padding: 0 3px;
-    font-size: 11px;
+    font-size: 9px;
   }
 
   #services .svc-card h3 {
-    margin-bottom: 7px;
-    font-size: clamp(24px, 6.8vw, 28px);
-    line-height: .88;
+    align-self: flex-end;
+    width: 56%;
+    margin-left: auto;
+    margin-bottom: 3px;
+    font-size: clamp(17px, 5.2vw, 21px);
+    line-height: .92;
     letter-spacing: .03em;
+    text-align: right;
   }
 
   #services .svc-card p {
-    font-size: 12px;
-    line-height: 1.45;
+    align-self: flex-end;
+    width: 56%;
+    margin-left: auto;
+    font-size: 10.5px;
+    line-height: 1.3;
+    text-align: right;
   }
 }
 </style>
