@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.lionsignstudio.com/</loc>
     <lastmod>2026-08-07</lastmod>
@@ -11,28 +12,73 @@
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-showcase-clean-full-sharp.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/03-797c4f6424.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/04-9fa781e820.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/05-1d42762c49.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/06-0a47bd3bee.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/07-564edd76e5.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/08-4ab10a49b7.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/09-21138c4b83.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/10-c2e28f97f7.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-logofolio-02.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-logofolio-05.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-logofolio-08.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-logofolio-11.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-logofolio-13.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-logofolio-14.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-logofolio-19.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-logofolio-12.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-logofolio-09.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/doberman-logofolio-15.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.lionsignstudio.com/digital-design.html</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/1.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/2.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/3.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/4.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/5.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/6.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/7.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/digital-3d-banners-final-slide.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/9.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/10.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/11.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/12.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/13.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/14.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/15.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/16.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/17.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/18.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/19.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/20.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/21.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/22.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.lionsignstudio.com/landscape-design.html</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/crop-residence-entry-clean.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/crop-pool-landscape-clean.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/crop-garden-courtyard-clean.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.lionsignstudio.com/obsidian-line.html</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/obsidian-hero-dobermann-clean-wide.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.lionsignstudio.com/answers.html</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
