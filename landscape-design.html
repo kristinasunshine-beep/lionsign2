@@ -18,19 +18,19 @@
 <meta property="og:title" content="Landscaping &amp; Spatial Implementation | LIONSIGN">
 <meta property="og:description" content="Landscaping with spatial concepts, planting systems, color direction and implementation for selected Belgrade-area projects.">
 <meta property="og:url" content="https://www.lionsignstudio.com/landscape-design.html">
-<meta property="og:image" content="https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260807-v2.png">
+<meta property="og:image" content="https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="LIONSIGN Identity Studio — Doberman Branding, Digital Graphic, Landscaping and Obsidian Line">
+<meta property="og:image:alt" content="LIONSIGN Identity Studio — Doberman Branding, Digital Design, Landscaping and Obsidian Line">
 <meta property="og:locale" content="en_US">
 
 <!-- TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Landscaping &amp; Spatial Implementation | LIONSIGN">
 <meta name="twitter:description" content="Landscaping with spatial concepts, planting systems, color direction and implementation for selected Belgrade-area projects.">
-<meta name="twitter:image" content="https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260807-v2.png">
-<meta name="twitter:image:alt" content="LIONSIGN Identity Studio — Doberman Branding, Digital Graphic, Landscaping and Obsidian Line">
+<meta name="twitter:image" content="https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png">
+<meta name="twitter:image:alt" content="LIONSIGN Identity Studio — Doberman Branding, Digital Design, Landscaping and Obsidian Line">
 
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -52,8 +52,8 @@
       ],
       "url": "https://www.lionsignstudio.com",
       "logo": "https://www.lionsignstudio.com/assets/lionsign-icon-bw.png",
-      "image": "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260807-v2.png",
-      "description": "Belgrade-based identity studio creating Doberman branding, digital graphic work, landscaping and limited T-shirt collection artwork.",
+      "image": "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png",
+      "description": "Belgrade-based identity studio creating Doberman branding, digital design work, landscaping and limited T-shirt collection artwork.",
       "sameAs": [
         "https://www.facebook.com/kristina.radosavljevic"
       ]
@@ -83,10 +83,10 @@
       "mainEntity": {
         "@id": "https://www.lionsignstudio.com/landscape-design.html#service"
       },
-      "dateModified": "2026-08-07",
+      "dateModified": "2026-09-07",
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260807-v2.png"
+        "url": "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png"
       },
       "breadcrumb": {
         "@id": "https://www.lionsignstudio.com/landscape-design.html#breadcrumb"
@@ -137,7 +137,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #ffffff;
+      --bg: #fbfaf8;
       --surface: #ffffff;
       --surface2: #f6f6f6;
       --ink: #111111;
@@ -1218,13 +1218,26 @@
       body.has-custom-cursor { cursor: auto; }
       .cur { display: none; }
     }
-  </style>
+  
+/* CURSOR REFINEMENT — 2026-09-07
+   Native arrow by default; yellow arrow on interactive/contextual controls. */
+html, body { cursor: default !important; }
+.cur { display: none !important; }
+/* Native cursor only: keep the same arrow over interactive states. */
+a, button, .faq-q, .svc-card, .package-select-trigger, .package-option,
+[role="button"], [role="option"] {
+  cursor: default !important;
+}
+input, textarea { cursor: text !important; }
+button:disabled, [aria-disabled="true"] { cursor: default !important; }
+
+</style>
 </head>
 <body>
   <div class="cur" id="cur"></div>
   <div class="page">
     <header>
-      <a class="logo" href="index.html">
+      <a class="logo" href="/">
         <span class="logo-icon-wrap">
           <img class="logo-icon" src="assets/lionsign-icon-bw.png" alt="Lionsign Studio icon" width="68" height="68" decoding="sync" fetchpriority="high">
         </span>
@@ -1242,9 +1255,9 @@
       <section class="hero">
         <div class="wrap hero-grid">
           <div>
-            <div class="hero-eyebrow">Identity Studio</div>
+            <div class="hero-eyebrow">Landscape Design</div>
             <h1>Designed as space<br><em>Built as identity</em></h1>
-            <p>Bauhaus-driven landscapes shaped through structure, color and controlled experimentation for selective projects in the Belgrade area</p>
+            <p>Bauhaus-led landscape concepts shaped through proportion, planting, color and controlled contrast for selected projects in the Belgrade area.</p>
             <div class="hero-cta">
               <a class="btn-primary" href="#system">Review the approach</a>
               <a class="btn-ghost" href="#work">View project material</a>
@@ -1256,8 +1269,8 @@
 
       <div class="marquee-wrap" aria-hidden="true">
         <div class="marquee-track">
-          <span>Spatial Concept</span><b>/</b><span>Plant System</span><b>/</b><span>Color Direction</span><b>/</b><span>Visual Axis</span><b>/</b><span>Belgrade Implementation</span><b>/</b>
-          <span>Spatial Concept</span><b>/</b><span>Plant System</span><b>/</b><span>Color Direction</span><b>/</b><span>Visual Axis</span><b>/</b><span>Belgrade Implementation</span><b>/</b>
+          <span>Spatial Concept</span><b>/</b><span>Planting Strategy</span><b>/</b><span>Color Direction</span><b>/</b><span>Visual Axis</span><b>/</b><span>Belgrade Implementation</span><b>/</b>
+          <span>Spatial Concept</span><b>/</b><span>Planting Strategy</span><b>/</b><span>Color Direction</span><b>/</b><span>Visual Axis</span><b>/</b><span>Belgrade Implementation</span><b>/</b>
         </div>
       </div>
 
@@ -1265,9 +1278,9 @@
         <div class="wrap statement-intro">
           <h2>Most spaces are placed<br><em>Very few are composed</em></h2>
           <div class="statement-panel">
-            <p>Each project is developed by a Master of Landscape Architecture, combining environmental knowledge with applied spatial design</p>
-            <p>Only verified, high-quality materials and plant systems are used in implementation</p>
-            <p>The difference is visible immediately because space becomes identity from the first decision</p>
+            <p>Each project is developed through landscape-architectural and environmental knowledge, with attention to proportion, movement, planting and long-term use.</p>
+            <p>Materials and plant systems are selected for quality, compatibility and implementation.</p>
+            <p>The result is not decoration around architecture, but an environment with its own logic and character.</p>
           </div>
         </div>
         <div class="wrap before-after">
@@ -1279,11 +1292,11 @@
             <p>Short-term visual effect</p>
           </div>
           <div class="ba-panel">
-            <h3>Designed</h3>
-            <p>Structural plant system</p>
+            <h3>Composed</h3>
+            <p>Structured planting</p>
             <p>Controlled contrast</p>
             <p>Defined visual axis</p>
-            <p>Long-term spatial identity</p>
+            <p>Long-term spatial character</p>
           </div>
         </div>
       </section>
@@ -1295,13 +1308,13 @@
               <div class="section-label">Design approach</div>
               <h2 class="section-title">Measured contrast<br><em>Clear rhythm</em></h2>
             </div>
-            <p class="section-copy">The landscape becomes a place where structure meets play, precision meets spontaneity, and color stays expressive while keeping intention</p>
+            <p class="section-copy">Structure and spontaneity are balanced so color can remain expressive without losing discipline.</p>
           </div>
           <div class="service-grid">
-            <article class="service-card"><div class="service-num">01</div><h3>Spatial Concept</h3><p>Layout, rhythm and proportion as one system.</p></article>
-            <article class="service-card"><div class="service-num">02</div><h3>Plant System</h3><p>Planting used as living structure.</p></article>
-            <article class="service-card"><div class="service-num">03</div><h3>Color Direction</h3><p>Expressive color held inside a controlled palette.</p></article>
-            <article class="service-card"><div class="service-num">04</div><h3>Implementation</h3><p>Concepts prepared for real Belgrade environments</p></article>
+            <article class="service-card"><div class="service-num">01</div><h3>Spatial Concept</h3><p>Layout, movement and proportion establish the foundation.</p></article>
+            <article class="service-card"><div class="service-num">02</div><h3>Planting Strategy</h3><p>Plant material is composed as a living framework rather than decoration.</p></article>
+            <article class="service-card"><div class="service-num">03</div><h3>Color Direction</h3><p>Contrast is controlled so color strengthens the composition instead of competing with it.</p></article>
+            <article class="service-card"><div class="service-num">04</div><h3>Implementation</h3><p>Approved concepts are translated into real Belgrade environments.</p></article>
           </div>
         </div>
       </section>
@@ -1311,7 +1324,7 @@
           <figure class="image-feature">
             <div class="showcase-topline"><span>Structure / planting / implementation</span></div>
             <div class="showcase-stage">
-              <img src="assets/crop-residence-entry-clean.jpg" alt="Residential entry landscaping project in Belgrade by LIONSIGN" loading="lazy" decoding="async">
+              <img src="assets/crop-residence-entry-clean.jpg" alt="Residential entry landscaping project in Belgrade by LIONSIGN" loading="lazy" decoding="async" width="1887" height="1322">
             </div>
           </figure>
         </div>
@@ -1321,19 +1334,19 @@
         <div class="split-head">
           <div>
             <div class="section-label">Project material</div>
-            <h2 class="section-title">Material studies<br><em>in motion</em></h2>
+            <h2 class="section-title">Spatial studies<br><em>in motion</em></h2>
           </div>
-          <p class="section-copy">Studies and implemented ideas exploring controlled contrast within real and imagined spatial conditions</p>
+          <p class="section-copy">Selected studies and implemented ideas exploring proportion, planting and controlled contrast across real and imagined conditions.</p>
         </div>
         <div class="work-marquee">
           <div class="work-track">
-            <a class="work-card" href="assets/crop-residence-entry-clean.jpg"><figure><img src="assets/crop-residence-entry-clean.jpg" alt="Residential entry landscape design by LIONSIGN" loading="lazy" decoding="async"><figcaption><span>Residence</span><span>01</span></figcaption></figure></a>
-            <a class="work-card" href="assets/crop-pool-landscape-clean.jpg"><figure><img src="assets/crop-pool-landscape-clean.jpg" alt="Pool landscape design by LIONSIGN" loading="lazy" decoding="async"><figcaption><span>Pool</span><span>02</span></figcaption></figure></a>
-            <a class="work-card" href="assets/crop-garden-courtyard-clean.jpg"><figure><img src="assets/crop-garden-courtyard-clean.jpg" alt="Garden courtyard landscape design by LIONSIGN" loading="lazy" decoding="async"><figcaption><span>Courtyard</span><span>03</span></figcaption></figure></a>
+            <a class="work-card" href="assets/crop-residence-entry-clean.jpg"><figure><img src="assets/crop-residence-entry-clean.jpg" alt="Residential entry landscape design by LIONSIGN" loading="lazy" decoding="async" width="1887" height="1322"><figcaption><span>Residence</span><span>01</span></figcaption></figure></a>
+            <a class="work-card" href="assets/crop-pool-landscape-clean.jpg"><figure><img src="assets/crop-pool-landscape-clean.jpg" alt="Pool landscape design by LIONSIGN" loading="lazy" decoding="async" width="1872" height="1322"><figcaption><span>Pool</span><span>02</span></figcaption></figure></a>
+            <a class="work-card" href="assets/crop-garden-courtyard-clean.jpg"><figure><img src="assets/crop-garden-courtyard-clean.jpg" alt="Garden courtyard landscape design by LIONSIGN" loading="lazy" decoding="async" width="1872" height="1322"><figcaption><span>Courtyard</span><span>03</span></figcaption></figure></a>
 
-            <a class="work-card" href="assets/crop-residence-entry-clean.jpg"><figure><img src="assets/crop-residence-entry-clean.jpg" alt="Residential entry landscape design by LIONSIGN" loading="lazy" decoding="async"><figcaption><span>Residence</span><span>01</span></figcaption></figure></a>
-            <a class="work-card" href="assets/crop-pool-landscape-clean.jpg"><figure><img src="assets/crop-pool-landscape-clean.jpg" alt="Pool landscape design by LIONSIGN" loading="lazy" decoding="async"><figcaption><span>Pool</span><span>02</span></figcaption></figure></a>
-            <a class="work-card" href="assets/crop-garden-courtyard-clean.jpg"><figure><img src="assets/crop-garden-courtyard-clean.jpg" alt="Garden courtyard landscape design by LIONSIGN" loading="lazy" decoding="async"><figcaption><span>Courtyard</span><span>03</span></figcaption></figure></a>
+            <a class="work-card" href="assets/crop-residence-entry-clean.jpg"><figure><img src="assets/crop-residence-entry-clean.jpg" alt="Residential entry landscape design by LIONSIGN" loading="lazy" decoding="async" width="1887" height="1322"><figcaption><span>Residence</span><span>01</span></figcaption></figure></a>
+            <a class="work-card" href="assets/crop-pool-landscape-clean.jpg"><figure><img src="assets/crop-pool-landscape-clean.jpg" alt="Pool landscape design by LIONSIGN" loading="lazy" decoding="async" width="1872" height="1322"><figcaption><span>Pool</span><span>02</span></figcaption></figure></a>
+            <a class="work-card" href="assets/crop-garden-courtyard-clean.jpg"><figure><img src="assets/crop-garden-courtyard-clean.jpg" alt="Garden courtyard landscape design by LIONSIGN" loading="lazy" decoding="async" width="1872" height="1322"><figcaption><span>Courtyard</span><span>03</span></figcaption></figure></a>
           </div>
         </div>
       </section>
@@ -1347,10 +1360,10 @@
             </div>
           </div>
           <div class="process-grid" id="process">
-            <article class="process-step"><span>01</span><h3>Scope & Location</h3><p>Space, conditions and compatibility are read first.</p></article>
-            <article class="process-step"><span>02</span><h3>Spatial Layout</h3><p>Movement and visual axis are defined before materials.</p></article>
-            <article class="process-step"><span>03</span><h3>Plant & Material System</h3><p>Verified elements are selected as one structure.</p></article>
-            <article class="process-step"><span>04</span><h3>On-Site Implementation</h3><p>The concept is translated into a real environment.</p></article>
+            <article class="process-step"><span>01</span><h3>Scope &amp; Site</h3><p>Conditions, use, compatibility and constraints are read first.</p></article>
+            <article class="process-step"><span>02</span><h3>Spatial Layout</h3><p>Movement, sightlines and key proportions are established before materials are chosen.</p></article>
+            <article class="process-step"><span>03</span><h3>Plant &amp; Material Direction</h3><p>Elements are selected to work together as one durable composition.</p></article>
+            <article class="process-step"><span>04</span><h3>On-Site Implementation</h3><p>The approved concept is translated into the physical environment.</p></article>
           </div>
         </div>
       </section>
@@ -1359,7 +1372,7 @@
         <div class="wrap">
           <div class="section-label">Selective projects</div>
           <h2 class="section-title">Everything works<br><em>as one environment</em></h2>
-          <p>Concept, planting, color, movement and implementation held in one coherent spatial language.</p>
+          <p>Layout, planting, color, movement and material decisions held together by one spatial logic.</p>
           <div class="final-links">
             <a class="btn-primary" href="#system">Review the approach</a>
             <a class="btn-ghost" href="#work">View project material</a>
@@ -1465,70 +1478,6 @@
         closeWorkLightbox();
       }
     });
-  </script>
-  <script>
-    (function () {
-      const cur = document.getElementById('cur');
-      if (!cur) return;
-      document.body.classList.add('has-custom-cursor');
-      let mx = window.innerWidth / 2;
-      let my = window.innerHeight / 2;
-      let posX = mx;
-      let posY = my;
-      let isTouchDevice = false;
-
-      window.addEventListener('touchstart', () => { isTouchDevice = true; }, { once: true, passive: true });
-
-      document.addEventListener('mousemove', event => {
-        if (isTouchDevice) return;
-        mx = event.clientX;
-        my = event.clientY;
-      });
-
-      function animateCursor() {
-        if (!isTouchDevice) {
-          posX += (mx - posX) * 0.12;
-          posY += (my - posY) * 0.12;
-          cur.style.left = posX + 'px';
-          cur.style.top = posY + 'px';
-        }
-        requestAnimationFrame(animateCursor);
-      }
-      animateCursor();
-
-      document.addEventListener('touchmove', event => {
-        isTouchDevice = true;
-        cur.style.display = 'block';
-        const touch = event.touches[0];
-        mx = touch.clientX;
-        my = touch.clientY;
-        posX += (mx - posX) * 0.12;
-        posY += (my - posY) * 0.12;
-        cur.style.left = posX + 'px';
-        cur.style.top = posY + 'px';
-      }, { passive: true });
-
-      document.addEventListener('touchstart', event => {
-        const touch = event.touches[0];
-        mx = posX = touch.clientX;
-        my = posY = touch.clientY;
-        cur.style.left = posX + 'px';
-        cur.style.top = posY + 'px';
-        cur.style.display = 'block';
-      }, { passive: true });
-
-      document.addEventListener('touchend', () => {
-        cur.style.opacity = '1';
-      }, { passive: true });
-
-      const interactiveSelector = 'a, button, [role="button"], .service-card, .work-card, .process-step, .panel, .link, article';
-      document.querySelectorAll(interactiveSelector).forEach(element => {
-        element.addEventListener('mouseenter', () => cur.classList.add('big'));
-        element.addEventListener('mouseleave', () => cur.classList.remove('big'));
-        element.addEventListener('touchstart', () => cur.classList.add('big'), { passive: true });
-        element.addEventListener('touchend', () => setTimeout(() => cur.classList.remove('big'), 300), { passive: true });
-      });
-    })();
   </script>
 </body>
 </html>

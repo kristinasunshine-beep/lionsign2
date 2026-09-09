@@ -18,19 +18,19 @@
 <meta property="og:title" content="Obsidian Line Collector T-Shirt Edition | LIONSIGN">
 <meta property="og:description" content="A numbered LIONSIGN limited T-shirt collection: 24 monochrome artwork pieces released once and preserved as archive when sold out.">
 <meta property="og:url" content="https://www.lionsignstudio.com/obsidian-line.html">
-<meta property="og:image" content="https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260807-v2.png">
+<meta property="og:image" content="https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="LIONSIGN Identity Studio — Doberman Branding, Digital Graphic, Landscaping and Obsidian Line">
+<meta property="og:image:alt" content="LIONSIGN Identity Studio — Doberman Branding, Digital Design, Landscaping and Obsidian Line">
 <meta property="og:locale" content="en_US">
 
 <!-- TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Obsidian Line Collector T-Shirt Edition | LIONSIGN">
 <meta name="twitter:description" content="A numbered LIONSIGN limited T-shirt collection: 24 monochrome artwork pieces released once and preserved as archive when sold out.">
-<meta name="twitter:image" content="https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260807-v2.png">
-<meta name="twitter:image:alt" content="LIONSIGN Identity Studio — Doberman Branding, Digital Graphic, Landscaping and Obsidian Line">
+<meta name="twitter:image" content="https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png">
+<meta name="twitter:image:alt" content="LIONSIGN Identity Studio — Doberman Branding, Digital Design, Landscaping and Obsidian Line">
 
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -52,8 +52,8 @@
       ],
       "url": "https://www.lionsignstudio.com",
       "logo": "https://www.lionsignstudio.com/assets/lionsign-icon-bw.png",
-      "image": "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260807-v2.png",
-      "description": "Belgrade-based identity studio creating Doberman branding, digital graphic work, landscaping and limited T-shirt collection artwork.",
+      "image": "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png",
+      "description": "Belgrade-based identity studio creating Doberman branding, digital design work, landscaping and limited T-shirt collection artwork.",
       "sameAs": [
         "https://www.facebook.com/kristina.radosavljevic"
       ]
@@ -83,10 +83,10 @@
       "mainEntity": {
         "@id": "https://www.lionsignstudio.com/obsidian-line.html#product"
       },
-      "dateModified": "2026-08-07",
+      "dateModified": "2026-09-07",
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260807-v2.png"
+        "url": "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png"
       },
       "breadcrumb": {
         "@id": "https://www.lionsignstudio.com/obsidian-line.html#breadcrumb"
@@ -120,7 +120,7 @@
       },
       "image": [
         "https://www.lionsignstudio.com/assets/02-06586e7faa.png",
-        "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260807-v2.png"
+        "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png"
       ],
       "description": "Obsidian Line is a numbered LIONSIGN limited T-shirt collection: 24 monochrome artwork pieces released once and preserved as archive when sold out.",
       "sku": "OBSIDIAN-LINE-EDITION-1",
@@ -752,13 +752,26 @@
       body.has-custom-cursor { cursor: auto; }
       .cur { display: none; }
     }
-  </style>
+  
+/* CURSOR REFINEMENT — 2026-09-07
+   Native arrow by default; yellow arrow on interactive/contextual controls. */
+html, body { cursor: default !important; }
+.cur { display: none !important; }
+/* Native cursor only: keep the same arrow over interactive states. */
+a, button, .faq-q, .svc-card, .package-select-trigger, .package-option,
+[role="button"], [role="option"] {
+  cursor: default !important;
+}
+input, textarea { cursor: text !important; }
+button:disabled, [aria-disabled="true"] { cursor: default !important; }
+
+</style>
 </head>
 <body>
   <div class="cur" id="cur"></div>
   <div class="page">
     <header>
-      <a class="logo" href="index.html">
+      <a class="logo" href="/">
         <span class="logo-icon-wrap"><img class="logo-icon" src="assets/lionsign-icon-bw.png" alt="Lionsign mark" width="68" height="68" decoding="sync" fetchpriority="high"></span>
         <span>LION<span>SIGN</span></span>
       </a>
@@ -774,9 +787,9 @@
       <section class="hero">
         <div class="wrap hero-grid">
           <div>
-            <div class="label">Identity Studio</div>
+            <div class="label">Obsidian Line</div>
             <h1>Obsidian<br><em>Line</em></h1>
-            <p class="hero-copy">Edition 1 is a numbered LIONSIGN artwork translated into wearable form. Built for those who lead</p>
+            <p class="hero-copy">A numbered LIONSIGN artwork translated into wearable form.<br><br>Edition 1 is released once, in 24 pieces worldwide.<br><br>Built for those who lead.</p>
             <div class="hero-meta">
               <div class="meta-box"><span>Edition</span><strong>24 Pieces Worldwide</strong></div>
               <div class="meta-box"><span>Price</span><strong>EUR 99</strong></div>
@@ -788,15 +801,15 @@
             </div>
           </div>
           <figure class="product-card">
-            <img src="assets/obsidian-hero-dobermann-clean-wide.jpg" alt="Obsidian Line limited-edition Dobermann artwork T-shirt by LIONSIGN" decoding="async" fetchpriority="high">
+            <img src="assets/obsidian-hero-dobermann-clean-wide.jpg" alt="Obsidian Line limited-edition Dobermann artwork T-shirt by LIONSIGN" decoding="async" fetchpriority="high" width="3570" height="3856">
           </figure>
         </div>
       </section>
 
       <div class="marquee" aria-hidden="true">
         <div class="marquee-track">
-          <span>Single Release</span><b>/</b><span>Numbered Edition</span><b>/</b><span>Art Monochrome Series</span><b>/</b><span>Heavyweight Cotton</span><b>/</b><span>Archived When Sold Out</span><b>/</b>
-          <span>Single Release</span><b>/</b><span>Numbered Edition</span><b>/</b><span>Art Monochrome Series</span><b>/</b><span>Heavyweight Cotton</span><b>/</b><span>Archived When Sold Out</span><b>/</b>
+          <span>Single Release</span><b>/</b><span>Numbered Edition</span><b>/</b><span>Monochrome Artwork</span><b>/</b><span>Heavyweight Cotton</span><b>/</b><span>Archived When Sold Out</span><b>/</b>
+          <span>Single Release</span><b>/</b><span>Numbered Edition</span><b>/</b><span>Monochrome Artwork</span><b>/</b><span>Heavyweight Cotton</span><b>/</b><span>Archived When Sold Out</span><b>/</b>
         </div>
       </div>
 
@@ -807,12 +820,12 @@
               <div class="label">Wearable artwork</div>
               <h2 class="title">T-shirt as<br><em>an edition</em></h2>
             </div>
-            <p>Original LIONSIGN artwork in numbered wearable form. Once sold out, the edition is archived</p>
+            <p>Original LIONSIGN artwork released as a numbered garment. Once the 24 pieces are gone, the edition moves into the archive.</p>
           </div>
           <div class="panel-grid">
-            <article class="panel"><strong>01</strong><h3>Statement</h3><p>Designed for those who identify with strength, discipline and wild spirit</p></article>
-            <article class="panel"><strong>02</strong><h3>Presence</h3><p>A quiet signal of control, rarity and inner force</p></article>
-            <article class="panel"><strong>03</strong><h3>Restraint</h3><p>Tension, discipline and controlled power reduced into line, depth and silence</p></article>
+            <article class="panel"><strong>01</strong><h3>Statement</h3><p>Made for people drawn to discipline, instinct and independent presence.</p></article>
+            <article class="panel"><strong>02</strong><h3>Presence</h3><p>A restrained signal rather than a loud declaration.</p></article>
+            <article class="panel"><strong>03</strong><h3>Restraint</h3><p>Force reduced into line, depth and silence.</p></article>
           </div>
         </div>
       </section>
@@ -822,8 +835,8 @@
           <div class="statement">
             <div class="label">Edition 1</div>
             <h2 class="title">The architecture<br><em>of instinct</em></h2>
-            <p>A study of the Doberman, force and instinct</p>
-            <p>Form reduced, rebuilt and held in monochrome tension</p>
+            <p>A study of the Doberman as form, tension and controlled force.</p>
+            <p>Instinct is reduced, rebuilt and held in monochrome.</p>
             <div class="detail-list">
               <div>Author print by LIONSIGN studio</div>
               <div>Individually numbered 01/24 - 24/24</div>
@@ -840,12 +853,12 @@
               <div class="label">Artwork detail</div>
               <h2 class="title">The print becomes<br><em>a signal</em></h2>
             </div>
-            <p>Strength held in restraint. Precise, minimal, deliberately unresolved</p>
+            <p>Strength held in restraint. Minimal, precise and intentionally unresolved.</p>
           </div>
           <div class="panel-grid">
-            <article class="panel"><strong>Line</strong><h3>Reduced</h3><p>The form is stripped back until only pressure, mass and direction remain</p></article>
-            <article class="panel"><strong>Depth</strong><h3>Layered</h3><p>Texture and shadow create the sense of movement beneath the surface</p></article>
-            <article class="panel"><strong>Silence</strong><h3>Held</h3><p>The composition holds silence so the instinct stays concentrated</p></article>
+            <article class="panel"><strong>Line</strong><h3>Reduced</h3><p>The form is stripped back until only pressure, mass and direction remain.</p></article>
+            <article class="panel"><strong>Depth</strong><h3>Layered</h3><p>Texture and shadow suggest movement beneath a still surface.</p></article>
+            <article class="panel"><strong>Silence</strong><h3>Held</h3><p>Negative space keeps the composition quiet so the instinct stays concentrated.</p></article>
           </div>
         </div>
       </section>
@@ -854,7 +867,7 @@
         <div class="wrap">
           <div class="label">Limited to 24</div>
           <h2 class="title">Numbered pieces<br>worldwide</h2>
-          <p>Individually numbered. Released once. Printed once. When the edition is sold out, it becomes archive only</p>
+          <p>Individually numbered from 01/24 to 24/24. Released once. Printed once.<br><br>When sold out, Edition 1 becomes archive only.</p>
         </div>
       </section>
 
@@ -862,7 +875,7 @@
         <div class="wrap">
           <div class="label">Created by LIONSIGN</div>
           <h2 class="title">Be brave<br><em>Stay wild</em></h2>
-          <p>Doberman power, minimal luxury, strength before it becomes loud</p>
+          <p>Doberman instinct translated through monochrome restraint, material weight and limited production.</p>
           <div class="final-links">
             <a class="link" href="#concept">Review the concept</a>
           </div>
@@ -877,70 +890,6 @@
       </div>
     </footer>
   </div>
-  <script>
-    (function () {
-      const cur = document.getElementById('cur');
-      if (!cur) return;
-      document.body.classList.add('has-custom-cursor');
-      let mx = window.innerWidth / 2;
-      let my = window.innerHeight / 2;
-      let posX = mx;
-      let posY = my;
-      let isTouchDevice = false;
-
-      window.addEventListener('touchstart', () => { isTouchDevice = true; }, { once: true, passive: true });
-
-      document.addEventListener('mousemove', event => {
-        if (isTouchDevice) return;
-        mx = event.clientX;
-        my = event.clientY;
-      });
-
-      function animateCursor() {
-        if (!isTouchDevice) {
-          posX += (mx - posX) * 0.12;
-          posY += (my - posY) * 0.12;
-          cur.style.left = posX + 'px';
-          cur.style.top = posY + 'px';
-        }
-        requestAnimationFrame(animateCursor);
-      }
-      animateCursor();
-
-      document.addEventListener('touchmove', event => {
-        isTouchDevice = true;
-        cur.style.display = 'block';
-        const touch = event.touches[0];
-        mx = touch.clientX;
-        my = touch.clientY;
-        posX += (mx - posX) * 0.12;
-        posY += (my - posY) * 0.12;
-        cur.style.left = posX + 'px';
-        cur.style.top = posY + 'px';
-      }, { passive: true });
-
-      document.addEventListener('touchstart', event => {
-        const touch = event.touches[0];
-        mx = posX = touch.clientX;
-        my = posY = touch.clientY;
-        cur.style.left = posX + 'px';
-        cur.style.top = posY + 'px';
-        cur.style.display = 'block';
-      }, { passive: true });
-
-      document.addEventListener('touchend', () => {
-        cur.style.opacity = '1';
-      }, { passive: true });
-
-      const interactiveSelector = 'a, button, [role="button"], .service-card, .work-card, .process-step, .panel, .link, article';
-      document.querySelectorAll(interactiveSelector).forEach(element => {
-        element.addEventListener('mouseenter', () => cur.classList.add('big'));
-        element.addEventListener('mouseleave', () => cur.classList.remove('big'));
-        element.addEventListener('touchstart', () => cur.classList.add('big'), { passive: true });
-        element.addEventListener('touchend', () => setTimeout(() => cur.classList.remove('big'), 300), { passive: true });
-      });
-    })();
-  </script>
 </body>
 </html>
 
