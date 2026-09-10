@@ -1,0 +1,179 @@
+name: LIONSIGN IndexNow
+
+on:
+  page_build:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lionsign-indexnow
+  cancel-in-progress: true
+
+jobs:
+  submit-indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Submit LIONSIGN sitemap URLs to IndexNow
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import time
+          import urllib.error
+          import urllib.request
+          from xml.etree import ElementTree as ET
+
+          BASE_URL = "https://www.lionsignstudio.com"
+          HOST = "www.lionsignstudio.com"
+
+          KEY = "fe57d837697b471abc18e98b1befb327"
+          KEY_URL = f"{BASE_URL}/{KEY}.txt"
+
+          SITEMAP_URL = f"{BASE_URL}/sitemap.xml"
+          INDEXNOW_URL = "https://api.indexnow.org/indexnow"
+
+          HEADERS = {
+              "User-Agent": "LIONSIGN-IndexNow/1.0",
+              "Cache-Control": "no-cache",
+              "Pragma": "no-cache",
+          }
+
+          def fetch(url, attempts=6):
+              last_error = None
+
+              for attempt in range(attempts):
+                  try:
+                      request = urllib.request.Request(
+                          url,
+                          headers=HEADERS
+                      )
+
+                      with urllib.request.urlopen(
+                          request,
+                          timeout=30
+                      ) as response:
+                          return response.read()
+
+                  except Exception as exc:
+                      last_error = exc
+
+                      if attempt < attempts - 1:
+                          wait = 10 * (attempt + 1)
+                          print(
+                              f"Waiting {wait}s before retry "
+                              f"{attempt + 2}/{attempts}..."
+                          )
+                          time.sleep(wait)
+
+              raise RuntimeError(
+                  f"Could not fetch {url}: {last_error}"
+              )
+
+          print("Verifying public IndexNow key...")
+
+          hosted_key = fetch(KEY_URL).decode(
+              "utf-8"
+          ).strip()
+
+          if hosted_key != KEY:
+              raise SystemExit(
+                  "ERROR: Public IndexNow key does not match."
+              )
+
+          print("Public IndexNow key verified.")
+
+          print("Reading live LIONSIGN sitemap...")
+
+          sitemap_xml = fetch(SITEMAP_URL)
+
+          root = ET.fromstring(sitemap_xml)
+
+          urls = []
+
+          for element in root.iter():
+              if element.tag.endswith("loc") and element.text:
+                  url = element.text.strip()
+
+                  if (
+                      url == BASE_URL
+                      or url == BASE_URL + "/"
+                      or url.startswith(BASE_URL + "/")
+                  ):
+                      urls.append(url)
+
+          urls = sorted(set(urls))
+
+          if not urls:
+              raise SystemExit(
+                  "ERROR: No canonical LIONSIGN URLs found "
+                  "in sitemap.xml."
+              )
+
+          if len(urls) > 10000:
+              raise SystemExit(
+                  "ERROR: IndexNow accepts a maximum of "
+                  "10,000 URLs per request."
+              )
+
+          print(f"Canonical URLs found: {len(urls)}")
+
+          for url in urls:
+              print(f" - {url}")
+
+          payload = {
+              "host": HOST,
+              "key": KEY,
+              "keyLocation": KEY_URL,
+              "urlList": urls,
+          }
+
+          data = json.dumps(
+              payload
+          ).encode("utf-8")
+
+          request = urllib.request.Request(
+              INDEXNOW_URL,
+              data=data,
+              method="POST",
+              headers={
+                  "Content-Type":
+                      "application/json; charset=utf-8",
+                  "User-Agent":
+                      "LIONSIGN-IndexNow/1.0",
+              },
+          )
+
+          try:
+              with urllib.request.urlopen(
+                  request,
+                  timeout=30
+              ) as response:
+                  status = response.getcode()
+
+          except urllib.error.HTTPError as exc:
+              body = exc.read().decode(
+                  "utf-8",
+                  errors="replace"
+              )
+
+              raise SystemExit(
+                  f"ERROR: IndexNow returned "
+                  f"HTTP {exc.code}: {body[:500]}"
+              )
+
+          if status not in (200, 202):
+              raise SystemExit(
+                  f"ERROR: Unexpected IndexNow "
+                  f"HTTP status {status}."
+              )
+
+          print("")
+          print(
+              f"IndexNow accepted "
+              f"{len(urls)} URL(s). HTTP {status}."
+          )
+          PY
