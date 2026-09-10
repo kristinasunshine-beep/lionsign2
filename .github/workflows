@@ -1,0 +1,120 @@
+name: IndexNow after Pages deploy
+
+on:
+  workflow_run:
+    workflows:
+      - pages-build-deployment
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lionsign-indexnow-${{ github.event.workflow_run.head_sha || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  submit-indexnow:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out deployed commit
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 1
+
+      - name: Submit sitemap URLs to IndexNow
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import time
+          import urllib.error
+          import urllib.request
+          from xml.etree import ElementTree as ET
+
+          BASE = "https://www.lionsignstudio.com"
+          HOST = "www.lionsignstudio.com"
+          KEY = "fe57d837697b471abc18e98b1befb327"
+          KEY_URL = f"{BASE}/{KEY}.txt"
+          ENDPOINT = "https://api.indexnow.org/indexnow"
+
+          def sitemap_urls():
+              root = ET.parse("sitemap.xml").getroot()
+              urls = []
+              for element in root.iter():
+                  if element.tag.endswith("loc") and element.text:
+                      url = element.text.strip()
+                      if url == BASE + "/" or url.startswith(BASE + "/"):
+                          urls.append(url)
+              return sorted(set(urls))
+
+          urls = sitemap_urls()
+
+          print(f"Canonical sitemap URLs: {len(urls)}")
+          for url in urls:
+              print(" -", url)
+
+          if not urls:
+              raise SystemExit("No LIONSIGN canonical URLs found in sitemap.xml.")
+
+          if len(urls) > 10000:
+              raise SystemExit("IndexNow accepts at most 10,000 URLs per request.")
+
+          # Verify that the public key file is still live and correct.
+          hosted = ""
+          for attempt in range(4):
+              try:
+                  req = urllib.request.Request(
+                      KEY_URL,
+                      headers={
+                          "User-Agent": "LIONSIGN-IndexNow/1.0",
+                          "Cache-Control": "no-cache",
+                      },
+                  )
+                  with urllib.request.urlopen(req, timeout=20) as response:
+                      hosted = response.read().decode("utf-8").strip()
+                  if hosted == KEY:
+                      break
+              except Exception:
+                  hosted = ""
+
+              if attempt == 3:
+                  raise SystemExit("Public IndexNow key verification failed.")
+              time.sleep(5 * (attempt + 1))
+
+          print("Public IndexNow key verified.")
+
+          payload = json.dumps({
+              "host": HOST,
+              "key": KEY,
+              "keyLocation": KEY_URL,
+              "urlList": urls,
+          }).encode("utf-8")
+
+          request = urllib.request.Request(
+              ENDPOINT,
+              data=payload,
+              method="POST",
+              headers={
+                  "Content-Type": "application/json; charset=utf-8",
+                  "User-Agent": "LIONSIGN-IndexNow/1.0",
+              },
+          )
+
+          try:
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  status = response.getcode()
+          except urllib.error.HTTPError as exc:
+              body = exc.read().decode("utf-8", errors="replace")
+              raise SystemExit(f"IndexNow HTTP {exc.code}: {body[:300]}")
+
+          if status not in (200, 202):
+              raise SystemExit(f"Unexpected IndexNow HTTP status: {status}")
+
+          print(f"IndexNow accepted {len(urls)} URL(s). HTTP {status}.")
+          PY
