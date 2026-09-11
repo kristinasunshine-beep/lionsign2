@@ -36,7 +36,6 @@
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#fbfaf8">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="favicon.ico?v=20260910-favicon-a-global" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=20260910-favicon-a-global">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=20260910-favicon-a-global">
@@ -45,8 +44,6 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Lionsign">
 <meta name="application-name" content="Lionsign">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 
 <!-- STRUCTURED DATA -->
 <script type="application/ld+json">
@@ -56,24 +53,42 @@
     {
       "@type": "Organization",
       "@id": "https://www.lionsignstudio.com/#organization",
-      "name": "Lionsign Studio",
+      "name": "LIONSIGN Studio",
       "alternateName": [
         "LIONSIGN",
-        "Lionsign"
+        "Lionsign Studio"
       ],
-      "url": "https://www.lionsignstudio.com",
+      "url": "https://www.lionsignstudio.com/",
       "logo": "https://www.lionsignstudio.com/assets/lionsign-icon-bw.png",
       "image": "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png",
       "description": "Belgrade-based identity studio working across Doberman branding, digital design, landscape architecture and limited apparel.",
+      "foundingDate": "2019",
+      "founder": {
+        "@id": "https://www.lionsignstudio.com/#founder"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Belgrade",
+        "addressCountry": "RS"
+      },
       "sameAs": [
         "https://www.facebook.com/kristina.radosavljevic"
       ]
     },
     {
+      "@type": "Person",
+      "@id": "https://www.lionsignstudio.com/#founder",
+      "name": "Kristina Radosavljević",
+      "jobTitle": "Founder and multidisciplinary designer",
+      "worksFor": {
+        "@id": "https://www.lionsignstudio.com/#organization"
+      }
+    },
+    {
       "@type": "WebSite",
       "@id": "https://www.lionsignstudio.com/#website",
-      "url": "https://www.lionsignstudio.com",
-      "name": "Lionsign Studio",
+      "url": "https://www.lionsignstudio.com/",
+      "name": "LIONSIGN Studio",
       "publisher": {
         "@id": "https://www.lionsignstudio.com/#organization"
       },
@@ -81,7 +96,7 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.lionsignstudio.com#webpage",
+      "@id": "https://www.lionsignstudio.com/#webpage",
       "url": "https://www.lionsignstudio.com/",
       "name": "LIONSIGN Identity Studio | Branding, Digital Design & Landscaping",
       "description": "LIONSIGN is a Belgrade-based identity studio working across Doberman branding, digital design, landscape architecture and limited apparel.",
@@ -94,19 +109,19 @@
       "mainEntity": {
         "@id": "https://www.lionsignstudio.com/#studio"
       },
-      "dateModified": "2026-09-07",
+      "dateModified": "2026-09-11",
       "primaryImageOfPage": {
         "@type": "ImageObject",
         "url": "https://www.lionsignstudio.com/assets/lionsign-og-image-identity-20260907-final.png"
       },
       "breadcrumb": {
-        "@id": "https://www.lionsignstudio.com#breadcrumb"
+        "@id": "https://www.lionsignstudio.com/#breadcrumb"
       },
       "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://www.lionsignstudio.com#breadcrumb",
+      "@id": "https://www.lionsignstudio.com/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -131,8 +146,7 @@
       "serviceType": [
         "Doberman Branding",
         "Digital Design",
-        "Landscaping",
-        "Limited T-Shirt Collection"
+        "Landscape Architecture"
       ],
       "provider": {
         "@id": "https://www.lionsignstudio.com/#organization"

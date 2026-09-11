@@ -1,11 +1,11 @@
 /* TEAM */
-Studio: LIONSIGN / Lionsign Studio
-Founder: Kristina Radosavljevic
+Studio: LIONSIGN / LIONSIGN Studio
+Founder: Kristina Radosavljević
 Location: Belgrade, Serbia
+Established: 2019
 Site: https://www.lionsignstudio.com/
 
 /* SITE */
-Disciplines: Doberman Branding, Digital Design, Landscaping, Obsidian Line
+Disciplines: Doberman Branding, Digital Design, Landscape Architecture, Obsidian Line
 Language: English
-Established: 2019
-Last update: 2026-09-07
+Last update: 2026-09-11
