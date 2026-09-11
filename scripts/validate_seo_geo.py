@@ -2,21 +2,24 @@
 from pathlib import Path
 from html.parser import HTMLParser
 from xml.etree import ElementTree as ET
-import json,re,sys
+import json,sys
 ROOT=Path(__file__).resolve().parents[1]
 ORIGIN='https://www.lionsignstudio.com/'
-PAGES=['index.html','answers.html','digital-design.html','doberman-branding.html','landscape-design.html','obsidian-line.html']
+PAGES=[
+ 'index.html','answers.html','digital-design.html','doberman-branding.html','landscape-design.html','obsidian-line.html',
+ 'insights/doberman-kennel-branding/index.html','insights/identity-systems/index.html',
+ 'insights/landscape-design-belgrade/index.html','insights/digital-brand-direction/index.html'
+]
 errors=[]
 class P(HTMLParser):
  def __init__(self):
-  super().__init__(convert_charrefs=True);self.meta={};self.can=[];self.h1=0;self.main=0;self.json=[];self._j=False;self._buf=[];self.images=[];self.icons=[]
+  super().__init__(convert_charrefs=True);self.meta={};self.can=[];self.h1=0;self.main=0;self.json=[];self._j=False;self._buf=[];self.images=[]
  def handle_starttag(self,t,a):
   d=dict(a)
   if t=='meta':
    k=d.get('name') or d.get('property')
    if k:self.meta.setdefault(k,[]).append(d.get('content',''))
   if t=='link' and d.get('rel')=='canonical':self.can.append(d.get('href',''))
-  if t=='link' and d.get('rel') in {'icon','apple-touch-icon'}:self.icons.append((d.get('rel'),d.get('sizes'),d.get('href')))
   if t=='h1':self.h1+=1
   if t=='main':self.main+=1
   if t=='img':self.images.append(d)
@@ -42,6 +45,7 @@ for f in PAGES:
   if need not in types:errors.append(f'{f}: missing {need} entity')
  org=next((n for n in graph if n.get('@id')==ORIGIN+'#organization'),{})
  if org.get('foundingDate')!='2019' or org.get('founder',{}).get('@id')!=ORIGIN+'#founder':errors.append(f'{f}: organization identity incomplete')
+ if f.startswith('insights/') and 'Article' not in types:errors.append(f'{f}: authority page missing Article entity')
  if f=='index.html':
   wp=next((n for n in graph if n.get('@type')=='WebPage'),{})
   if wp.get('@id')!=ORIGIN+'#webpage':errors.append('index.html: webpage @id not normalized')
@@ -56,10 +60,13 @@ for f in ['app.html','blog-doberman.html','privacy.html','404.html']:
  if not p.meta.get('robots') or 'noindex' not in p.meta['robots'][0]:errors.append(f'{f}: utility page must be noindex')
 ns={'sm':'http://www.sitemaps.org/schemas/sitemap/0.9'}
 locs=[n.text for n in ET.parse(ROOT/'sitemap.xml').findall('sm:url/sm:loc',ns)]
-expected=[ORIGIN,ORIGIN+'doberman-branding.html',ORIGIN+'digital-design.html',ORIGIN+'landscape-design.html',ORIGIN+'obsidian-line.html',ORIGIN+'answers.html']
-if set(locs)!=set(expected):errors.append('sitemap canonical page set mismatch')
+expected=[
+ ORIGIN,ORIGIN+'doberman-branding.html',ORIGIN+'digital-design.html',ORIGIN+'landscape-design.html',ORIGIN+'obsidian-line.html',ORIGIN+'answers.html',
+ ORIGIN+'insights/doberman-kennel-branding/',ORIGIN+'insights/identity-systems/',ORIGIN+'insights/landscape-design-belgrade/',ORIGIN+'insights/digital-brand-direction/'
+]
+if locs!=expected:errors.append('sitemap canonical page set/order mismatch')
 if errors:
  print('LIONSIGN SEO/GEO validation FAIL',file=sys.stderr)
  for e in errors:print(' -',e,file=sys.stderr)
  raise SystemExit(1)
-print('LIONSIGN SEO/GEO validation PASS (6 canonical pages)')
+print('LIONSIGN SEO/GEO validation PASS (10 canonical pages)')

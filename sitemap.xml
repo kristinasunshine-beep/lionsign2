@@ -42,20 +42,20 @@
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/4.png</image:loc></image:image>
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/5.png</image:loc></image:image>
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/6.png</image:loc></image:image>
-    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/7.png</image:loc></image:image>
-    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/digital-3d-banners-final-slide.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/7.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/digital-3d-banners-final-slide.webp</image:loc></image:image>
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/9.png</image:loc></image:image>
-    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/10.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/10.webp</image:loc></image:image>
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/11.png</image:loc></image:image>
-    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/12.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/12.webp</image:loc></image:image>
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/13.png</image:loc></image:image>
-    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/14.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/14.webp</image:loc></image:image>
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/15.png</image:loc></image:image>
-    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/16.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/16.webp</image:loc></image:image>
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/17.png</image:loc></image:image>
-    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/18.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/18.webp</image:loc></image:image>
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/19.png</image:loc></image:image>
-    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/20.png</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/portfolio/20.webp</image:loc></image:image>
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/21.png</image:loc></image:image>
     <image:image><image:loc>https://www.lionsignstudio.com/portfolio/22.png</image:loc></image:image>
   </url>
@@ -64,21 +64,45 @@
     <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <image:image><image:loc>https://www.lionsignstudio.com/assets/crop-residence-entry-clean.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.lionsignstudio.com/assets/crop-pool-landscape-clean.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.lionsignstudio.com/assets/crop-garden-courtyard-clean.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/crop-residence-entry-clean.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/crop-pool-landscape-clean.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/crop-garden-courtyard-clean.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.lionsignstudio.com/obsidian-line.html</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <image:image><image:loc>https://www.lionsignstudio.com/assets/obsidian-hero-dobermann-clean-wide.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.lionsignstudio.com/assets/obsidian-hero-dobermann-clean-wide.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.lionsignstudio.com/answers.html</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.lionsignstudio.com/insights/doberman-kennel-branding/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.lionsignstudio.com/insights/identity-systems/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.lionsignstudio.com/insights/landscape-design-belgrade/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.lionsignstudio.com/insights/digital-brand-direction/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.65</priority>
   </url>
 </urlset>
