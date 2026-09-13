@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Doberman Index kennel record submission.">
+<meta name="robots" content="noindex,nofollow">
+<title>Kennel Submission · Doberman Index</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/submit-v3.css">
+<link rel="stylesheet" href="assets/css/submit-entity.css">
+</head>
+<body>
+<a class="skip-link" href="#submission-form">Skip to the form</a>
+<header class="site-header">
+<a class="brand" href="index.html" aria-label="Doberman Index home"><span class="brand-mark">DI</span><span><strong>DOBERMAN INDEX</strong><small>KENNEL SUBMISSION</small></span></a>
+<span class="quiet-status" id="save-status">Text answers save on this device</span>
+</header>
+<main class="page-shell">
+<section class="intro" aria-labelledby="page-title">
+<p class="eyebrow">One kennel · one permanent network node</p>
+<h1 id="page-title">Build the kennel record.</h1>
+<p>Submit the public kennel identity once. Linked Dobermans and litters will supply the living network, health evidence and performance footprint.</p>
+<div class="entity-intro-note"><strong>Important:</strong> this page prepares a private Submission ZIP on your device. Nothing is uploaded automatically. Unknown information can remain blank and is reviewed before publication.</div>
+</section>
+<div class="wizard-card">
+<nav class="progress" aria-label="Submission progress"><div class="progress-line"><span id="progress-fill"></span></div><ol>
+<li class="is-active"><button type="button" data-step-link="0"><span>1</span><em>Identity</em></button></li>
+<li><button type="button" data-step-link="1"><span>2</span><em>Program</em></button></li>
+<li><button type="button" data-step-link="2"><span>3</span><em>Media</em></button></li>
+<li><button type="button" data-step-link="3"><span>4</span><em>Review</em></button></li>
+</ol></nav>
+<form id="submission-form" novalidate>
+<section class="form-step is-active" data-step="0" aria-labelledby="k-step-1"><div class="step-heading"><span>01</span><div><h2 id="k-step-1">Kennel identity</h2><p>The stable facts that identify the breeding program.</p></div></div>
+<div class="field-grid">
+<label class="field field-wide"><span>Kennel registered / display name <b>Required</b></span><input name="kennel_name" required autocomplete="organization"></label>
+<label class="field"><span>Country <b>Required</b></span><input name="country" required autocomplete="country-name"></label>
+<label class="field"><span>City or region</span><input name="location"></label>
+<label class="field"><span>Founded year</span><input name="founded_year" type="number" min="1900" max="2100" inputmode="numeric"></label>
+<label class="field"><span>Owner / founder</span><input name="owner_or_founder"></label>
+<label class="field"><span>Registration prefix</span><input name="registration_prefix"></label>
+<label class="field"><span>Registration authority</span><input name="registration_authority" placeholder="FCI, national kennel club or other"></label>
+<label class="field"><span>Existing DI-K ID · if this is an update</span><input name="existing_kennel_id" pattern="DI-K-[0-9]{6}" placeholder="DI-K-000001"></label>
+</div></section>
+
+<section class="form-step" data-step="1" hidden aria-labelledby="k-step-2"><div class="step-heading"><span>02</span><div><h2 id="k-step-2">Public presence & breeding program</h2><p>These fields give the kennel record context; connected records provide the evidence.</p></div></div>
+<div class="field-grid">
+<label class="field"><span>Public contact email</span><input name="public_email" type="email"></label>
+<label class="field"><span>Website</span><input name="website" type="url" placeholder="https://"></label>
+<label class="field field-wide"><span>Social links</span><textarea name="social_links" rows="3" placeholder="One public URL per line"></textarea></label>
+<label class="field field-wide"><span>Breeding focus</span><textarea name="focus" rows="4" placeholder="One concise program priority per line"></textarea><small class="field-help">Examples: temperament stability, working ability, longevity, balanced structure. Use only claims you can stand behind.</small></label>
+<label class="field field-wide"><span>Bloodline tags</span><textarea name="bloodline_tags" rows="3" placeholder="One line / family reference per line"></textarea></label>
+<label class="field field-wide"><span>Dobermans that should connect to this kennel</span><textarea name="network_dobermans" rows="5" placeholder="One per line: registered name | registration number (if known)"></textarea><small class="field-help">These are relationship candidates only. Doberman Index links them after record review; no ID is invented from this list.</small></label>
+<label class="field field-wide"><span>Litters that should connect to this kennel</span><textarea name="network_litters" rows="5" placeholder="One per line: designation/date | sire | dam"></textarea><small class="field-help">Use this for historical or current litters that should become DI-L records.</small></label>
+</div></section>
+
+<section class="form-step" data-step="2" hidden aria-labelledby="k-step-3"><div class="step-heading"><span>03</span><div><h2 id="k-step-3">Kennel media</h2><p>Supply only assets you own or have permission to publish.</p></div></div>
+<div class="upload-grid">
+<label class="upload-card is-primary"><input type="file" name="kennel_logo" accept=".svg,.png,.webp,image/svg+xml,image/png,image/webp"><span class="upload-number">01</span><strong>Logo</strong><small>SVG preferred; transparent PNG/WebP also accepted. Use the highest-resolution original available.</small><em data-file-label="kennel_logo">Choose logo</em></label>
+<label class="upload-card"><input type="file" name="kennel_cover" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"><span class="upload-number">02</span><strong>Cover image</strong><small>Optional public kennel image.</small><em data-file-label="kennel_cover">Choose photo</em></label>
+<label class="upload-card"><input type="file" name="kennel_gallery" multiple accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"><span class="upload-number">03</span><strong>Gallery</strong><small>Optional · up to 10 selected images.</small><em data-file-label="kennel_gallery">Choose photos</em></label>
+</div>
+<div class="file-note"><strong>The logo can also be reused for Promoted Kennels if you later activate the paid placement.</strong><span>Publication and promotional use still require your approval.</span></div>
+</section>
+
+<section class="form-step" data-step="3" hidden aria-labelledby="k-step-4"><div class="step-heading"><span>04</span><div><h2 id="k-step-4">Review & prepare</h2><p>Check the record source, then prepare the private ZIP.</p></div></div>
+<div class="review-summary" id="review-summary"></div>
+<div class="contact-panel"><h3>Your contact details</h3><p>Used only for this submission and any review questions.</p><div class="field-grid">
+<label class="field"><span>Your name <b>Required</b></span><input name="contact_name" required autocomplete="name"></label>
+<label class="field"><span>Email <b>Required</b></span><input name="contact_email" required type="email" autocomplete="email"></label>
+<label class="field"><span>Phone or WhatsApp</span><input name="contact_phone" autocomplete="tel"></label>
+<label class="field"><span>Your relationship to this kennel</span><select name="relationship"><option value="kennel_representative">Kennel representative</option><option value="breeder">Breeder</option><option value="owner">Owner</option><option value="authorized_representative">Authorized representative</option><option value="other">Other</option></select></label>
+</div></div>
+<label class="consent"><input type="checkbox" name="accuracy_consent" required><span>I confirm that the information is accurate to the best of my knowledge and may be reviewed by Doberman Index.</span></label>
+<label class="consent consent-second"><input type="checkbox" name="publication_consent" required><span>I understand that approved kennel information and selected files may be published after review.</span></label>
+<label class="consent consent-second"><input type="checkbox" name="asset_rights_consent" required><span>I confirm that I own or have permission to provide the submitted logo and media for the approved Doberman Index uses.</span></label>
+<p class="privacy-note">Your files are prepared on this device. They are not uploaded by this page.</p>
+<div class="success-panel" id="success-panel" hidden role="status"><strong>Your kennel package is ready.</strong><span>Send the saved ZIP to your Doberman Index contact without opening or changing its contents.</span></div>
+</section>
+<div class="form-error" id="form-error" hidden role="alert"></div>
+<footer class="wizard-actions"><button class="button button-quiet" id="back-button" type="button" hidden>Back</button><button class="button button-primary" id="next-button" type="button">Continue <span>→</span></button><button class="button button-primary" id="prepare-button" type="submit" hidden>Prepare kennel submission <span>↓</span></button></footer>
+</form></div>
+<button class="reset-button" id="reset-button" type="button">Clear this form</button>
+</main>
+<script src="assets/js/zip-tools.js"></script>
+<script src="assets/js/submit-kennel.js"></script>
+</body>
+</html>

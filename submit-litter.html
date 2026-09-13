@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Doberman Index litter record submission.">
+<meta name="robots" content="noindex,nofollow">
+<title>Litter Submission · Doberman Index</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/submit-v3.css">
+<link rel="stylesheet" href="assets/css/submit-entity.css">
+</head>
+<body>
+<a class="skip-link" href="#submission-form">Skip to the form</a>
+<header class="site-header">
+<a class="brand" href="index.html" aria-label="Doberman Index home"><span class="brand-mark">DI</span><span><strong>DOBERMAN INDEX</strong><small>LITTER SUBMISSION</small></span></a>
+<span class="quiet-status" id="save-status">Text answers save on this device</span>
+</header>
+<main class="page-shell">
+<section class="intro" aria-labelledby="page-title">
+<p class="eyebrow">One litter · permanent family connection</p>
+<h1 id="page-title">Connect the litter.</h1>
+<p>A DI-L record joins the kennel, sire, dam and indexed offspring. Puppy availability may change; the family history does not.</p>
+<div class="entity-intro-note"><strong>No temporary puppy IDs:</strong> every indexed puppy keeps a permanent DI-M or DI-F identity for life. This litter submission supplies the source relationships; individual puppy records use the existing Doberman submission.</div>
+</section>
+<div class="wizard-card">
+<nav class="progress" aria-label="Submission progress"><div class="progress-line"><span id="progress-fill"></span></div><ol>
+<li class="is-active"><button type="button" data-step-link="0"><span>1</span><em>Litter</em></button></li>
+<li><button type="button" data-step-link="1"><span>2</span><em>Offspring</em></button></li>
+<li><button type="button" data-step-link="2"><span>3</span><em>Sources</em></button></li>
+<li><button type="button" data-step-link="3"><span>4</span><em>Review</em></button></li>
+</ol></nav>
+<form id="submission-form" novalidate>
+<section class="form-step is-active" data-step="0" aria-labelledby="l-step-1"><div class="step-heading"><span>01</span><div><h2 id="l-step-1">Litter & parent connection</h2><p>Use registered names and registration numbers whenever possible.</p></div></div>
+<div class="field-grid">
+<label class="field"><span>Litter designation / name</span><input name="litter_name" placeholder="A Litter, 2024 litter, kennel designation…"></label>
+<label class="field"><span>Existing DI-L ID · if this is an update</span><input name="existing_litter_id" pattern="DI-L-[0-9]{6}" placeholder="DI-L-000001"></label>
+<fieldset class="field field-wide choice-field"><legend>Litter status <b>Required</b></legend><div class="choice-row">
+<label><input type="radio" name="litter_status" value="planned" required><span>Planned</span></label>
+<label><input type="radio" name="litter_status" value="born"><span>Born</span></label>
+<label><input type="radio" name="litter_status" value="open"><span>Open / puppies available</span></label>
+<label><input type="radio" name="litter_status" value="closed"><span>Closed</span></label>
+<label><input type="radio" name="litter_status" value="archived"><span>Historical / archived</span></label>
+</div></fieldset>
+<label class="field" data-conditional="planned" hidden><span>Planned date <b>Required for planned litter</b></span><input name="planned_date" type="date"></label>
+<label class="field" data-conditional="born" hidden><span>Date of birth <b>Required once born</b></span><input name="date_of_birth" type="date"></label>
+<label class="field"><span>Kennel name</span><input name="kennel_name"></label>
+<label class="field"><span>Existing DI-K ID · if known</span><input name="kennel_id" pattern="DI-K-[0-9]{6}" placeholder="DI-K-000001"></label>
+<label class="field"><span>Sire registered name <b>Required</b></span><input name="sire_name" required></label>
+<label class="field"><span>Sire registration number</span><input name="sire_registration"></label>
+<label class="field"><span>Existing sire DI ID · if known</span><input name="sire_id" pattern="DI-M-[0-9]{6}" placeholder="DI-M-000001"></label>
+<label class="field"><span>Dam registered name <b>Required</b></span><input name="dam_name" required></label>
+<label class="field"><span>Dam registration number</span><input name="dam_registration"></label>
+<label class="field"><span>Existing dam DI ID · if known</span><input name="dam_id" pattern="DI-F-[0-9]{6}" placeholder="DI-F-000001"></label>
+</div></section>
+
+<section class="form-step" data-step="1" hidden aria-labelledby="l-step-2"><div class="step-heading"><span>02</span><div><h2 id="l-step-2">Offspring source roster</h2><p>Add what is known. The roster is review material; DI-M/DI-F IDs are assigned only through the normal record workflow.</p></div></div>
+<div class="field-grid">
+<label class="field"><span>Total puppies born · if known</span><input name="total_puppies" type="number" min="0"></label>
+<label class="field"><span>Birth / registration notes</span><input name="roster_note" placeholder="Optional"></label>
+<div class="repeat-panel"><div class="repeat-head"><div><strong>Known offspring</strong><small>Registered name may be blank for an unnamed young puppy.</small></div><button class="button-small" id="add-puppy" type="button">+ Add puppy</button></div><div class="repeat-list" id="puppy-roster"></div></div>
+<div class="source-note"><strong>Why this matters:</strong> the permanent litter record stores only reviewed DI-M/DI-F offspring IDs. This source roster lets the admin match existing records, invite missing ones and preserve the litter connection without inventing IDs.</div>
+</div></section>
+
+<section class="form-step" data-step="2" hidden aria-labelledby="l-step-3"><div class="step-heading"><span>03</span><div><h2 id="l-step-3">Evidence & public media</h2><p>Source documents help verify the connection; public media is selected separately during review.</p></div></div>
+<div class="field-grid">
+<label class="upload-simple field-wide"><input type="file" name="litter_evidence" multiple accept=".jpg,.jpeg,.png,.webp,.pdf,image/jpeg,image/png,image/webp,application/pdf"><span class="upload-icon">＋</span><span><strong>Add litter / registration source documents</strong><small>Pedigree, litter registration, official record or other supporting source · optional</small><em data-file-label="litter_evidence">No files selected</em></span></label>
+<label class="field field-wide"><span>Editorial notes about this litter</span><textarea name="litter_notes" rows="5" placeholder="Facts that help review the litter connection. Do not use promotional claims here."></textarea></label>
+</div>
+<div class="upload-grid">
+<label class="upload-card is-primary"><input type="file" name="litter_cover" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"><span class="upload-number">01</span><strong>Litter cover</strong><small>Optional public image representing the litter.</small><em data-file-label="litter_cover">Choose photo</em></label>
+<label class="upload-card"><input type="file" name="litter_gallery" multiple accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"><span class="upload-number">02</span><strong>Litter gallery</strong><small>Optional · up to 10 images.</small><em data-file-label="litter_gallery">Choose photos</em></label>
+</div>
+</section>
+
+<section class="form-step" data-step="3" hidden aria-labelledby="l-step-4"><div class="step-heading"><span>04</span><div><h2 id="l-step-4">Review & prepare</h2><p>Prepare the private source package for admin review.</p></div></div>
+<div class="review-summary" id="review-summary"></div>
+<div class="contact-panel"><h3>Your contact details</h3><p>Used only for this submission and any review questions.</p><div class="field-grid">
+<label class="field"><span>Your name <b>Required</b></span><input name="contact_name" required autocomplete="name"></label>
+<label class="field"><span>Email <b>Required</b></span><input name="contact_email" required type="email" autocomplete="email"></label>
+<label class="field"><span>Phone or WhatsApp</span><input name="contact_phone" autocomplete="tel"></label>
+<label class="field"><span>Your relationship to this litter</span><select name="relationship"><option value="breeder">Breeder</option><option value="kennel_representative">Kennel representative</option><option value="owner">Owner of sire/dam or offspring</option><option value="authorized_representative">Authorized representative</option><option value="other">Other</option></select></label>
+</div></div>
+<label class="consent"><input type="checkbox" name="accuracy_consent" required><span>I confirm that the information is accurate to the best of my knowledge and may be reviewed by Doberman Index.</span></label>
+<label class="consent consent-second"><input type="checkbox" name="publication_consent" required><span>I understand that only reviewed litter information and selected public media may be published.</span></label>
+<label class="consent consent-second"><input type="checkbox" name="asset_rights_consent" required><span>I confirm that I own or have permission to provide the submitted public media for the approved Doberman Index uses.</span></label>
+<p class="privacy-note">Source documents remain review material unless specifically approved for public use.</p>
+<div class="success-panel" id="success-panel" hidden role="status"><strong>Your litter package is ready.</strong><span>Send the saved ZIP to your Doberman Index contact without opening or changing its contents.</span></div>
+</section>
+<div class="form-error" id="form-error" hidden role="alert"></div>
+<footer class="wizard-actions"><button class="button button-quiet" id="back-button" type="button" hidden>Back</button><button class="button button-primary" id="next-button" type="button">Continue <span>→</span></button><button class="button button-primary" id="prepare-button" type="submit" hidden>Prepare litter submission <span>↓</span></button></footer>
+</form></div>
+<button class="reset-button" id="reset-button" type="button">Clear this form</button>
+</main>
+<script src="assets/js/zip-tools.js"></script>
+<script src="assets/js/submit-litter.js"></script>
+</body>
+</html>
