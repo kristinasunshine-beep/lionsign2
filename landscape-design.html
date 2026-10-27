@@ -1253,6 +1253,16 @@ a, button, .faq-q, .svc-card, .package-select-trigger, .package-option,
 input, textarea { cursor: text !important; }
 button:disabled, [aria-disabled="true"] { cursor: default !important; }
 
+
+/* Targeted addition — link to Il Giardino del Fico, no changes to existing services */
+.work-section .btn-garden-collection{margin-top:31px}
+.btn-garden-collection{display:inline-flex;align-items:center;justify-content:center;min-height:45px;padding:10px 24px;border:2px solid #c0392b;color:#c0392b;background:transparent;font-family:"Space Grotesk",Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s}
+.btn-garden-collection:hover,.btn-garden-collection:focus-visible{background:#c0392b;color:#fff}
+@media(max-width:720px){.btn-garden-collection{font-size:11px;min-height:46px;padding:12px 18px;max-width:95vw;text-align:center}}
+
+/* Giardino design parity: all primary buttons use the original 10px radius. */
+.btn-garden-collection{border-radius:10px}
+@media(max-width:720px){.btn-primary{border-radius:10px}}
 </style>
 </head>
 <body>
@@ -1357,6 +1367,7 @@ button:disabled, [aria-disabled="true"] { cursor: default !important; }
           <div>
             <div class="section-label">Project material</div>
             <h2 class="section-title">Spatial studies<br><em>in motion</em></h2>
+            <a class="btn-garden-collection" href="/giardino-del-fico/" aria-label="Explore the Il Giardino del Fico collection of five authorial gardens">Explore five authorial gardens ↗</a>
           </div>
           <p class="section-copy">Selected studies and implemented ideas exploring proportion, planting and controlled contrast across real and imagined conditions.</p>
         </div>
@@ -1503,4 +1514,3 @@ button:disabled, [aria-disabled="true"] { cursor: default !important; }
   </script>
 </body>
 </html>
-
